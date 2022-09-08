@@ -12,5 +12,9 @@
         <Setter Property="Padding" Value="20"/>
     </Style>
 
+    <Style TargetType="Ellipse">
+        <Setter Property="Fill" Value="{StaticResource Primary}"/>
+
+    </Style>
 </ResourceDictionary>
 

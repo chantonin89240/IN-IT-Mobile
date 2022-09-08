@@ -6,8 +6,7 @@
     <Grid RowDefinitions="1*, 7*">
         <Ellipse
             HeightRequest="300"
-            WidthRequest="800"
-            Fill="{StaticResource Primary}"/>
+            WidthRequest="800"/>
 
         <StackLayout Grid.Row="1" Padding="20, 0" Spacing="20">
             <Image Source="init"/>
@@ -15,7 +14,7 @@
             <VerticalStackLayout Spacing="20">
                 <Entry FontSize="20" Placeholder="Mail"/>
                 <Entry FontSize="20" Placeholder="Password"/>
-                <Button Text="Se connecter"/>
+                <Button Text="Se connecter" Clicked="Button_Clicked"/>
             </VerticalStackLayout>
         </StackLayout>
     </Grid>
