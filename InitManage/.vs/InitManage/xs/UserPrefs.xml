@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{D05244DD-958E-415D-B883-4E82AA8EBB89}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.12F429E1-31B6-4BB6-B490-CD5E98EC51FC" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="InitManage/MainPage.xaml">
+    <Files>
+      <File FileName="InitManage/MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="InitManage/MainPage.xaml" Line="24" Column="19" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="InitManage" expanded="True">
+            <Node name="InitManage" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.InitManage PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.12F429E1-31B6-4BB6-B490-CD5E98EC51FC" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
