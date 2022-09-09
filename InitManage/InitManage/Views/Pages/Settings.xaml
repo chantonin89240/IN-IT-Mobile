@@ -18,6 +18,7 @@
                 FontAttributes="Bold"/>
 
             <Button
+                Clicked="Button_Clicked"
                 Text="Déconnexion"
                 VerticalOptions="EndAndExpand"/>
 
