@@ -14,7 +14,11 @@
 
     <Style TargetType="Ellipse">
         <Setter Property="Fill" Value="{StaticResource Primary}"/>
+    </Style>
 
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarTextColor" Value="{StaticResource White}"/>
+        <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
     </Style>
 </ResourceDictionary>
 

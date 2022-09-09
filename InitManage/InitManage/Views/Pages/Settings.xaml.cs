@@ -9,6 +9,6 @@ public partial class Settings : ContentPage
 
     void Button_Clicked(System.Object sender, System.EventArgs e)
     {
-		Application.Current.MainPage = new LoginPage();
+		Navigation.PushAsync(new ResourcePage());
     }
 }

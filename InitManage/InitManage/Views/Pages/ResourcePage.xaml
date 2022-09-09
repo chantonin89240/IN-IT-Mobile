@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InitManage.Views.Pages.ResourcePage"
+             Title="Salle de réunion">
+    <ScrollView>
+        <StackLayout>
+            <Image
+                HeightRequest="200"
+                Source="https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg"/>
+
+            <StackLayout Margin="20" Spacing="20">
+                <Label FontAttributes="Bold" TextColor="{StaticResource Dark}" Text="Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3 ème étage d’un batiment neuf."/>
+
+
+                <Grid
+                    RowDefinitions="Auto, Auto"
+                    ColumnDefinitions="Auto, *"
+                    ColumnSpacing="10"
+                    RowSpacing="10">
+
+                    <Image Source="pin"/>
+                    <Label
+                        Text="18 Boulevard de Verdun"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Grid.Column="1"/>
+
+                    <Image
+                        Grid.Row="1"
+                        Source="peoples"/>
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="8 personnes maximum"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="18"/>
+                </Grid>
+
+                <Frame
+                    HasShadow="False"
+                    BackgroundColor="{StaticResource Dark}"
+                    HeightRequest="1"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="18"
+                        Text="Réserver la salle le"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+                    <DatePicker/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="de" VerticalOptions="Center"/>
+                    <TimePicker/>
+                    <Label Text="à" VerticalOptions="Center"/>
+                    <TimePicker/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="pour" VerticalOptions="Center"/>
+                    <Entry/>
+                    <Label Text="personnes(s)." VerticalOptions="Center"/>
+
+                </StackLayout>
+                <Button Text="Réserver"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

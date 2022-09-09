@@ -21,6 +21,6 @@ public partial class ResourcesPage : ContentPage
         base.OnAppearing();
 
         var x = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>("http://10.4.0.112:3000/api/pokemons", HttpMethod.Get);
-        MaCollection.ItemsSource = x.Content;
+        MaCollection.ItemsSource = x?.Content;
     }
 }

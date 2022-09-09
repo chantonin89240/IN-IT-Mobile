@@ -32,12 +32,6 @@
             HorizontalOptions="End"
             HeightRequest="150"
             WidthRequest="150">
-            <Ellipse.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Offset="20, 10"/>
-            </Ellipse.Shadow>
-
         </Ellipse>
 
         <Ellipse
@@ -47,11 +41,6 @@
             Grid.Row="1"
             HeightRequest="80"
             WidthRequest="80">
-            <Ellipse.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Offset="5, 5"/>
-            </Ellipse.Shadow>
             </Ellipse>
 
         <Ellipse
@@ -61,11 +50,6 @@
             Grid.Row="1"
             HeightRequest="30"
             WidthRequest="30">
-            <Ellipse.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Offset="5, 5"/>
-            </Ellipse.Shadow>
             </Ellipse>
     </Grid>
 </ContentPage>
