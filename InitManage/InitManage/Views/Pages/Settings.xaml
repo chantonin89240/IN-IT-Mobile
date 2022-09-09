@@ -31,22 +31,41 @@
             VerticalOptions="Start"
             HorizontalOptions="End"
             HeightRequest="150"
-            WidthRequest="150"/>
+            WidthRequest="150">
+            <Ellipse.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Offset="20, 10"/>
+            </Ellipse.Shadow>
+
+        </Ellipse>
 
         <Ellipse
             VerticalOptions="Start"
             HorizontalOptions="End"
             Margin="30"
             Grid.Row="1"
-            HeightRequest="100"
-            WidthRequest="100"/>
+            HeightRequest="80"
+            WidthRequest="80">
+            <Ellipse.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Offset="5, 5"/>
+            </Ellipse.Shadow>
+            </Ellipse>
 
         <Ellipse
             VerticalOptions="Start"
             HorizontalOptions="End"
-            Margin="120"
+            Margin="100"
             Grid.Row="1"
-            HeightRequest="50"
-            WidthRequest="50"/>
+            HeightRequest="30"
+            WidthRequest="30">
+            <Ellipse.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Offset="5, 5"/>
+            </Ellipse.Shadow>
+            </Ellipse>
     </Grid>
 </ContentPage>
