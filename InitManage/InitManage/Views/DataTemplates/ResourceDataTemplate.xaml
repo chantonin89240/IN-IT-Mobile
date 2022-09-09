@@ -10,22 +10,22 @@
                 RowDefinitions="Auto, Auto, Auto"
                 ColumnDefinitions="3*, 7*">
 
-                <Image Source="dotnet_bot" Grid.RowSpan="3" HeightRequest="100" BackgroundColor="Black"/>
+                <Image Source="{Binding Image}" Grid.RowSpan="3" HeightRequest="100" BackgroundColor="Black"/>
                 <Label
                     Grid.Column="1"
                     FontAttributes="Bold"
                     FontSize="20"
-                    Text="Location salle de réunion"
+                    Text="{Binding Name}"
                     TextColor="{StaticResource Primary}"/>
                 <Label
                     TextColor="{StaticResource White}"
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="0,0,20,0"
-                    Text="Cette salle de réunion est une salle de réunion très lumineuse et spacieuse"/>
+                    Text="{Binding Description}"/>
 
                 <StackLayout Grid.Row="2" Grid.Column="1">
-                    <Label TextColor="{StaticResource White}" Text="8 personnes"/>
+                    <Label TextColor="{StaticResource White}" Text="{Binding Type}"/>
 
                 </StackLayout>
             </Grid>

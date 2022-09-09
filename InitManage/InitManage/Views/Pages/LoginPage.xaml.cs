@@ -9,6 +9,6 @@ public partial class LoginPage : ContentPage
 
     void Button_Clicked(System.Object sender, System.EventArgs e)
     {
-		Application.Current.MainPage = new ResourcesPage();
+		Application.Current.MainPage = new MainTabbedPage();
     }
 }
