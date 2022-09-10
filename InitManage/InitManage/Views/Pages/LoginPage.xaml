@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:LoginViewModels="clr-namespace:InitManage.ViewModels.Login"
              x:Class="InitManage.Views.Pages.LoginPage"
+             x:DataType="LoginViewModels:LoginViewModel"
              NavigationPage.HasNavigationBar="False"
              Title="LoginPage">
     <Grid
@@ -20,12 +22,16 @@
             <VerticalStackLayout
                 Spacing="20">
                 <Entry
+                    Text="{Binding Mail}"
                     FontSize="20"
                     Placeholder="Mail"/>
                 <Entry
                     FontSize="20"
-                    Placeholder="Password"/>
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Password}"/>
                 <Button
+                    Command="{Binding LoginCommand}"
                     Text="Se connecter">
                     <Button.Shadow>
                         <Shadow
