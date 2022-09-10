@@ -4,6 +4,7 @@ using CsharpTools.Services.Interfaces;
 using InitManage.Services;
 using InitManage.Services.Interfaces;
 using InitManage.ViewModels.Login;
+using InitManage.ViewModels.Resource;
 using InitManage.Views.Pages;
 
 namespace InitManage;
@@ -41,6 +42,9 @@ public static class MauiProgram
     private static void RegisterNavigation(this IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
+        containerRegistry.RegisterForNavigation<ResourcesPage, ResourcesViewModel>();
+        containerRegistry.RegisterForNavigation<MainTabbedPage>();
+
     }
 }
 

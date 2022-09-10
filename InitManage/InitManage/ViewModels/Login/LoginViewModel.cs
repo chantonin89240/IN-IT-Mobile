@@ -49,8 +49,7 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        var res = await _alertDialogService.AlertAsync("Attention","Voulez vous vous connecter ?");
-        //Application.Current.MainPage = new MainTabbedPage();
+        await NavigationService.NavigateAsync(nameof(MainTabbedPage));
     }
     #endregion
 
