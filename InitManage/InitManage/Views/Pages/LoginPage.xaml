@@ -26,8 +26,7 @@
                     FontSize="20"
                     Placeholder="Password"/>
                 <Button
-                    Text="Se connecter"
-                    Clicked="Button_Clicked">
+                    Text="Se connecter">
                     <Button.Shadow>
                         <Shadow
                             Opacity="0.5"
