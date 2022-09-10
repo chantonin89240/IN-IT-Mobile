@@ -52,6 +52,7 @@
 	  <None Remove="ThomasBernard.CsharpTools" />
 	  <None Remove="Models\" />
 	  <None Remove="Models\DTOs\" />
+	  <None Remove="Views\Components\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -59,6 +60,7 @@
 	  <Folder Include="Views\DataTemplates\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Models\DTOs\" />
+	  <Folder Include="Views\Components\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
@@ -86,6 +88,9 @@
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\DataTemplates\BookingDataTemplate.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\SeparatorComponent.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>

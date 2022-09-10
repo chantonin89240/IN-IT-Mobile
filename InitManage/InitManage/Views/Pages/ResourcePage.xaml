@@ -2,22 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:Components="clr-namespace:InitManage.Views.Components"
              x:Class="InitManage.Views.Pages.ResourcePage"
              Title="Salle de réunion">
-    <ScrollView>
-        <StackLayout>
+        <Grid RowDefinitions="200, *">
             <Image
                 Aspect="AspectFill"
-                HeightRequest="200"
                 Source="https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg"/>
 
-            <StackLayout Margin="20" Spacing="10">
+            <StackLayout Margin="20" Spacing="10" Grid.Row="1">
                 <Label
                     FontSize="18"
                     FontAttributes="Bold"
                     TextColor="{StaticResource Dark}"
                     Text="Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3ème étage d’un batiment neuf."/>
-
 
                 <Grid
                     RowDefinitions="Auto, Auto"
@@ -46,12 +44,9 @@
                         FontSize="18"/>
                 </Grid>
 
-                <Frame
-                    HasShadow="False"
-                    BackgroundColor="{StaticResource Dark}"
-                    HeightRequest="1"/>
+                <Components:SeparatorComponent/>
 
-                <StackLayout Orientation="Horizontal" Spacing="10">
+            <StackLayout Orientation="Horizontal" Spacing="10">
                     <Label
                         FontSize="18"
                         Text="Réserver la salle le"
@@ -88,6 +83,5 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-        </StackLayout>
-    </ScrollView>
+        </Grid>
 </ContentPage>

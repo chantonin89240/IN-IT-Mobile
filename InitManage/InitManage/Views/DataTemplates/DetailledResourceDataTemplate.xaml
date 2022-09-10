@@ -9,7 +9,7 @@
                         RowDefinitions="Auto, Auto, Auto"
                         ColumnDefinitions="3*, 7*">
 
-                        <Image Source="https://www.createur-entreprise.net/wp-content/uploads/2021/04/salle-reunion.png" Grid.RowSpan="3" HeightRequest="100" BackgroundColor="Black"/>
+                        <Image Aspect="Fill" Source="https://www.createur-entreprise.net/wp-content/uploads/2021/04/salle-reunion.png" Grid.RowSpan="3" HeightRequest="100" BackgroundColor="Black"/>
                         <Label
                             Grid.Column="1"
                             FontAttributes="Bold"
