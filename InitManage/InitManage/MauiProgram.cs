@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using CsharpTools.Services;
+using CsharpTools.Services.Interfaces;
 using InitManage.Services;
 using InitManage.Services.Interfaces;
 using InitManage.ViewModels.Login;
@@ -33,6 +35,7 @@ public static class MauiProgram
     private static void RegisterServices(this IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
+        containerRegistry.RegisterSingleton<IHttpService, HttpService>();
     }
 
     private static void RegisterNavigation(this IContainerRegistry containerRegistry)
