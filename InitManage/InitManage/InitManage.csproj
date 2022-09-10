@@ -59,6 +59,10 @@
 	  <None Remove="ViewModels\Login\" />
 	  <None Remove="Sharpnado.TaskMonitor" />
 	  <None Remove="ReactiveUI.Maui" />
+	  <None Remove="Services\" />
+	  <None Remove="Services\Interfaces\" />
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Views\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -69,6 +73,9 @@
 	  <Folder Include="Views\Components\" />
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="ViewModels\Login\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Services\Interfaces\" />
+	  <Folder Include="Views\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
@@ -101,6 +108,12 @@
 	  <MauiXaml Update="Views\Components\SeparatorComponent.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\ToolKitIsBusyPopup.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\ToolkitBasicPopup.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="ThomasBernard.CsharpTools" Version="1.3.8" />
@@ -108,5 +121,6 @@
 	  <PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	</ItemGroup>
 </Project>

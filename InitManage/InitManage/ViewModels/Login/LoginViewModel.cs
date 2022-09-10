@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using InitManage.Services.Interfaces;
 using InitManage.Views.Pages;
 using ReactiveUI;
 
@@ -7,8 +8,12 @@ namespace InitManage.ViewModels.Login;
 
 public class LoginViewModel : BaseViewModel
 {
-    public LoginViewModel(INavigationService navigationService) : base(navigationService)
+    private readonly IAlertDialogService _alertDialogService;
+
+    public LoginViewModel(INavigationService navigationService, IAlertDialogService alertDialogService) : base(navigationService)
     {
+        _alertDialogService = alertDialogService;
+
         LoginCommand = ReactiveCommand.CreateFromTask(OnLoginCommand);
     }
 
@@ -44,7 +49,8 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        Application.Current.MainPage = new MainTabbedPage();
+        var res = await _alertDialogService.AlertAsync("Attention","Voulez vous vous connecter ?");
+        //Application.Current.MainPage = new MainTabbedPage();
     }
     #endregion
 
