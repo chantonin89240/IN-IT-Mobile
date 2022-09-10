@@ -1,13 +1,20 @@
 ﻿using System;
+using ReactiveUI;
 using Sharpnado.Tasks;
 
 namespace InitManage.ViewModels;
 
-public class BaseViewModel : INavigatedAware, IInitializeAsync
+public class BaseViewModel : ReactiveObject, INavigatedAware, IInitializeAsync
 {
     public BaseViewModel(INavigationService navigationService)
     {
+        NavigationService = navigationService;
     }
+
+    #region Properties
+    protected INavigationService NavigationService { get; }
+    protected bool IsBusy { get; set; }
+    #endregion
 
     #region LifeCycle
 

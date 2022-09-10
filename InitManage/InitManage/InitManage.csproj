@@ -58,6 +58,7 @@
 	  <None Remove="Prism.Maui" />
 	  <None Remove="ViewModels\Login\" />
 	  <None Remove="Sharpnado.TaskMonitor" />
+	  <None Remove="ReactiveUI.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -106,5 +107,6 @@
 	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
+	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	</ItemGroup>
 </Project>
