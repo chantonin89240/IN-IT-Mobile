@@ -4,18 +4,37 @@
              x:Class="InitManage.Views.Pages.LoginPage"
              NavigationPage.HasNavigationBar="False"
              Title="LoginPage">
-    <Grid RowDefinitions="1*, 7*">
+    <Grid
+        RowDefinitions="1*, 7*">
         <Ellipse
             HeightRequest="300"
             WidthRequest="800"/>
 
-        <StackLayout Grid.Row="1" Padding="20, 0" Spacing="20">
-            <Image Source="init"/>
+        <StackLayout
+            Grid.Row="1"
+            Spacing="20"
+            Padding="20, 0">
+            <Image
+                Source="init"/>
 
-            <VerticalStackLayout Spacing="20">
-                <Entry FontSize="20" Placeholder="Mail"/>
-                <Entry FontSize="20" Placeholder="Password"/>
-                <Button Text="Se connecter" Clicked="Button_Clicked"/>
+            <VerticalStackLayout
+                Spacing="20">
+                <Entry
+                    FontSize="20"
+                    Placeholder="Mail"/>
+                <Entry
+                    FontSize="20"
+                    Placeholder="Password"/>
+                <Button
+                    Text="Se connecter"
+                    Clicked="Button_Clicked">
+                    <Button.Shadow>
+                        <Shadow
+                            Opacity="0.5"
+                            Radius="5"
+                            Offset="5, 5"/>
+                    </Button.Shadow>
+                </Button>
             </VerticalStackLayout>
         </StackLayout>
     </Grid>

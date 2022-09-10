@@ -53,6 +53,10 @@
 	  <None Remove="Models\" />
 	  <None Remove="Models\DTOs\" />
 	  <None Remove="Views\Components\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Prism.DryIoc.Maui" />
+	  <None Remove="Prism.Maui" />
+	  <None Remove="ViewModels\Login\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -61,6 +65,8 @@
 	  <Folder Include="Models\" />
 	  <Folder Include="Models\DTOs\" />
 	  <Folder Include="Views\Components\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="ViewModels\Login\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
@@ -96,5 +102,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="ThomasBernard.CsharpTools" Version="1.3.8" />
+	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
+	  <PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 	</ItemGroup>
 </Project>
