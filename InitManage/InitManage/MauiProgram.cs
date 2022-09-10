@@ -5,6 +5,7 @@ using InitManage.Services;
 using InitManage.Services.Interfaces;
 using InitManage.ViewModels.Login;
 using InitManage.ViewModels.Resource;
+using InitManage.ViewModels.Setting;
 using InitManage.Views.Pages;
 
 namespace InitManage;
@@ -43,8 +44,12 @@ public static class MauiProgram
     {
         containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
         containerRegistry.RegisterForNavigation<ResourcesPage, ResourcesViewModel>();
-        containerRegistry.RegisterForNavigation<MainTabbedPage>();
+        containerRegistry.RegisterForNavigation<MyResourcesPage, MyResourcesViewModel>();
+        containerRegistry.RegisterForNavigation<ResourcePage, ResourceViewModel>();
+        containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
 
+        containerRegistry.RegisterForNavigation<MainTabbedPage>();
+        containerRegistry.RegisterForNavigation<NavigationPage>();
     }
 }
 

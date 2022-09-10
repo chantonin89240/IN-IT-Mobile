@@ -64,6 +64,7 @@
 	  <None Remove="CommunityToolkit.Maui" />
 	  <None Remove="Views\Popups\" />
 	  <None Remove="ViewModels\Resource\" />
+	  <None Remove="ViewModels\Setting\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -78,6 +79,7 @@
 	  <Folder Include="Services\Interfaces\" />
 	  <Folder Include="Views\Popups\" />
 	  <Folder Include="ViewModels\Resource\" />
+	  <Folder Include="ViewModels\Setting\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">

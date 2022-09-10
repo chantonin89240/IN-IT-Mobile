@@ -9,6 +9,6 @@
 
     <local:ResourcesPage/>
     <local:MyResourcesPage/>
-    <local:Settings/>
+    <local:SettingsPage/>
 </TabbedPage>
 
