@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              x:Class="InitManage.Views.Pages.MyResourcesPage"
-             IconImageSource="opened_book">
+             IconImageSource="opened_book"
+             Title="Mes réservations">
     <Grid RowDefinitions="*">
         <Ellipse
             VerticalOptions="End"

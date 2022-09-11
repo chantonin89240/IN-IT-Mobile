@@ -4,8 +4,9 @@
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              x:Class="InitManage.Views.Pages.ResourcesPage"
+             x:DataType="ResourceViewModels:ResourcesViewModel"
              IconImageSource="book"
-             x:DataType="ResourceViewModels:ResourcesViewModel">
+             Title="Menu">
 
     <Grid RowDefinitions="Auto, *">
         <StackLayout>

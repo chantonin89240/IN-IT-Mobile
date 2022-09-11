@@ -4,7 +4,7 @@ using Sharpnado.Tasks;
 
 namespace InitManage.ViewModels;
 
-public class BaseViewModel : ReactiveObject, INavigatedAware, IInitializeAsync
+public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitializeAsync
 {
     public BaseViewModel(INavigationService navigationService)
     {

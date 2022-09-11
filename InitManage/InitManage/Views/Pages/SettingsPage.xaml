@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InitManage.Views.Pages.SettingsPage"
-             IconImageSource="gear">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:SettingViewModels="clr-namespace:InitManage.ViewModels.Setting"
+    x:Class="InitManage.Views.Pages.SettingsPage"
+    x:DataType="SettingViewModels:SettingsViewModel"
+    Title="Paramètres"
+    IconImageSource="gear">
 
     <Grid RowDefinitions="*">
         <StackLayout Margin="20">
@@ -18,7 +22,7 @@
                 FontAttributes="Bold"/>
 
             <Button
-                Clicked="Button_Clicked"
+                Command="{Binding LogoutCommand}"
                 Text="Déconnexion"
                 VerticalOptions="EndAndExpand"/>
 
