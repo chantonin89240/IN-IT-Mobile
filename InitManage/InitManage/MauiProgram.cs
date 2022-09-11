@@ -1,12 +1,21 @@
 ﻿using CommunityToolkit.Maui;
 using CsharpTools.Services;
 using CsharpTools.Services.Interfaces;
+using InitManage.Helpers.Interfaces;
 using InitManage.Services;
 using InitManage.Services.Interfaces;
 using InitManage.ViewModels.Login;
 using InitManage.ViewModels.Resource;
 using InitManage.ViewModels.Setting;
 using InitManage.Views.Pages;
+
+#if IOS
+using InitManage.Platforms.iOS.Helpers;
+#elif ANDROID
+using InitManage.Platforms.Android.Helpers;
+#elif MACCATALYST
+using InitManage.Platforms.MacCatalyst.Helpers;
+#endif
 
 namespace InitManage;
 
@@ -22,6 +31,7 @@ public static class MauiProgram
                 {
                     containerRegistry.RegisterServices();
                     containerRegistry.RegisterNavigation();
+                    containerRegistry.RegisterHelpers();
                 })
                 .OnAppStart(navigationService => navigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(LoginPage)}"))
                 )
@@ -32,6 +42,11 @@ public static class MauiProgram
             }).UseMauiCommunityToolkit();
 
         return builder.Build();
+    }
+
+    private static void RegisterHelpers(this IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterSingleton<INotificationHelper, NotificationHelper>();
     }
 
     private static void RegisterServices(this IContainerRegistry containerRegistry)

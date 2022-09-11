@@ -10,6 +10,12 @@ public class ResourcesViewModel : BaseViewModel
     }
 
     #region Life cycle
+
+    protected override Task OnNavigatedToAsync(INavigationParameters parameters)
+    {
+        return base.OnNavigatedToAsync(parameters); 
+    }
+
     protected override Task OnNavigatedFromAsync(INavigationParameters parameters)
     {
         return base.OnNavigatedFromAsync(parameters);

@@ -35,7 +35,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#E85F22" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -65,6 +65,12 @@
 	  <None Remove="Views\Popups\" />
 	  <None Remove="ViewModels\Resource\" />
 	  <None Remove="ViewModels\Setting\" />
+	  <None Remove="Helpers\" />
+	  <None Remove="Helpers\Interfaces\" />
+	  <None Remove="Platforms\iOS\Helpers\" />
+	  <None Remove="Platforms\MacCatalyst\Helpers\" />
+	  <None Remove="Platforms\Android\Helpers\" />
+	  <None Remove="Microsoft.Exchange.WebServices" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -80,6 +86,11 @@
 	  <Folder Include="Views\Popups\" />
 	  <Folder Include="ViewModels\Resource\" />
 	  <Folder Include="ViewModels\Setting\" />
+	  <Folder Include="Helpers\" />
+	  <Folder Include="Helpers\Interfaces\" />
+	  <Folder Include="Platforms\iOS\Helpers\" />
+	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
+	  <Folder Include="Platforms\Android\Helpers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
@@ -126,5 +137,6 @@
 	  <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	  <PackageReference Include="Microsoft.Exchange.WebServices" Version="2.2.0" />
 	</ItemGroup>
 </Project>
