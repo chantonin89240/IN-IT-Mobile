@@ -49,7 +49,7 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        await NavigationService.NavigateAsync(nameof(MainTabbedPage));
+        await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}?{KnownNavigationParameters.SelectedTab}={nameof(ResourcesPage)}");
     }
     #endregion
 
