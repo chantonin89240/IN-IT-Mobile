@@ -5,6 +5,7 @@
     xmlns:SettingViewModels="clr-namespace:InitManage.ViewModels.Setting"
     x:Class="InitManage.Views.Pages.SettingsPage"
     x:DataType="SettingViewModels:SettingsViewModel"
+    NavigationPage.HasNavigationBar="False"
     Title="Paramètres"
     IconImageSource="gear">
 

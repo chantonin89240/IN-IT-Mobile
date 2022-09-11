@@ -5,6 +5,7 @@
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              x:Class="InitManage.Views.Pages.ResourcesPage"
              x:DataType="ResourceViewModels:ResourcesViewModel"
+             NavigationPage.HasNavigationBar="False"
              IconImageSource="book"
              Title="Menu">
 
