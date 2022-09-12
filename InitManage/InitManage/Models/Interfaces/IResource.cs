@@ -14,5 +14,7 @@ public interface IResource
     string Image { get; set; }
 
     string Type { get; set; }
+
+    int Capacity { get; set; }
 }
 

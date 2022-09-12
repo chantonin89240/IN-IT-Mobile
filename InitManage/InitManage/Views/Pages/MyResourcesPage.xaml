@@ -6,7 +6,7 @@
              IconImageSource="opened_book"
              NavigationPage.HasNavigationBar="False"
              Title="Mes réservations">
-    <Grid RowDefinitions="*">
+    <Grid RowDefinitions="Auto">
         <Ellipse
             VerticalOptions="End"
             HorizontalOptions="End"
@@ -31,24 +31,20 @@
             HeightRequest="200"
             WidthRequest="200"/>
 
+        <StackLayout Spacing="20" Margin="10">
+            <Label
+                Text="Mes réservations"
+                FontSize="35"
+                TextColor="{StaticResource Primary}"
+                FontAttributes="Bold"/>
 
-        <ScrollView Margin="20">
-            <StackLayout Spacing="20">
-                <Label
-                    Text="Mes réservations"
-                    FontSize="35"
-                    TextColor="{StaticResource Primary}"
-                    FontAttributes="Bold"/>
-
-                <CollectionView x:Name="MyReservationsCollectionView" >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <DataTemplates:DetailledResourceDataTemplate/>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-            
-        </ScrollView>
+            <CollectionView x:Name="MyReservationsCollectionView" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <DataTemplates:DetailledResourceDataTemplate/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </Grid>
 </ContentPage>

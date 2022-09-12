@@ -5,6 +5,7 @@ using DynamicData;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using InitManage.Services.Interfaces;
+using System.Reactive;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -21,6 +22,8 @@ public class ResourcesViewModel : BaseViewModel
             .Bind(out _resources)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
+
+        SearchCommand = ReactiveCommand.CreateFromTask(OnSearchCommand);
     }
 
     #region Life cycle
@@ -31,12 +34,10 @@ public class ResourcesViewModel : BaseViewModel
 
         var resources = await _resourceService.GetResources();
         _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceEntity(x)));
+
+        Capacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
     }
 
-    protected override Task OnNavigatedFromAsync(INavigationParameters parameters)
-    {
-        return base.OnNavigatedFromAsync(parameters);
-    }
     #endregion
 
     #region Properties
@@ -48,17 +49,6 @@ public class ResourcesViewModel : BaseViewModel
         get => _searchBarText;
         set => this.RaiseAndSetIfChanged(ref _searchBarText, value);
     }
-    #endregion
-
-    #region Places
-
-    private IEnumerable<int> _places;
-    public IEnumerable<int> Places
-    {
-        get => _places;
-        set => this.RaiseAndSetIfChanged(ref _places, value);
-    }
-
     #endregion
 
     #region Adress
@@ -78,9 +68,31 @@ public class ResourcesViewModel : BaseViewModel
     public ReadOnlyObservableCollection<ResourceEntity> Resources => _resources;
     #endregion
 
+    #region Capacities
+
+    private IEnumerable<int> _capacities;
+    public IEnumerable<int> Capacities
+    {
+        get => _capacities;
+        set => this.RaiseAndSetIfChanged(ref _capacities, value);
+    }
+
+    #endregion
+
     #endregion
 
     #region Methods & Commands
+
+
+    #region OnSearchCommand
+
+    public ReactiveCommand<Unit, Unit> SearchCommand { get; private set; }
+    private async Task OnSearchCommand()
+    {
+        
+    }
+
+    #endregion
 
     #endregion
 }

@@ -15,6 +15,8 @@ public class ResourceEntity : IResource
 
     public string Type { get; set; }
 
+    public int Capacity { get; set; }
+
     public ResourceEntity()
     {
     }
@@ -26,6 +28,7 @@ public class ResourceEntity : IResource
         Description = resource.Description;
         Image = resource.Image;
         Type = resource.Type;
+        Capacity = resource.Capacity;
     }
 }
 

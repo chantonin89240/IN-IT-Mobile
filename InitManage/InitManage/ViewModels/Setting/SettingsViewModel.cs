@@ -26,15 +26,11 @@ public class SettingsViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LogoutCommand { get; private set; }
     private async Task OnLogoutCommand()
     {
+        await NavigationService.GoBackToRootAsync();
     }
 
     #endregion
 
     #endregion
-
-    protected override Task OnNavigatedToAsync(INavigationParameters parameters)
-    {
-        return base.OnNavigatedToAsync(parameters);
-    }
 }
 

@@ -19,4 +19,6 @@ public class ResourceDTODown : IResource
 
     [JsonProperty("type")]
     public string Type { get; set; }
+
+    public int Capacity { get; set; }
 }
