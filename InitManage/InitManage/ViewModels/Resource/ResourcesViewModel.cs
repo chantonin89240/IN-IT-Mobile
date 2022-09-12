@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using InitManage.Services.Interfaces;
 using System.Reactive;
+using InitManage.Models.Wrappers;
+using DynamicData.PLinq;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -17,13 +19,23 @@ public class ResourcesViewModel : BaseViewModel
     {
         _resourceService = resourceService;
 
+        var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
+            .Throttle(TimeSpan.FromSeconds(1))
+            .Select(query =>
+            {
+                if (!string.IsNullOrEmpty(query))
+                    return new Func<ResourceWrapper, bool>(resource => resource.IsCorrespondingToSearch(SearchBarText));
+                else
+                    return new Func<ResourceWrapper, bool>(resource => true);
+            });
+
         _resourcesCache
             .Connect()
+            .Filter(searchFilter)
             .Bind(out _resources)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
 
-        SearchCommand = ReactiveCommand.CreateFromTask(OnSearchCommand);
     }
 
     #region Life cycle
@@ -33,7 +45,7 @@ public class ResourcesViewModel : BaseViewModel
         await base.OnNavigatedToAsync(parameters);
 
         var resources = await _resourceService.GetResources();
-        _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceEntity(x)));
+        _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
 
         Capacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
     }
@@ -63,9 +75,9 @@ public class ResourcesViewModel : BaseViewModel
     #endregion
 
     #region Dynamic list Resources
-    private SourceCache<ResourceEntity, long> _resourcesCache = new SourceCache<ResourceEntity, long>(r => r.Id);
-    private readonly ReadOnlyObservableCollection<ResourceEntity> _resources;
-    public ReadOnlyObservableCollection<ResourceEntity> Resources => _resources;
+    private SourceCache<ResourceWrapper, long> _resourcesCache = new SourceCache<ResourceWrapper, long>(r => r.Id);
+    private readonly ReadOnlyObservableCollection<ResourceWrapper> _resources;
+    public ReadOnlyObservableCollection<ResourceWrapper> Resources => _resources;
     #endregion
 
     #region Capacities
@@ -82,17 +94,6 @@ public class ResourcesViewModel : BaseViewModel
     #endregion
 
     #region Methods & Commands
-
-
-    #region OnSearchCommand
-
-    public ReactiveCommand<Unit, Unit> SearchCommand { get; private set; }
-    private async Task OnSearchCommand()
-    {
-        
-    }
-
-    #endregion
 
     #endregion
 }

@@ -25,7 +25,6 @@ public class LoginViewModel : BaseViewModel
     protected override async Task OnNavigatedToAsync(INavigationParameters parameters)
     {
         await base.OnNavigatedToAsync(parameters);
-
         _notificationHelper.Initialize();
     }
 
@@ -63,6 +62,7 @@ public class LoginViewModel : BaseViewModel
         try
         {
             _notificationHelper.SendNotification("Login", "Login successfull");
+            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
 
         }
         catch(Exception e)
