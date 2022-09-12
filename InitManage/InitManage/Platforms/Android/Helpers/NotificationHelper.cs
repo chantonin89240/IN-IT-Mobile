@@ -85,6 +85,8 @@ public class NotificationHelper : INotificationHelper
             .SetContentIntent(pendingIntent)
             .SetContentTitle(title)
             .SetContentText(message)
+            .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.init))
+            .SetSmallIcon(Resource.Drawable.init)
             .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
         Notification notification = builder.Build();

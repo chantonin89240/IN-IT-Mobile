@@ -60,7 +60,15 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        _notificationHelper.SendNotification("Login", "Login successfull");
+        try
+        {
+            _notificationHelper.SendNotification("Login", "Login successfull");
+
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+        }
         await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
     }
     #endregion
