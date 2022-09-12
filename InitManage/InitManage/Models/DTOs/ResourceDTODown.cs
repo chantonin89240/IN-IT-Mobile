@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using InitManage.Models.Interfaces;
+using Newtonsoft.Json;
 
-public class ResourceDTODown
+namespace InitManage.Models.DTOs;
+
+public class ResourceDTODown : IResource
 {
     [JsonProperty("id")]
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     [JsonProperty("name")]
     public string Name { get; set; }

@@ -58,7 +58,7 @@
             HeightRequest="200"
             WidthRequest="200"/>
 
-        <CollectionView Grid.Row="1" x:Name="MaCollection" Margin="10, 0" >
+        <CollectionView Grid.Row="1" Margin="10, 0" ItemsSource="{Binding Resources}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <DataTemplates:ResourceDataTemplate/>

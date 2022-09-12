@@ -53,6 +53,7 @@ public static class MauiProgram
     {
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
         containerRegistry.RegisterSingleton<IHttpService, HttpService>();
+        containerRegistry.RegisterSingleton<IResourceService, MockedResourceService>();
     }
 
     private static void RegisterNavigation(this IContainerRegistry containerRegistry)

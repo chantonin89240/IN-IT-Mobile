@@ -1,19 +1,36 @@
 ﻿using System;
 using ReactiveUI;
+using InitManage.Models.Entities;
+using DynamicData;
+using System.Collections.ObjectModel;
+using System.Reactive.Linq;
+using InitManage.Services.Interfaces;
 
 namespace InitManage.ViewModels.Resource;
 
 public class ResourcesViewModel : BaseViewModel
 {
-    public ResourcesViewModel(INavigationService navigationService) : base(navigationService)
+    private readonly IResourceService _resourceService;
+
+    public ResourcesViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
     {
+        _resourceService = resourceService;
+
+        _resourcesCache
+            .Connect()
+            .Bind(out _resources)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
     }
 
     #region Life cycle
 
-    protected override Task OnNavigatedToAsync(INavigationParameters parameters)
+    protected override async Task OnNavigatedToAsync(INavigationParameters parameters)
     {
-        return base.OnNavigatedToAsync(parameters); 
+        await base.OnNavigatedToAsync(parameters);
+
+        var resources = await _resourceService.GetResources();
+        _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceEntity(x)));
     }
 
     protected override Task OnNavigatedFromAsync(INavigationParameters parameters)
@@ -53,6 +70,12 @@ public class ResourcesViewModel : BaseViewModel
         set => this.RaiseAndSetIfChanged(ref _adress, value);
     }
 
+    #endregion
+
+    #region Dynamic list Resources
+    private SourceCache<ResourceEntity, long> _resourcesCache = new SourceCache<ResourceEntity, long>(r => r.Id);
+    private readonly ReadOnlyObservableCollection<ResourceEntity> _resources;
+    public ReadOnlyObservableCollection<ResourceEntity> Resources => _resources;
     #endregion
 
     #endregion
