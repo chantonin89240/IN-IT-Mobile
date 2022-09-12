@@ -27,7 +27,8 @@ public class LoginViewModel : BaseViewModel
         await base.OnNavigatedToAsync(parameters);
 
         _notificationHelper.Initialize();
-        _notificationHelper.SendNotification("Hello", "Message", DateTime.Now.AddSeconds(5));
+        _notificationHelper.SendNotification("Hello", "Message");
+        _notificationHelper.ReceiveNotification("Hello", "Message");
     }
 
     #endregion

@@ -13,7 +13,8 @@
         <StackLayout>
             <SearchBar
                 Text="{Binding SearchBarText}"
-                Placeholder="Saisissez votre recherche"/>
+                Placeholder="Saisissez votre recherche"
+                SearchCommand="{Binding SearchCommand}"/>
             <StackLayout Orientation="Horizontal" Margin="10">
                 <Picker
                     Title="Places"

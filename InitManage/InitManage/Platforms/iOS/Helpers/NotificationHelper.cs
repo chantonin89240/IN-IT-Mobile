@@ -3,6 +3,8 @@ using Foundation;
 using InitManage.Helpers.Interfaces;
 using Microsoft.Exchange.WebServices.Data;
 using UserNotifications;
+using InitManage.Models.Wrappers;
+using NotificationEventArgs = InitManage.Models.Wrappers.NotificationEventArgs;
 
 namespace InitManage.Platforms.iOS.Helpers;
 
@@ -63,7 +65,11 @@ public class NotificationHelper : INotificationHelper
 
     public void ReceiveNotification(string title, string message)
     {
-        var args = NotificationEventArgs.Empty;
+        var args = new NotificationEventArgs()
+        {
+            Title = title,
+            Message = message
+        };
         NotificationReceived?.Invoke(null, args);
     }
 

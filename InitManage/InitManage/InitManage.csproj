@@ -73,6 +73,7 @@
 	  <None Remove="Microsoft.Exchange.WebServices" />
 	  <None Remove="Models\Entities\" />
 	  <None Remove="Models\Interfaces\" />
+	  <None Remove="Models\Wrappers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -95,6 +96,7 @@
 	  <Folder Include="Platforms\Android\Helpers\" />
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Interfaces\" />
+	  <Folder Include="Models\Wrappers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
