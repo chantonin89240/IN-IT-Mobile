@@ -27,8 +27,6 @@ public class LoginViewModel : BaseViewModel
         await base.OnNavigatedToAsync(parameters);
 
         _notificationHelper.Initialize();
-        _notificationHelper.SendNotification("Hello", "Message");
-        _notificationHelper.ReceiveNotification("Hello", "Message");
     }
 
     #endregion
@@ -62,6 +60,7 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
+        _notificationHelper.SendNotification("Login", "Login successfull");
         await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
     }
     #endregion

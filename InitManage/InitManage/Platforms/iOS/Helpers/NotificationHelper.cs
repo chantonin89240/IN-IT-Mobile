@@ -100,7 +100,7 @@ public class iOSNotificationReceiver : UNUserNotificationCenterDelegate
         string title = notification.Request.Content.Title;
         string message = notification.Request.Content.Body;
 
-        DependencyService.Get<INotificationHelper>().ReceiveNotification(title, message);
+        ContainerLocator.Container.Resolve<INotificationHelper>().ReceiveNotification(title, message);
     }
 }
 
