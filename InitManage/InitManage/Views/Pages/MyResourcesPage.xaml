@@ -5,7 +5,8 @@
              x:Class="InitManage.Views.Pages.MyResourcesPage"
              IconImageSource="opened_book"
              NavigationPage.HasNavigationBar="False"
-             Title="Mes réservations">
+             Title="Mes réservations"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
     <Grid RowDefinitions="Auto">
         <Ellipse
             VerticalOptions="End"

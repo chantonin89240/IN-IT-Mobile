@@ -9,6 +9,9 @@ using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
 using InitManage.Commons.Enums;
+using InitManage.Models.Interfaces;
+using InitManage.Views.Pages;
+using InitManage.Commons;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -50,7 +53,10 @@ public class ResourcesViewModel : BaseViewModel
     {
         await base.OnNavigatedToAsync(parameters);
 
-        var resources = await _resourceService.GetResources();
+        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
+
+
+        var resources = await _resourceService.GetResourcesAsync();
         _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
 
         ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
@@ -137,6 +143,13 @@ public class ResourcesViewModel : BaseViewModel
     #endregion
 
     #region Methods & Commands
+
+    public ReactiveCommand<IResource, Task> ResourceTappedCommand { get; private set; }
+    private async Task OnResourceTappedCommand(IResource resource)
+    {
+        var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
+        await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);
+    }
 
     #endregion
 }

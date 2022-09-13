@@ -5,6 +5,8 @@ namespace InitManage.Services.Interfaces;
 
 public interface IResourceService
 {
-    Task<IEnumerable<IResource>> GetResources();
+    Task<IEnumerable<IResource>> GetResourcesAsync();
+
+    Task<IResource> GetResourceAsync(long id);
 }
 

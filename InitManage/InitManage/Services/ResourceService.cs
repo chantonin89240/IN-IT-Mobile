@@ -14,7 +14,12 @@ namespace InitManage.Services
             _httpService = httpService;
         }
 
-        public async Task<IEnumerable<IResource>> GetResources()
+        public Task<IResource> GetResourceAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<IResource>> GetResourcesAsync()
         {
             var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>("http://10.4.0.112:3000/api/", HttpMethod.Get);
             return resutl.Content;

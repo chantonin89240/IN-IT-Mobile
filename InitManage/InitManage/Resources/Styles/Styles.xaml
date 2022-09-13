@@ -21,8 +21,14 @@
         <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
     </Style>
 
-    <Style TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{StaticResource Light}"/>
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Light}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleLabel">
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 </ResourceDictionary>
 

@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:Components="clr-namespace:InitManage.Views.Components"
              x:Class="InitManage.Views.Pages.ResourcePage"
-             Title="Salle de réunion">
+             x:DataType="ResourceViewModels:ResourceViewModel"
+             Title="{Binding Resource.Name}">
+
         <Grid RowDefinitions="200, *">
             <Image
                 Aspect="AspectFill"
-                Source="https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg"/>
+                Source="{Binding Resource.Image}"/>
 
             <StackLayout Margin="20" Spacing="10" Grid.Row="1">
                 <Label
                     FontSize="18"
                     FontAttributes="Bold"
-                    TextColor="{StaticResource Dark}"
-                    Text="Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3ème étage d’un batiment neuf."/>
+                    Text="{Binding Resource.Description}"/>
 
                 <Grid
                     RowDefinitions="Auto, Auto"

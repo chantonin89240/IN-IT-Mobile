@@ -7,19 +7,17 @@
     x:DataType="SettingViewModels:SettingsViewModel"
     NavigationPage.HasNavigationBar="False"
     Title="Paramètres"
-    IconImageSource="gear">
+    IconImageSource="gear"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
 
     <Grid RowDefinitions="*">
         <StackLayout Margin="20">
             <Label
-                Text="Bonjour"
-                FontSize="35"
-                TextColor="{StaticResource Primary}"
-                FontAttributes="Bold"/>
+                Style="{StaticResource TitleLabel}"
+                Text="Bonjour"/>
 
             <Label
                 Text="Thomas BERNARD"
-                TextColor="{StaticResource Dark}"
                 FontAttributes="Bold"/>
 
             <Button
