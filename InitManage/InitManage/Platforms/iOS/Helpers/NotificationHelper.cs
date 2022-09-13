@@ -1,7 +1,6 @@
 ﻿using System;
 using Foundation;
 using InitManage.Helpers.Interfaces;
-using Microsoft.Exchange.WebServices.Data;
 using UserNotifications;
 using InitManage.Models.Wrappers;
 using NotificationEventArgs = InitManage.Models.Wrappers.NotificationEventArgs;
