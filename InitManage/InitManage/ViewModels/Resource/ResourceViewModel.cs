@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Reactive;
+using DynamicData;
 using InitManage.Commons;
 using InitManage.Models.Interfaces;
+using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
+using InitManage.Views.Pages;
 using ReactiveUI;
 
 namespace InitManage.ViewModels.Resource;
@@ -14,6 +18,8 @@ public class ResourceViewModel : BaseViewModel
     public ResourceViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
     {
         _resourceService = resourceService;
+
+        BookCommand = ReactiveCommand.CreateFromTask(OnBookCommand);
     }
 
 
@@ -44,15 +50,26 @@ public class ResourceViewModel : BaseViewModel
 
     #endregion
 
+    #region Dynamic list Bookings
+    private SourceCache<BookingWrapper, long> _bookingsCache = new SourceCache<BookingWrapper, long>(b => b.Id);
+    private readonly ReadOnlyObservableCollection<BookingWrapper> _bookings;
+    public ReadOnlyObservableCollection<BookingWrapper> Bookings => _bookings;
+    #endregion
+
     #endregion
 
     #region Methods & Commands
 
-    #region OnResourceTappedCommand
+    #region BookCommand
 
-
+    public ReactiveCommand<Unit, Unit> BookCommand { get; private set; }
+    private async Task OnBookCommand()
+    {
+        await NavigationService.GoBackAsync();
+    }
 
     #endregion
+
 
     #endregion
 }

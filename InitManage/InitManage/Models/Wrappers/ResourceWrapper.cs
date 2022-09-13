@@ -26,6 +26,8 @@ public class ResourceWrapper : IResource, ISearchable
     public string Image { get; set; }
     public ResourceType Type { get; set; }
     public int Capacity { get; set; }
+    public string Address { get; set; }
+
 
     public bool IsCorrespondingToSearch(string searchedValue)
     {

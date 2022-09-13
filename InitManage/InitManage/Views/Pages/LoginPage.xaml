@@ -32,6 +32,7 @@
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Password}"/>
+
                 <Button
                     Command="{Binding LoginCommand}"
                     Text="Se connecter">

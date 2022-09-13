@@ -17,7 +17,8 @@ public class MockedResourceService : IResourceService
             Description = "Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3ème étage d’un batiment neuf.",
             Image = "https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg",
             Name = "Salle de réunion " + id,
-            Type = ResourceType.MeetingRoom
+            Type = ResourceType.MeetingRoom,
+            Address = "18 Boulevard de Verdun Dijon"
         };
 
         return resource;

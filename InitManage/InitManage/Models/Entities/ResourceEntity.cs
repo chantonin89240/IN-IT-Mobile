@@ -17,6 +17,8 @@ public class ResourceEntity : IResource
     public ResourceType Type { get; set; }
 
     public int Capacity { get; set; }
+    public string Address { get; set; }
+
 
     public ResourceEntity()
     {
