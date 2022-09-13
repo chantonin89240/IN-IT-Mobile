@@ -24,24 +24,30 @@ public class ResourcesViewModel : BaseViewModel
         _resourceService = resourceService;
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
-        .Select(query =>
-        {
-            if (!string.IsNullOrEmpty(query))
-                return new Func<ResourceWrapper, bool>(resource => resource.IsCorrespondingToSearch(SearchBarText));
-            else
-                return new Func<ResourceWrapper, bool>(resource => true);
-        });
-
-        var capacityFilter = this.WhenAnyValue(vm => vm.SelectedCapacity)
             .Select(query =>
             {
-                return new Func<ResourceWrapper, bool>(resource => resource.Capacity >= query);
+                if (!string.IsNullOrEmpty(query))
+                    return new Func<ResourceWrapper, bool>(resource => resource.IsCorrespondingToSearch(SearchBarText));
+                else
+                    return new Func<ResourceWrapper, bool>(resource => true);
+            });
+
+        var capacityFilter = this.WhenAnyValue(vm => vm.SelectedCapacity)
+            .Select(query => new Func<ResourceWrapper, bool>(resource => resource.Capacity >= query));
+
+        var addressFilter = this.WhenAnyValue(vm => vm.Address)
+            .Select(query =>
+            {
+                if (!string.IsNullOrEmpty(query))
+                    return new Func<ResourceWrapper, bool>(resource => resource.Address?.Contains(Address) ?? false);
+                return new Func<ResourceWrapper, bool>(resource => true);
             });
 
         _resourcesCache
         .Connect()
         .Filter(searchFilter)
         .Filter(capacityFilter)
+        .Filter(addressFilter)
         .Bind(out _resources)
         .ObserveOn(RxApp.MainThreadScheduler)
         .Subscribe();
@@ -80,11 +86,11 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Adress
 
-    private string _adress;
-    public string Adress
+    private string _address;
+    public string Address
     {
-        get => _adress;
-        set => this.RaiseAndSetIfChanged(ref _adress, value);
+        get => _address;
+        set => this.RaiseAndSetIfChanged(ref _address, value);
     }
 
     #endregion

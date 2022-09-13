@@ -30,7 +30,7 @@
                 <Entry
                     Placeholder="Adresse"
                     HorizontalOptions="FillAndExpand"
-                    Text="{Binding Adress}"/>
+                    Text="{Binding Address}"/>
             </StackLayout>
             <HorizontalStackLayout Margin="10, 0">
                 <DatePicker
