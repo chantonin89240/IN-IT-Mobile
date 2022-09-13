@@ -30,5 +30,11 @@
         <Setter Property="FontSize" Value="35"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Light}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"/>
+        <Setter Property="Placeholder" Value="Saisissez votre recherche"/>
+    </Style>
 </ResourceDictionary>
 

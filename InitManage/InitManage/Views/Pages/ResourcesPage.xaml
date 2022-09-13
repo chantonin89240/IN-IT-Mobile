@@ -1,68 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
-             xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
-             x:Class="InitManage.Views.Pages.ResourcesPage"
-             x:DataType="ResourceViewModels:ResourcesViewModel"
-             NavigationPage.HasNavigationBar="False"
-             IconImageSource="book"
-             Title="Menu"
-             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+    xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+    x:Class="InitManage.Views.Pages.ResourcesPage"
+    x:DataType="ResourceViewModels:ResourcesViewModel"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
+    NavigationPage.HasNavigationBar="False"
+    IconImageSource="book"
+    Title="Menu">
 
     <Grid RowDefinitions="Auto, *">
-        <StackLayout>
-            <SearchBar
-                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Light}}"
-                BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
-                Text="{Binding SearchBarText}"
-                Placeholder="Saisissez votre recherche"/>
-            <StackLayout Orientation="Horizontal" Margin="10">
+        <Grid Margin="10" RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
+            <SearchBar Text="{Binding SearchBarText}"/>
+            <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="5" Grid.Row="1">
                 <Picker
                     Title="Places"
                     SelectedItem="{Binding SelectedCapacity}"
                     ItemsSource="{Binding ResourcesCapacities}"/>
                 <Picker
-                    ItemsSource="{Binding ResourcesTypes}"
-                    SelectedIndex="{Binding SelectedType}"
+                    Grid.Column="1"
                     Title="Options"
-                    Margin="10, 0"/>
+                    ItemsSource="{Binding ResourcesTypes}"
+                    SelectedIndex="{Binding SelectedType}"/>
                 <Entry
+                    Grid.Column="2"
                     Placeholder="Adresse"
-                    HorizontalOptions="FillAndExpand"
                     Text="{Binding Address}"/>
-            </StackLayout>
-            <HorizontalStackLayout Margin="10, 0">
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="2">
                 <DatePicker
-                    HorizontalOptions="StartAndExpand"/>
-                <Label Text="=>" HorizontalOptions="Center"/>
-                <DatePicker HorizontalOptions="EndAndExpand"/>
-            </HorizontalStackLayout>
-        </StackLayout>
+                    Date="{Binding StartDate}"
+                    MaximumDate="{Binding EndDate}"/>
+                <Label
+                    Text="=>"
+                    Grid.Column="1"
+                    VerticalOptions="Center"/>
+                <DatePicker
+                    Grid.Column="2"
+                    Date="{Binding EndDate}"
+                    MinimumDate="{Binding StartDate}"/>
+            </Grid>
+        </Grid>
 
         <Ellipse
-            VerticalOptions="End"
-            HorizontalOptions="End"
             Margin="160"
             Grid.Row="1"
+            WidthRequest="50"
             HeightRequest="50"
-            WidthRequest="50"/>
+            VerticalOptions="End"
+            HorizontalOptions="End"/>
 
         <Ellipse
-            VerticalOptions="End"
-            HorizontalOptions="End"
             Margin="70"
             Grid.Row="1"
+            WidthRequest="100"
             HeightRequest="100"
-            WidthRequest="100"/>
+            VerticalOptions="End"
+            HorizontalOptions="End"/>
 
         <Ellipse
             Margin="-90"
             Grid.Row="1"
-            VerticalOptions="End"
-            HorizontalOptions="End"
+            WidthRequest="200"
             HeightRequest="200"
-            WidthRequest="200"/>
+            VerticalOptions="End"
+            HorizontalOptions="End"/>
 
         <CollectionView Grid.Row="1" Margin="10, 0" ItemsSource="{Binding Resources}">
             <CollectionView.ItemTemplate>
@@ -70,9 +74,6 @@
                     <DataTemplates:ResourceDataTemplate/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-           
         </CollectionView>
-
-        
     </Grid>
 </ContentPage>

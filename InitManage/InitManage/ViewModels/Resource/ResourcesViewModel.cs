@@ -51,6 +51,9 @@ public class ResourcesViewModel : BaseViewModel
         .Bind(out _resources)
         .ObserveOn(RxApp.MainThreadScheduler)
         .Subscribe();
+
+        StartDate = DateTime.Now;
+        EndDate = DateTime.Now.AddDays(1);
     }
 
     #region Life cycle
@@ -84,7 +87,7 @@ public class ResourcesViewModel : BaseViewModel
     }
     #endregion
 
-    #region Adress
+    #region Address
 
     private string _address;
     public string Address
@@ -142,6 +145,28 @@ public class ResourcesViewModel : BaseViewModel
     {
         get => _selectedCapacity;
         set => this.RaiseAndSetIfChanged(ref _selectedCapacity, value);
+    }
+
+    #endregion
+
+    #region StartDate
+
+    private DateTime _startDate;
+    public DateTime StartDate
+    {
+        get => _startDate;
+        set => this.RaiseAndSetIfChanged(ref _startDate, value);
+    }
+
+    #endregion
+
+    #region EndDate
+
+    private DateTime _endDate;
+    public DateTime EndDate
+    {
+        get => _endDate;
+        set => this.RaiseAndSetIfChanged(ref _endDate, value);
     }
 
     #endregion
