@@ -1,20 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              x:Class="InitManage.Views.Pages.ResourcesPage"
-             IconImageSource="book">
+             x:DataType="ResourceViewModels:ResourcesViewModel"
+             NavigationPage.HasNavigationBar="False"
+             IconImageSource="book"
+             Title="Menu">
 
     <Grid RowDefinitions="Auto, *">
         <StackLayout>
-            <SearchBar Placeholder="Saisissez votre recherche"/>
+            <SearchBar
+                Text="{Binding SearchBarText}"
+                Placeholder="Saisissez votre recherche"/>
             <StackLayout Orientation="Horizontal" Margin="10">
-                <Picker Title="Places"/>
-                <Picker Title="Options" Margin="10, 0"/>
-                <Entry Placeholder="Adresse" HorizontalOptions="FillAndExpand"/>
+                <Picker
+                    Title="Places"
+                    SelectedItem="{Binding SelectedCapacity}"
+                    ItemsSource="{Binding ResourcesCapacities}"/>
+                <Picker
+                    ItemsSource="{Binding ResourcesTypes}"
+                    SelectedIndex="{Binding SelectedType}"
+                    Title="Options"
+                    Margin="10, 0"/>
+                <Entry
+                    Placeholder="Adresse"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Adress}"/>
             </StackLayout>
             <HorizontalStackLayout Margin="10, 0">
-                <DatePicker HorizontalOptions="StartAndExpand"/>
+                <DatePicker
+                    HorizontalOptions="StartAndExpand"/>
                 <Label Text="=>" HorizontalOptions="Center"/>
                 <DatePicker HorizontalOptions="EndAndExpand"/>
             </HorizontalStackLayout>
@@ -44,7 +61,7 @@
             HeightRequest="200"
             WidthRequest="200"/>
 
-        <CollectionView Grid.Row="1" x:Name="MaCollection" Margin="10, 0" >
+        <CollectionView Grid.Row="1" Margin="10, 0" ItemsSource="{Binding Resources}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <DataTemplates:ResourceDataTemplate/>
