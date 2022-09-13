@@ -6,11 +6,12 @@
              x:Class="InitManage.Views.DataTemplates.BookingDataTemplate">
         <Frame
             Margin="0, 5"
-            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Black}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
             HasShadow="False"
             CornerRadius="10"
             Padding="10">
-             <Label
+            <StackLayout Padding="5">
+                <Label
                  Margin="5"
                  VerticalOptions="Center">
                  <Label.Text>
@@ -22,6 +23,8 @@
                      </MultiBinding>
                  </Label.Text>
              </Label>
+            </StackLayout>
+             
         </Frame>
 </ContentView>
 
