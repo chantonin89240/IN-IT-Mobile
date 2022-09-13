@@ -9,6 +9,16 @@ public class BookingWrapper : IBooking
     {
     }
 
+    public BookingWrapper(IBooking booking)
+    {
+        Id = booking.Id;
+        UserId = booking.UserId;
+        ResourceId = booking.ResourceId;
+        Start = booking.Start;
+        End = booking.End;
+        Capacity = booking.Capacity;
+    }
+
     public long Id { get; set; }
     public long UserId { get; set; }
     public long ResourceId { get; set; }

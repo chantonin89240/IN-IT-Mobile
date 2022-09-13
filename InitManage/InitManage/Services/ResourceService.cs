@@ -2,28 +2,38 @@
 using CsharpTools.Services.Interfaces;
 using InitManage.Models.DTOs;
 using InitManage.Models.Interfaces;
+using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
 
-namespace InitManage.Services
+namespace InitManage.Services;
+
+public class ResourceService : IResourceService
 {
-    public class ResourceService : IResourceService
+    private readonly IHttpService _httpService;
+    public ResourceService(IHttpService httpService)
     {
-        private readonly IHttpService _httpService;
-        public ResourceService(IHttpService httpService)
-        {
-            _httpService = httpService;
-        }
+        _httpService = httpService;
+    }
 
-        public Task<IResource> GetResourceAsync(long id)
-        {
-            throw new NotImplementedException();
-        }
+    public Task<IResource> GetResourceAsync(long id)
+    {
+        throw new NotImplementedException();
+    }
 
-        public async Task<IEnumerable<IResource>> GetResourcesAsync()
-        {
-            var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>("http://10.4.0.112:3000/api/", HttpMethod.Get);
-            return resutl.Content;
-        }
+    public Task<IEnumerable<IBooking>> GetResourceBookingsAsync(long resourceId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<BookingWrapper>> GetResourceBookingsWrappersAsync(long resourceId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<IResource>> GetResourcesAsync()
+    {
+        var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>("http://10.4.0.112:3000/api/", HttpMethod.Get);
+        return resutl.Content;
     }
 }
 

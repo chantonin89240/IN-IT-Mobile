@@ -8,6 +8,8 @@ using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
 using InitManage.Views.Pages;
 using ReactiveUI;
+using System.Linq;
+using System.Reactive.Linq;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -20,6 +22,12 @@ public class ResourceViewModel : BaseViewModel
         _resourceService = resourceService;
 
         BookCommand = ReactiveCommand.CreateFromTask(OnBookCommand);
+
+        _bookingsCache
+            .Connect()
+            .Bind(out _bookings)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
     }
 
 
@@ -31,6 +39,9 @@ public class ResourceViewModel : BaseViewModel
         if (parameters.TryGetValue(Constants.ResourceIdNavigationParameter, out long resourceId))
         {
             Resource = await _resourceService.GetResourceAsync(resourceId);
+            var bookings = await _resourceService.GetResourceBookingsWrappersAsync(Resource.Id);
+
+            _bookingsCache.AddOrUpdate(bookings);
         }
         else
             await NavigationService.GoBackAsync();
