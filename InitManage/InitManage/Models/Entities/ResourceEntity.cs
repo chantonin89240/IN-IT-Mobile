@@ -1,4 +1,5 @@
 ﻿using System;
+using InitManage.Commons.Enums;
 using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Entities;
@@ -13,7 +14,7 @@ public class ResourceEntity : IResource
 
     public string Image { get; set; }
 
-    public string Type { get; set; }
+    public ResourceType Type { get; set; }
 
     public int Capacity { get; set; }
 

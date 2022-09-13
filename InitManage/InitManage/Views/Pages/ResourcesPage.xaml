@@ -17,8 +17,11 @@
             <StackLayout Orientation="Horizontal" Margin="10">
                 <Picker
                     Title="Places"
-                    ItemsSource="{Binding Capacities}"/>
+                    SelectedItem="{Binding SelectedCapacity}"
+                    ItemsSource="{Binding ResourcesCapacities}"/>
                 <Picker
+                    ItemsSource="{Binding ResourcesTypes}"
+                    SelectedIndex="{Binding SelectedType}"
                     Title="Options"
                     Margin="10, 0"/>
                 <Entry

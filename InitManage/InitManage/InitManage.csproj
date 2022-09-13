@@ -74,6 +74,8 @@
 	  <None Remove="Models\Entities\" />
 	  <None Remove="Models\Interfaces\" />
 	  <None Remove="Models\Wrappers\" />
+	  <None Remove="Commons\" />
+	  <None Remove="Commons\Enums\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -97,6 +99,8 @@
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Models\Wrappers\" />
+	  <Folder Include="Commons\" />
+	  <Folder Include="Commons\Enums\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
