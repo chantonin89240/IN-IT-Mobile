@@ -63,6 +63,7 @@ public static class MauiProgram
         containerRegistry.RegisterForNavigation<MyResourcesPage, MyResourcesViewModel>();
         containerRegistry.RegisterForNavigation<ResourcePage, ResourceViewModel>();
         containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
+        containerRegistry.RegisterForNavigation<CreateResourcePage, CreateResourceViewModel>();
 
         containerRegistry.RegisterForNavigation<MainTabbedPage>();
         containerRegistry.RegisterForNavigation<NavigationPage>();
