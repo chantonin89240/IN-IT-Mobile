@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+             xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             x:Class="InitManage.Views.Pages.CreateResourcePage"
+             NavigationPage.HasNavigationBar="False"
+             IconImageSource="admin"
+             Title="Administration">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Formulaire de création de ressource -->
+        <StackLayout>
+            <!-- Nom de la ressource -->
+            <Entry 
+                Text="{Binding Name}"
+                Placeholder="Nom de la ressource"
+                IsTextPredictionEnabled="False"
+                />
+            <!-- description de la ressource -->
+            <Editor
+                Text="{Binding Description}"
+                Placeholder="Description de la ressource"
+                HeightRequest="200"
+                IsTextPredictionEnabled="true"
+                />
+            <!-- Lien de la photo -->
+            <Entry 
+                Text="{Binding Picture}"
+                Placeholder="Lien de la photo"
+                IsTextPredictionEnabled="False"
+                />
+            <!-- Nombre de place -->
+            <Entry 
+                Text="{Binding Capacity}"
+                Placeholder="Nombre de place"
+                IsTextPredictionEnabled="False"
+                />
+            <!-- Type de la ressource -->
+            <ListView ><!-- ItemsSource="{Binding Type}" -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label Text="text1" />
+                            <Label Text="text2" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Options -->
+            <!--<Entry 
+                Text="{Binding option}"
+                Placeholder="option de la ressource"
+                IsTextPredictionEnabled="False"
+                />-->
+            <!-- bouton de confirmation -->
+            <Button
+                    Command="{Binding LoginCommand}"
+                    Text="Confirmation de la création"
+                    LineBreakMode="CharacterWrap"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                <Button.Shadow>
+                    <Shadow
+                            Opacity="0.5"
+                            Radius="5"
+                            Offset="5, 5"/>
+                </Button.Shadow>
+            </Button>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

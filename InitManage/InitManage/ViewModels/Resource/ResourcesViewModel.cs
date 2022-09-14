@@ -111,7 +111,6 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
-
     #region SelectedType
 
     private ResourceType _selectedType;

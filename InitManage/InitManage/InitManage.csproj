@@ -78,18 +78,12 @@
 	  <None Remove="Commons\Enums\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Views\" />
-	  <Folder Include="Views\Pages\" />
 	  <Folder Include="Views\DataTemplates\" />
-	  <Folder Include="Models\" />
-	  <Folder Include="Models\DTOs\" />
 	  <Folder Include="Views\Components\" />
-	  <Folder Include="ViewModels\" />
 	  <Folder Include="ViewModels\Login\" />
 	  <Folder Include="Services\" />
 	  <Folder Include="Services\Interfaces\" />
 	  <Folder Include="Views\Popups\" />
-	  <Folder Include="ViewModels\Resource\" />
 	  <Folder Include="ViewModels\Setting\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Interfaces\" />
@@ -97,12 +91,14 @@
 	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
 	  <Folder Include="Platforms\Android\Helpers\" />
 	  <Folder Include="Models\Entities\" />
-	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\LoginPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>

@@ -24,5 +24,9 @@ public partial class MainTabbedPage : TabbedPage
         var settingPage = ContainerLocator.Container.Resolve<SettingsPage>();
 		settingPage.BindingContext = ContainerLocator.Container.Resolve<SettingsViewModel>();
 		this.Children.Add(settingPage);
+
+        var createResourcePage = ContainerLocator.Container.Resolve<CreateResourcePage>();
+        createResourcePage.BindingContext = ContainerLocator.Container.Resolve<CreateResourceViewModel>();
+        this.Children.Add(createResourcePage);
     }
 }
