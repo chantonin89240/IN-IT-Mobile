@@ -9,6 +9,7 @@ using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
 using InitManage.Commons.Enums;
+using InitManage.Views.Pages;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -21,6 +22,7 @@ public class CreateResourceViewModel : BaseViewModel
         _resourceService = resourceService;
         CreateCommand = ReactiveCommand.CreateFromTask(OnCreateCommand);
 
+        Types = new List<string>() { "Salle de réunion", "Salle de classe", "Voiture" };
         Picture = "https://image.jimcdn.com/app/cms/image/transf/dimension=940x10000:format=jpg/path/s398965e309713775/image/ia5d911c472440089/version/1478270869/image.jpg";
     }
 
@@ -75,6 +77,27 @@ public class CreateResourceViewModel : BaseViewModel
 
     #endregion
 
+    #region Type
+
+    private string _type;
+    public string Type
+    {
+        get => _type;
+        set => this.RaiseAndSetIfChanged(ref _type, value);
+    }
+
+    #endregion
+
+    #region Types
+
+    private IEnumerable<string> _types;
+    public IEnumerable<string> Types
+    {
+        get => _types;
+        set => this.RaiseAndSetIfChanged(ref _types, value);
+    }
+
+    #endregion
 
     #endregion
 
@@ -99,7 +122,7 @@ public class CreateResourceViewModel : BaseViewModel
         var resourceCreated = await _resourceService.CreateResource(resource);
 
         if (resourceCreated)
-            await NavigationService.GoBackAsync();
+            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}?selectedTab={nameof(ResourcesPage)}");
     }
 
     #endregion

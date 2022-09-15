@@ -32,11 +32,18 @@
                 Placeholder="Lien de la photo"
                 IsTextPredictionEnabled="False"
                 />
+
+            <Picker
+                HorizontalOptions="FillAndExpand"
+                Title="Types"
+                SelectedItem="{Binding Type}"
+                ItemsSource="{Binding Types}"/>
             <!-- Nombre de place -->
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
                     Text="Nombre de places :"/>
+                
                 <Entry
                     Keyboard="Numeric"
                     Text="{Binding Capacity}"
@@ -47,13 +54,13 @@
 
             <!-- bouton de confirmation -->
             <Button
-                    Command="{Binding CreateCommand}"
-                    Text="Créer">
+                Command="{Binding CreateCommand}"
+                Text="Créer">
                 <Button.Shadow>
                     <Shadow
-                            Opacity="0.5"
-                            Radius="5"
-                            Offset="5, 5"/>
+                        Opacity="0.5"
+                        Radius="5"
+                        Offset="5, 5"/>
                 </Button.Shadow>
             </Button>
 
