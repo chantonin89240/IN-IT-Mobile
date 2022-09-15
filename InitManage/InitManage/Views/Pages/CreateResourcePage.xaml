@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:Wrappers="clr-namespace:InitManage.Models.Wrappers"
              x:Class="InitManage.Views.Pages.CreateResourcePage"
              NavigationPage.HasNavigationBar="False"
              x:DataType="ResourceViewModels:CreateResourceViewModel"
@@ -50,7 +51,35 @@
                     Placeholder="Nombre de place"/>
             </StackLayout>
             
-            <!-- Type de la ressource -->
+            <CollectionView ItemsSource="{Binding Options}" HeightRequest="100" x:Name="optionsList">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Wrappers:OptionWrapper">
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Frame
+                                HasShadow="False"
+                                Padding="10"
+                                BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToPrimaryColorValueConverter}}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        TextColor="{Binding IsSelected, Converter={StaticResource BoolToBlackColorValueConverter}}"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Name}"
+                                        HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:CreateResourceViewModel}}, Path=OptionTappedCommand}" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
 
             <!-- bouton de confirmation -->
             <Button

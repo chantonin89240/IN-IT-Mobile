@@ -2,9 +2,13 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:InitManage"
+             xmlns:Converters="clr-namespace:InitManage.Commons.Converters"
              x:Class="InitManage.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Converters:BoolToPrimaryColorValueConverter x:Key="BoolToPrimaryColorValueConverter"/>
+            <Converters:BoolToBlackColorValueConverter x:Key="BoolToBlackColorValueConverter"/>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

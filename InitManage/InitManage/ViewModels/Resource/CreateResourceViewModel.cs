@@ -10,6 +10,7 @@ using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
 using InitManage.Commons.Enums;
 using InitManage.Views.Pages;
+using InitManage.Models.Interfaces;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -20,8 +21,25 @@ public class CreateResourceViewModel : BaseViewModel
     public CreateResourceViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
     {
         _resourceService = resourceService;
-        CreateCommand = ReactiveCommand.CreateFromTask(OnCreateCommand);
 
+        CreateCommand = ReactiveCommand.CreateFromTask(OnCreateCommand);
+        OptionTappedCommand = ReactiveCommand.Create<OptionWrapper>(OnOptionTappedCommand);
+
+        _optionsCache
+            .Connect()
+            .Bind(out _options)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
+
+        var options = new List<OptionWrapper>()
+        {
+            new OptionWrapper(1, "Machine à café", 1, false),
+            new OptionWrapper(2, "Machine à thé", 1, true),
+            new OptionWrapper(3, "Vidéo projecteur", 1, false),
+            new OptionWrapper(4, "Cage de foot", 2, false),
+        };
+
+        _optionsCache.AddOrUpdate(options);
         Types = new List<string>() { "Salle de réunion", "Salle de classe", "Voiture" };
         Picture = "https://image.jimcdn.com/app/cms/image/transf/dimension=940x10000:format=jpg/path/s398965e309713775/image/ia5d911c472440089/version/1478270869/image.jpg";
     }
@@ -99,7 +117,14 @@ public class CreateResourceViewModel : BaseViewModel
 
     #endregion
 
+    #region Options
+    private SourceCache<OptionWrapper, long> _optionsCache = new SourceCache<OptionWrapper, long>(r => r.Id);
+    private readonly ReadOnlyObservableCollection<OptionWrapper> _options;
+    public ReadOnlyObservableCollection<OptionWrapper> Options => _options;
     #endregion
+
+    #endregion
+
 
     #region Methods & Commands
 
@@ -125,8 +150,18 @@ public class CreateResourceViewModel : BaseViewModel
             await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}?selectedTab={nameof(ResourcesPage)}");
     }
 
+    #region OnOptionTappedCommand
+
+    public ReactiveCommand<OptionWrapper, Unit> OptionTappedCommand { get; private set; }
+    private void OnOptionTappedCommand(OptionWrapper optionWrapper)
+    {
+        optionWrapper.IsSelected = !optionWrapper.IsSelected;
+    }
+
     #endregion
 
+
+    #endregion
 
     #endregion
 }
