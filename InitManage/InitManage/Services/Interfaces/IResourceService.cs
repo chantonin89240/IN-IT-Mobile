@@ -8,7 +8,7 @@ namespace InitManage.Services.Interfaces;
 
 public interface IResourceService
 {
-    Task<HttpStatusCode> CreateResources(ResourceDTOCreate DTO);
+    Task<bool> CreateResource(IResource resource);
     /// <summary>
     /// Get all existing resources
     /// </summary>

@@ -19,8 +19,10 @@ public class CreateResourceViewModel : BaseViewModel
     public CreateResourceViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
     {
         _resourceService = resourceService;
+        CreateCommand = ReactiveCommand.CreateFromTask(OnCreateCommand);
 
-	}
+        Picture = "https://image.jimcdn.com/app/cms/image/transf/dimension=940x10000:format=jpg/path/s398965e309713775/image/ia5d911c472440089/version/1478270869/image.jpg";
+    }
 
     #region Life cycle
 
@@ -28,13 +30,80 @@ public class CreateResourceViewModel : BaseViewModel
     #endregion
 
     #region Properties
-    private async Task CreateResource()
+
+    #region Picture
+
+    private string _picture;
+    public string Picture
     {
-        //await _resourceService.CreateResources();
+        get => _picture;
+        set => this.RaiseAndSetIfChanged(ref _picture, value);
     }
+
+    #endregion
+
+    #region Name
+
+    private string _name;
+    public string Name
+    {
+        get => _name;
+        set => this.RaiseAndSetIfChanged(ref _name, value);
+    }
+
+    #endregion
+
+    #region Description
+
+    private string _description;
+    public string Description
+    {
+        get => _description;
+        set => this.RaiseAndSetIfChanged(ref _description, value);
+    }
+
+    #endregion
+
+    #region Capacity
+
+    private int _capacity;
+    public int Capacity
+    {
+        get => _capacity;
+        set => this.RaiseAndSetIfChanged(ref _capacity, value);
+    }
+
+    #endregion
+
+
     #endregion
 
     #region Methods & Commands
+
+    #region OnCreateCommand
+
+    public ReactiveCommand<Unit, Unit> CreateCommand { get; private set; }
+    private async Task OnCreateCommand()
+    {
+        var resource = new ResourceEntity()
+        {
+            Id = 0,
+            Name = _name,
+            Capacity = _capacity,
+            Description = _description,
+            Image = _picture,
+            Address = "",
+            Type = ResourceType.All
+        };
+
+        var resourceCreated = await _resourceService.CreateResource(resource);
+
+        if (resourceCreated)
+            await NavigationService.GoBackAsync();
+    }
+
+    #endregion
+
 
     #endregion
 }

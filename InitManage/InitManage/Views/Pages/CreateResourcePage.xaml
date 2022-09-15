@@ -1,29 +1,31 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              x:Class="InitManage.Views.Pages.CreateResourcePage"
              NavigationPage.HasNavigationBar="False"
+             x:DataType="ResourceViewModels:CreateResourceViewModel"
              IconImageSource="admin"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
              Title="Administration">
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="200, *">
+        <Image
+            Aspect="Fill"
+            Source="{Binding Picture, Mode=OneWay}"/>
         <!-- Formulaire de création de ressource -->
-        <StackLayout>
+        <StackLayout Margin="10" Spacing="10" Grid.Row="1">
             <!-- Nom de la ressource -->
             <Entry 
                 Text="{Binding Name}"
-                Placeholder="Nom de la ressource"
-                IsTextPredictionEnabled="False"
-                />
+                Placeholder="Nom"/>
             <!-- description de la ressource -->
             <Editor
                 Text="{Binding Description}"
-                Placeholder="Description de la ressource"
-                HeightRequest="200"
-                IsTextPredictionEnabled="true"
-                />
+                Placeholder="Description"
+                HeightRequest="100"
+                IsTextPredictionEnabled="true"/>
             <!-- Lien de la photo -->
             <Entry 
                 Text="{Binding Picture}"
@@ -31,35 +33,22 @@
                 IsTextPredictionEnabled="False"
                 />
             <!-- Nombre de place -->
-            <Entry 
-                Text="{Binding Capacity}"
-                Placeholder="Nombre de place"
-                IsTextPredictionEnabled="False"
-                />
+            <StackLayout Spacing="10" Orientation="Horizontal">
+                <Label
+                    VerticalOptions="Center"
+                    Text="Nombre de places :"/>
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding Capacity}"
+                    Placeholder="Nombre de place"/>
+            </StackLayout>
+            
             <!-- Type de la ressource -->
-            <ListView ><!-- ItemsSource="{Binding Type}" -->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Label Text="text1" />
-                            <Label Text="text2" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <!-- Options -->
-            <!--<Entry 
-                Text="{Binding option}"
-                Placeholder="option de la ressource"
-                IsTextPredictionEnabled="False"
-                />-->
+
             <!-- bouton de confirmation -->
             <Button
-                    Command="{Binding LoginCommand}"
-                    Text="Confirmation de la création"
-                    LineBreakMode="CharacterWrap"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center">
+                    Command="{Binding CreateCommand}"
+                    Text="Créer">
                 <Button.Shadow>
                     <Shadow
                             Opacity="0.5"

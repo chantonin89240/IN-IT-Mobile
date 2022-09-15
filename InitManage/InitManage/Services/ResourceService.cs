@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using CsharpTools.Services.Interfaces;
+using InitManage.Commons;
 using InitManage.Models.DTOs;
 using InitManage.Models.Interfaces;
 using InitManage.Models.Wrappers;
@@ -33,14 +34,15 @@ public class ResourceService : IResourceService
 
     public async Task<IEnumerable<IResource>> GetResourcesAsync()
     {
-        var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>("http://10.4.0.112:3000/api/", HttpMethod.Get);
+        var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
         return resutl.Content;
         }
 
-    public async Task<HttpStatusCode> CreateResources(ResourceDTOCreate DTO)
+    public async Task<bool> CreateResource(IResource resource)
     {
-        var result = await _httpService.SendHttpRequest<IEnumerable<ResourceDTOCreate>>("http://10.4.0.112:3000/api/resource", HttpMethod.Post, DTO);
-        return result.Status;
+        var dto = new ResourceDTODown(resource);
+        var result = await _httpService.SendHttpRequest<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
+        return result.Status == HttpStatusCode.OK;
     }
 }
 

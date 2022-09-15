@@ -24,4 +24,18 @@ public class ResourceDTODown : IResource
     public int Capacity { get; set; }
     public string Address { get; set; }
 
+
+    public ResourceDTODown()
+    {
+    }
+
+    public ResourceDTODown(IResource resource)
+    {
+        Id = resource.Id;
+        Name = resource.Name;
+        Description = resource.Description;
+        Image = resource.Image;
+        Type = resource.Type;
+        Capacity = resource.Capacity;
+    }
 }
