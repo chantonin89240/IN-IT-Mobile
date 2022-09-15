@@ -5,7 +5,8 @@
              x:Class="InitManage.Views.Pages.LoginPage"
              x:DataType="LoginViewModels:LoginViewModel"
              NavigationPage.HasNavigationBar="False"
-             Title="LoginPage">
+             Title="LoginPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
     <Grid
         RowDefinitions="1*, 7*">
         <Ellipse
@@ -22,6 +23,7 @@
             <VerticalStackLayout
                 Spacing="20">
                 <Entry
+                    Keyboard="Email"
                     Text="{Binding Mail}"
                     FontSize="20"
                     Placeholder="Mail"/>
@@ -30,6 +32,7 @@
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Password}"/>
+
                 <Button
                     Command="{Binding LoginCommand}"
                     Text="Se connecter">

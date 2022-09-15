@@ -2,20 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:Components="clr-namespace:InitManage.Views.Components"
              x:Class="InitManage.Views.Pages.ResourcePage"
-             Title="Salle de réunion">
+             x:DataType="ResourceViewModels:ResourceViewModel"
+             Title="{Binding Resource.Name}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
+
         <Grid RowDefinitions="200, *">
             <Image
                 Aspect="AspectFill"
-                Source="https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg"/>
+                Source="{Binding Resource.Image}"/>
 
             <StackLayout Margin="20" Spacing="10" Grid.Row="1">
                 <Label
                     FontSize="18"
                     FontAttributes="Bold"
-                    TextColor="{StaticResource Dark}"
-                    Text="Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3ème étage d’un batiment neuf."/>
+                    Text="{Binding Resource.Description}"/>
 
                 <Grid
                     RowDefinitions="Auto, Auto"
@@ -25,7 +28,7 @@
 
                     <Image Source="pin"/>
                     <Label
-                        Text="18 Boulevard de Verdun"
+                        Text="{Binding Resource.Address}"
                         VerticalOptions="Center"
                         FontAttributes="Bold"
                         FontSize="18"
@@ -38,7 +41,7 @@
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="8 personnes maximum"
+                        Text="{Binding Resource.Capacity, StringFormat='{0} personne(s) maximum'}"
                         VerticalOptions="Center"
                         FontAttributes="Bold"
                         FontSize="18"/>
@@ -70,12 +73,18 @@
                         VerticalOptions="Center"/>
                     <Entry
                         Keyboard="Numeric"/>
-                    <Label Text="personnes(s)." VerticalOptions="Center"/>
+
+                    <Label
+                        Text="personnes(s)."
+                        VerticalOptions="Center"/>
 
                 </StackLayout>
-                <Button Text="Réserver"/>
 
-                <CollectionView x:Name="BookingsCollectionView">
+                <Button
+                    Command="{Binding BookCommand}"
+                    Text="Réserver"/>
+
+                <CollectionView ItemsSource="{Binding Bookings}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <DataTemplates:BookingDataTemplate/>

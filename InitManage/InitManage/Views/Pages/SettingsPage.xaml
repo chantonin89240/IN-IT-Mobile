@@ -3,24 +3,61 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:SettingViewModels="clr-namespace:InitManage.ViewModels.Setting"
+    xmlns:Components="clr-namespace:InitManage.Views.Components"
     x:Class="InitManage.Views.Pages.SettingsPage"
     x:DataType="SettingViewModels:SettingsViewModel"
     NavigationPage.HasNavigationBar="False"
     Title="Paramètres"
-    IconImageSource="gear">
+    IconImageSource="gear"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
 
     <Grid RowDefinitions="*">
+
+        <Ellipse
+            Margin="-90"
+            Grid.Row="1"
+            VerticalOptions="Start"
+            HorizontalOptions="End"
+            HeightRequest="150"
+            WidthRequest="150"/>
+
+
+        <Ellipse
+            VerticalOptions="Start"
+            HorizontalOptions="End"
+            Margin="30"
+            Grid.Row="1"
+            HeightRequest="80"
+            WidthRequest="80"/>
+
+
+        <Ellipse
+            VerticalOptions="Start"
+            HorizontalOptions="End"
+            Margin="100"
+            Grid.Row="1"
+            HeightRequest="30"
+            WidthRequest="30"/>
+
+
         <StackLayout Margin="20">
             <Label
-                Text="Bonjour"
-                FontSize="35"
-                TextColor="{StaticResource Primary}"
-                FontAttributes="Bold"/>
+                Style="{StaticResource TitleLabel}"
+                Text="Bonjour"/>
 
             <Label
                 Text="Thomas BERNARD"
-                TextColor="{StaticResource Dark}"
                 FontAttributes="Bold"/>
+
+            <Components:SeparatorComponent/>
+
+            <StackLayout Orientation="Horizontal" Spacing="20" Margin="0, 30">
+                <Label
+                    Text="Dark mode : (préversion)"
+                    VerticalTextAlignment="Center"/>
+                <Switch IsToggled="{Binding DarkModeEnabled}"/>
+
+            </StackLayout>
 
             <Button
                 Command="{Binding LogoutCommand}"
@@ -30,31 +67,5 @@
         </StackLayout>
 
 
-        <Ellipse
-            Margin="-90"
-            Grid.Row="1"
-            VerticalOptions="Start"
-            HorizontalOptions="End"
-            HeightRequest="150"
-            WidthRequest="150">
-        </Ellipse>
-
-        <Ellipse
-            VerticalOptions="Start"
-            HorizontalOptions="End"
-            Margin="30"
-            Grid.Row="1"
-            HeightRequest="80"
-            WidthRequest="80">
-            </Ellipse>
-
-        <Ellipse
-            VerticalOptions="Start"
-            HorizontalOptions="End"
-            Margin="100"
-            Grid.Row="1"
-            HeightRequest="30"
-            WidthRequest="30">
-            </Ellipse>
     </Grid>
 </ContentPage>

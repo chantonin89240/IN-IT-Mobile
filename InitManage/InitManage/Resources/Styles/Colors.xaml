@@ -7,8 +7,10 @@
     <Color x:Key="Primary">#E85F22</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
-    <Color x:Key="Gray100">#F5F5F5</Color>
     <Color x:Key="Dark">#373737</Color>
+    <Color x:Key="TransparentDark">#F2373737</Color>
     <Color x:Key="Red">#FF0000</Color>
     <Color x:Key="Light">#F5F5F5</Color>
+    <Color x:Key="TransparentLight">#F2F5F5F5</Color>
+
 </ResourceDictionary>

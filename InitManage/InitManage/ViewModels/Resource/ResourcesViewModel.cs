@@ -9,6 +9,9 @@ using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
 using InitManage.Commons.Enums;
+using InitManage.Models.Interfaces;
+using InitManage.Views.Pages;
+using InitManage.Commons;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -21,27 +24,36 @@ public class ResourcesViewModel : BaseViewModel
         _resourceService = resourceService;
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
-        .Select(query =>
-        {
-            if (!string.IsNullOrEmpty(query))
-                return new Func<ResourceWrapper, bool>(resource => resource.IsCorrespondingToSearch(SearchBarText));
-            else
-                return new Func<ResourceWrapper, bool>(resource => true);
-        });
-
-        var capacityFilter = this.WhenAnyValue(vm => vm.SelectedCapacity)
             .Select(query =>
             {
-                return new Func<ResourceWrapper, bool>(resource => resource.Capacity >= query);
+                if (!string.IsNullOrEmpty(query))
+                    return new Func<ResourceWrapper, bool>(resource => resource.IsCorrespondingToSearch(SearchBarText));
+                else
+                    return new Func<ResourceWrapper, bool>(resource => true);
+            });
+
+        var capacityFilter = this.WhenAnyValue(vm => vm.SelectedCapacity)
+            .Select(query => new Func<ResourceWrapper, bool>(resource => resource.Capacity >= query));
+
+        var addressFilter = this.WhenAnyValue(vm => vm.Address)
+            .Select(query =>
+            {
+                if (!string.IsNullOrEmpty(query))
+                    return new Func<ResourceWrapper, bool>(resource => resource.Address?.Contains(Address) ?? false);
+                return new Func<ResourceWrapper, bool>(resource => true);
             });
 
         _resourcesCache
         .Connect()
         .Filter(searchFilter)
         .Filter(capacityFilter)
+        .Filter(addressFilter)
         .Bind(out _resources)
         .ObserveOn(RxApp.MainThreadScheduler)
         .Subscribe();
+
+        StartDate = DateTime.Now;
+        EndDate = DateTime.Now.AddDays(1);
     }
 
     #region Life cycle
@@ -50,7 +62,10 @@ public class ResourcesViewModel : BaseViewModel
     {
         await base.OnNavigatedToAsync(parameters);
 
-        var resources = await _resourceService.GetResources();
+        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
+
+
+        var resources = await _resourceService.GetResourcesAsync();
         _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
 
         ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
@@ -72,13 +87,13 @@ public class ResourcesViewModel : BaseViewModel
     }
     #endregion
 
-    #region Adress
+    #region Address
 
-    private string _adress;
-    public string Adress
+    private string _address;
+    public string Address
     {
-        get => _adress;
-        set => this.RaiseAndSetIfChanged(ref _adress, value);
+        get => _address;
+        set => this.RaiseAndSetIfChanged(ref _address, value);
     }
 
     #endregion
@@ -111,6 +126,7 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
+
     #region SelectedType
 
     private ResourceType _selectedType;
@@ -133,9 +149,38 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
+    #region StartDate
+
+    private DateTime _startDate;
+    public DateTime StartDate
+    {
+        get => _startDate;
+        set => this.RaiseAndSetIfChanged(ref _startDate, value);
+    }
+
+    #endregion
+
+    #region EndDate
+
+    private DateTime _endDate;
+    public DateTime EndDate
+    {
+        get => _endDate;
+        set => this.RaiseAndSetIfChanged(ref _endDate, value);
+    }
+
+    #endregion
+
     #endregion
 
     #region Methods & Commands
+
+    public ReactiveCommand<IResource, Task> ResourceTappedCommand { get; private set; }
+    private async Task OnResourceTappedCommand(IResource resource)
+    {
+        var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
+        await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);
+    }
 
     #endregion
 }

@@ -4,7 +4,7 @@
              x:Class="InitManage.Views.Components.SeparatorComponent">
     <Frame
         HasShadow="False"
-        BackgroundColor="{StaticResource Dark}"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Light}}"
         HeightRequest="1"/>
 </ContentView>
 

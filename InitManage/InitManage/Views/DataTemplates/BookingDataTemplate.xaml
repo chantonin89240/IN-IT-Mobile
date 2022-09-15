@@ -1,9 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Wrappers="clr-namespace:InitManage.Models.Wrappers"
+             x:DataType="Wrappers:BookingWrapper"
              x:Class="InitManage.Views.DataTemplates.BookingDataTemplate">
-        <Frame Margin="0, 5" BackgroundColor="{StaticResource Gray100}" HasShadow="False" CornerRadius="10" Padding="7">
-             <Label VerticalOptions="Center" Text="Réservation de Thomas de 11h30 à 12h00"/>
+        <Frame
+            Margin="0, 5"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+            HasShadow="False"
+            CornerRadius="10"
+            Padding="10">
+            <StackLayout Padding="5">
+                <Label
+                 Margin="5"
+                 VerticalOptions="Center">
+                 <Label.Text>
+                     <MultiBinding StringFormat="Réservation de {0} {1} de {2} à {3}">
+                         <Binding Path="User.Firstname"/>
+                         <Binding Path="User.Lastname"/>
+                         <Binding Path="Start" StringFormat="{}{0:hh\hmm}"/>
+                         <Binding Path="End" StringFormat="{}{0:hh\hmm}"/>
+                     </MultiBinding>
+                 </Label.Text>
+             </Label>
+            </StackLayout>
+             
         </Frame>
 </ContentView>
 
