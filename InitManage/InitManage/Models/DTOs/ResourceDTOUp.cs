@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class ResourceDTOCreate : IResourceCreate
+public class ResourceDTOUp : IResourceCreate
 {
     [JsonProperty("name")]
     public string Name { get; set; }
@@ -18,5 +18,6 @@ public class ResourceDTOCreate : IResourceCreate
     [JsonProperty("type")]
     public ResourceType Type { get; set; }
 
+    [JsonProperty("capacity")]
     public int Capacity { get; set; }
 }
