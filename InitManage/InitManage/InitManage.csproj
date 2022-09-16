@@ -76,6 +76,7 @@
 	  <None Remove="Models\Wrappers\" />
 	  <None Remove="Commons\" />
 	  <None Remove="Commons\Enums\" />
+	  <None Remove="Commons\Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
@@ -94,6 +95,7 @@
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
+	  <Folder Include="Commons\Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">

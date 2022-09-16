@@ -34,7 +34,7 @@ public class ResourceWrapper : IResource, ISearchable
         var nameIsMatching = Name?.ToLower()?.Contains(searchedValue?.ToLower()) ?? false;
         var descriptionIsMatching = Description?.ToLower()?.Contains(searchedValue?.ToLower()) ?? false;
 
-        return nameIsMatching && descriptionIsMatching;
+        return nameIsMatching || descriptionIsMatching;
     }
 }
 
