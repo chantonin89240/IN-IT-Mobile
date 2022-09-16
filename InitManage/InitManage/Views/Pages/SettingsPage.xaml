@@ -55,7 +55,9 @@
                 <Label
                     Text="Dark mode : (préversion)"
                     VerticalTextAlignment="Center"/>
-                <Switch IsToggled="{Binding DarkModeEnabled}"/>
+                <Switch
+                    IsToggled="{Binding DarkModeEnabled}"/>
+
 
             </StackLayout>
 

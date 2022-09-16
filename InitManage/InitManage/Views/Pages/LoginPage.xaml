@@ -17,16 +17,16 @@
             Grid.Row="1"
             Spacing="20"
             Padding="20, 0">
-            <Image
-                Source="init"/>
+
+            <Image Source="init"/>
 
             <VerticalStackLayout
                 Spacing="20">
                 <Entry
-                    Keyboard="Email"
-                    Text="{Binding Mail}"
                     FontSize="20"
-                    Placeholder="Mail"/>
+                    Keyboard="Email"
+                    Placeholder="Mail"
+                    Text="{Binding Mail}"/>
                 <Entry
                     FontSize="20"
                     IsPassword="True"

@@ -7,7 +7,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <Converters:BoolToPrimaryColorValueConverter x:Key="BoolToPrimaryColorValueConverter"/>
-            <Converters:BoolToBlackColorValueConverter x:Key="BoolToBlackColorValueConverter"/>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

@@ -9,7 +9,12 @@ public class SettingsViewModel : BaseViewModel
     public SettingsViewModel(INavigationService navigationService) : base(navigationService)
     {
         LogoutCommand = ReactiveCommand.CreateFromTask(OnLogoutCommand);
+
+        if (Application.Current.RequestedTheme == AppTheme.Dark) DarkModeEnabled = true;
+
+        Application.Current.RequestedThemeChanged += OnThemeChanged;
     }
+
 
 
     #region Life cycle
@@ -24,11 +29,7 @@ public class SettingsViewModel : BaseViewModel
     public bool DarkModeEnabled
     {
         get => _darkModeEnabled;
-        set
-        {
-            SetDarkMode(value);
-            this.RaiseAndSetIfChanged(ref _darkModeEnabled, value);
-        }
+        set => this.RaiseAndSetIfChanged(ref _darkModeEnabled, value);
     }
 
     #endregion
@@ -47,18 +48,16 @@ public class SettingsViewModel : BaseViewModel
 
     #endregion
 
-    #region SetDarkMode
 
-    private void SetDarkMode(bool darkModeEnabled)
+    #region OnThemeChanged
+    private void OnThemeChanged(object sender, AppThemeChangedEventArgs e)
     {
-        if (darkModeEnabled)
-            Application.Current.UserAppTheme = AppTheme.Dark;
+        if (e?.RequestedTheme == AppTheme.Dark)
+            DarkModeEnabled = true;
         else
-            Application.Current.UserAppTheme = AppTheme.Light;
+            DarkModeEnabled = false;
     }
-
     #endregion
-
 
     #endregion
 }

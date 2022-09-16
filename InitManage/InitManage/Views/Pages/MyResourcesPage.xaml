@@ -7,7 +7,7 @@
              NavigationPage.HasNavigationBar="False"
              Title="Mes réservations"
              BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
-    <Grid RowDefinitions="Auto">
+    <Grid RowDefinitions="*">
         <Ellipse
             VerticalOptions="End"
             HorizontalOptions="End"
