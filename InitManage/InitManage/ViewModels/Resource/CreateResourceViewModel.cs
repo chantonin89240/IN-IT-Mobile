@@ -37,15 +37,26 @@ public class CreateResourceViewModel : BaseViewModel
             new OptionWrapper(2, "Machine à thé", 1, true),
             new OptionWrapper(3, "Vidéo projecteur", 1, false),
             new OptionWrapper(4, "Cage de foot", 2, false),
+            new OptionWrapper(5, "Cage de foot", 2, false),
+            new OptionWrapper(6, "Cage de foot", 2, false),
+            new OptionWrapper(7, "Cage de foot", 2, false),
+            new OptionWrapper(8, "Cage de foot", 2, false),
+            new OptionWrapper(9, "Cage de foot", 2, false),
         };
 
         _optionsCache.AddOrUpdate(options);
+
         Types = new List<string>() { "Salle de réunion", "Salle de classe", "Voiture" };
         Picture = "https://image.jimcdn.com/app/cms/image/transf/dimension=940x10000:format=jpg/path/s398965e309713775/image/ia5d911c472440089/version/1478270869/image.jpg";
     }
 
     #region Life cycle
 
+    protected override async Task OnNavigatedToAsync(INavigationParameters parameters)
+    {
+        await base.OnNavigatedToAsync(parameters);
+
+    }
 
     #endregion
 
@@ -117,6 +128,17 @@ public class CreateResourceViewModel : BaseViewModel
 
     #endregion
 
+    #region Adress
+
+    private string _adress;
+    public string Adress
+    {
+        get => _adress;
+        set => this.RaiseAndSetIfChanged(ref _adress, value);
+    }
+
+    #endregion
+
     #region Options
     private SourceCache<OptionWrapper, long> _optionsCache = new SourceCache<OptionWrapper, long>(r => r.Id);
     private readonly ReadOnlyObservableCollection<OptionWrapper> _options;
@@ -135,13 +157,13 @@ public class CreateResourceViewModel : BaseViewModel
     {
         var resource = new ResourceEntity()
         {
-            Id = 0,
+            Id = new Random().Next(500),
             Name = _name,
             Capacity = _capacity,
             Description = _description,
             Image = _picture,
-            Address = "",
-            Type = ResourceType.All
+            Address = _adress,
+            Type = ResourceType.MeetingRoom
         };
 
         var resourceCreated = await _resourceService.CreateResource(resource);

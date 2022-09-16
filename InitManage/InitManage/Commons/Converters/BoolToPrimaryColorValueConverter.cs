@@ -12,7 +12,7 @@ public class BoolToPrimaryColorValueConverter : IValueConverter
             if (booleanValue)
                 return  Color.FromHex("E85F22");
         }
-        return Color.FromHex("000000");
+        return Color.FromHex("EB8E65");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -28,17 +28,39 @@
                 HeightRequest="100"
                 IsTextPredictionEnabled="true"/>
             <!-- Lien de la photo -->
-            <Entry 
-                Text="{Binding Picture}"
-                Placeholder="Lien de la photo"
-                IsTextPredictionEnabled="False"
-                />
 
-            <Picker
-                HorizontalOptions="FillAndExpand"
-                Title="Types"
-                SelectedItem="{Binding Type}"
-                ItemsSource="{Binding Types}"/>
+            <StackLayout Spacing="10" Orientation="Horizontal">
+                <Label
+                    VerticalOptions="Center"
+                    Text="Lien de l'image : "/>
+                <Entry 
+                    Text="{Binding Picture, Mode=OneWay}"
+                    Placeholder="Lien de l'image"
+                    HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Spacing="10" Orientation="Horizontal">
+                <Label
+                    VerticalOptions="Center"
+                    Text="Adresse : "/>
+                <Entry
+                    Text="{Binding Adress}"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Addresse"/>
+            </StackLayout>
+            
+
+            <StackLayout Spacing="10" Orientation="Horizontal">
+                <Label
+                    VerticalOptions="Center"
+                    Text="Type : "/>
+                <Picker
+                    HorizontalOptions="FillAndExpand"
+                    Title="Types"
+                    SelectedItem="{Binding Type}"
+                    ItemsSource="{Binding Types}"/>
+            </StackLayout>
+            
             <!-- Nombre de place -->
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
@@ -64,10 +86,9 @@
                                 BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToPrimaryColorValueConverter}}">
                                 <StackLayout Orientation="Horizontal">
                                     <Label
-                                        TextColor="{Binding IsSelected, Converter={StaticResource BoolToBlackColorValueConverter}}"
-                                        HorizontalOptions="Center"
+                                        FontAttributes="Bold"
                                         Text="{Binding Name}"
-                                        HorizontalTextAlignment="Center"/>
+                                        TextColor="{StaticResource White}"/>
                                 </StackLayout>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer

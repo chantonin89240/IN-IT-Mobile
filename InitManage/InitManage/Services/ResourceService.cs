@@ -34,6 +34,7 @@ public class ResourceService : IResourceService
 
     public async Task<IEnumerable<IResource>> GetResourcesAsync()
     {
+        _httpService.ByPassCertificate = true;
         var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
         return resutl.Content;
     }
