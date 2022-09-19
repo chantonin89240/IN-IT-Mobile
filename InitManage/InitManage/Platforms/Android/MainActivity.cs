@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.OS;
 using InitManage.Helpers.Interfaces;
 using InitManage.Platforms.Android.Helpers;
+using Plugin.Firebase.CloudMessaging;
 
 namespace InitManage;
 
@@ -14,11 +15,15 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
         CreateNotificationFromIntent(Intent);
+        HandleIntent(Intent);
+        CreateNotificationChannelIfNeeded();
     }
 
     protected override void OnNewIntent(Intent intent)
     {
+        base.OnNewIntent(intent);
         CreateNotificationFromIntent(intent);
+        HandleIntent(intent);
     }
 
     void CreateNotificationFromIntent(Intent intent)
@@ -27,8 +32,31 @@ public class MainActivity : MauiAppCompatActivity
         {
             string title = intent.GetStringExtra(NotificationHelper.TitleKey);
             string message = intent.GetStringExtra(NotificationHelper.MessageKey);
-            DependencyService.Get<INotificationHelper>().ReceiveNotification(title, message);
+            ContainerLocator.Container.Resolve<INotificationHelper>()?.ReceiveNotification(title, message);
         }
+    }
+
+    private static void HandleIntent(Intent intent)
+    {
+        FirebaseCloudMessagingImplementation.OnNewIntent(intent);
+    }
+
+    private void CreateNotificationChannelIfNeeded()
+    {
+        if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        {
+            CreateNotificationChannel();
+        }
+    }
+
+    private void CreateNotificationChannel()
+    {
+        var channelId = $"{PackageName}.general";
+        var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+        var channel = new NotificationChannel(channelId, "General", NotificationImportance.Default);
+        notificationManager.CreateNotificationChannel(channel);
+        FirebaseCloudMessagingImplementation.ChannelId = channelId;
+        //FirebaseCloudMessagingImplementation.SmallIconRef = Resource.Drawable.ic_push_small;
     }
 
 }

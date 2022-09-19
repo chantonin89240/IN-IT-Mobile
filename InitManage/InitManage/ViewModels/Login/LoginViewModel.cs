@@ -3,6 +3,7 @@ using System.Reactive;
 using InitManage.Helpers.Interfaces;
 using InitManage.Services.Interfaces;
 using InitManage.Views.Pages;
+using Plugin.Firebase.CloudMessaging;
 using ReactiveUI;
 
 namespace InitManage.ViewModels.Login;
@@ -61,15 +62,17 @@ public class LoginViewModel : BaseViewModel
     {
         try
         {
-            _notificationHelper.SendNotification("Login", "Login successfull");
-            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
+            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
 
+            _notificationHelper.SendNotification("FCM token", token);
+            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
+            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Console.WriteLine(e);
         }
-        await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
     }
     #endregion
 

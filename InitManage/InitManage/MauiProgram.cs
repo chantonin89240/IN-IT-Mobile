@@ -8,11 +8,16 @@ using InitManage.ViewModels.Login;
 using InitManage.ViewModels.Resource;
 using InitManage.ViewModels.Setting;
 using InitManage.Views.Pages;
+using Microsoft.Maui.LifecycleEvents;
+using Plugin.Firebase.Shared;
+using Plugin.Firebase.Auth;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;
+using Plugin.Firebase.iOS;
 #elif ANDROID
 using InitManage.Platforms.Android.Helpers;
+using Plugin.Firebase.Android;
 #elif MACCATALYST
 using InitManage.Platforms.MacCatalyst.Helpers;
 #endif
@@ -39,7 +44,8 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).UseMauiCommunityToolkit();
+            }).UseMauiCommunityToolkit()
+            .RegisterFirebaseServices();
 
         return builder.Build();
     }
@@ -67,6 +73,29 @@ public static class MauiProgram
 
         containerRegistry.RegisterForNavigation<MainTabbedPage>();
         containerRegistry.RegisterForNavigation<NavigationPage>();
+    }
+
+    private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+    {
+        builder.ConfigureLifecycleEvents(events => {
+#if IOS
+            events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
+                CrossFirebase.Initialize(app, launchOptions, CreateCrossFirebaseSettings());
+                return false;
+            }));
+#elif ANDROID
+            events.AddAndroid(android => android.OnCreate((activity, state) =>
+                CrossFirebase.Initialize(activity, state, CreateCrossFirebaseSettings())));
+#endif
+        });
+
+        builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
+        return builder;
+    }
+
+    private static CrossFirebaseSettings CreateCrossFirebaseSettings()
+    {
+        return new CrossFirebaseSettings(isAuthEnabled: true);
     }
 }
 
