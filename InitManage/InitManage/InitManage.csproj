@@ -92,6 +92,7 @@
 	  <None Remove="Commons\Enums\" />
 	  <None Remove="Commons\Converters\" />
 	  <None Remove="Plugin.Firebase" />
+	  <None Remove="Simple.Http" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
@@ -152,12 +153,12 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="ThomasBernard.CsharpTools" Version="1.4.1" />
 	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	  <PackageReference Include="Plugin.Firebase" Version="1.2.0" />
+	  <PackageReference Include="Simple.Http" Version="1.0.3" />
 	</ItemGroup>
 </Project>

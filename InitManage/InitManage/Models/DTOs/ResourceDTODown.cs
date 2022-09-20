@@ -1,5 +1,4 @@
-﻿using InitManage.Commons.Enums;
-using InitManage.Models.Interfaces;
+﻿using InitManage.Models.Interfaces;
 using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
@@ -19,9 +18,12 @@ public class ResourceDTODown : IResource
     public string Image { get; set; }
 
     [JsonProperty("type")]
-    public ResourceType Type { get; set; }
+    public string Type { get; set; }
 
+    [JsonProperty("capacity")]
     public int Capacity { get; set; }
+
+    [JsonProperty("address")]
     public string Address { get; set; }
 
 

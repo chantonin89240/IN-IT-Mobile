@@ -1,5 +1,4 @@
 ﻿using System;
-using InitManage.Commons.Enums;
 using Newtonsoft.Json;
 
 namespace InitManage.Models.Interfaces;
@@ -16,7 +15,7 @@ public interface IResource
 
     string Address { get; set; }
 
-    ResourceType Type { get; set; }
+    string Type { get; set; }
 
     int Capacity { get; set; }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks.Sources;
-using InitManage.Commons.Enums;
 using InitManage.Models.DTOs;
 using InitManage.Models.Entities;
 using InitManage.Models.Interfaces;
@@ -23,7 +22,7 @@ public class MockedResourceService : IResourceService
             Description = "Cette salle de réunion est une salle très spacieuse et lumineuse. Elle se situe au 3ème étage d’un batiment neuf.",
             Image = "https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg",
             Name = "Salle de réunion " + id,
-            Type = ResourceType.MeetingRoom,
+            Type = "Salle de réunion",
             Address = "18 Boulevard de Verdun Dijon"
         };
 
@@ -44,7 +43,7 @@ public class MockedResourceService : IResourceService
                 Name = $"Salle de réunion {i}",
                 Description = $"Description de la salle de réunion n°{i}",
                 Image = "https://blog.1001salles.com/wp-content/uploads/2015/04/preparer-sa-salle.jpg",
-                Type = ResourceType.MeetingRoom,
+                Type = "Salle de réunion",
                 Capacity = new Random().Next(2, 10)
             };
             resources.Add(resource);

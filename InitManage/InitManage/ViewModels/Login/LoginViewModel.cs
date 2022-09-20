@@ -68,12 +68,12 @@ public class LoginViewModel : BaseViewModel
 
             _notificationHelper.SendNotification("FCM token", token);
             _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
-            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
+        await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
     }
     #endregion
 

@@ -8,7 +8,6 @@ using InitManage.Services.Interfaces;
 using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
-using InitManage.Commons.Enums;
 using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
@@ -71,7 +70,7 @@ public class ResourcesViewModel : BaseViewModel
         ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
 
         ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-        ResourcesTypes.Add(ResourceType.All);
+        ResourcesTypes.Add("All");
     }
 
     #endregion
@@ -117,8 +116,8 @@ public class ResourcesViewModel : BaseViewModel
 
     #region ResourcesTypes
 
-    private List<ResourceType> _resourcesTypes;
-    public List<ResourceType> ResourcesTypes
+    private List<string> _resourcesTypes;
+    public List<string> ResourcesTypes
     {
         get => _resourcesTypes;
         set => this.RaiseAndSetIfChanged(ref _resourcesTypes, value);
@@ -129,8 +128,8 @@ public class ResourcesViewModel : BaseViewModel
 
     #region SelectedType
 
-    private ResourceType _selectedType;
-    public ResourceType SelectedType
+    private string _selectedType;
+    public string SelectedType
     {
         get => _selectedType;
         set => this.RaiseAndSetIfChanged(ref _selectedType, value);

@@ -1,6 +1,4 @@
 using CommunityToolkit.Maui;
-using CsharpTools.Services;
-using CsharpTools.Services.Interfaces;
 using InitManage.Helpers.Interfaces;
 using InitManage.Services;
 using InitManage.Services.Interfaces;
@@ -11,6 +9,7 @@ using InitManage.Views.Pages;
 using Microsoft.Maui.LifecycleEvents;
 using Plugin.Firebase.Shared;
 using Plugin.Firebase.Auth;
+using Simple.Http;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;

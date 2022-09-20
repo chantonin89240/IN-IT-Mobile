@@ -8,7 +8,6 @@ using InitManage.Services.Interfaces;
 using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
-using InitManage.Commons.Enums;
 using InitManage.Views.Pages;
 using InitManage.Models.Interfaces;
 
@@ -163,7 +162,7 @@ public class CreateResourceViewModel : BaseViewModel
             Description = _description,
             Image = _picture,
             Address = _adress,
-            Type = ResourceType.MeetingRoom
+            Type = "Salle de réunion"
         };
 
         var resourceCreated = await _resourceService.CreateResource(resource);

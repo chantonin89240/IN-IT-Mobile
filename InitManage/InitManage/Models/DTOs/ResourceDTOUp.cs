@@ -1,10 +1,9 @@
-﻿using InitManage.Commons.Enums;
-using InitManage.Models.Interfaces;
+﻿using InitManage.Models.Interfaces;
 using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class ResourceDTOUp : IResourceCreate
+public class ResourceDTOUp : IResource
 {
     [JsonProperty("name")]
     public string Name { get; set; }
@@ -16,8 +15,11 @@ public class ResourceDTOUp : IResourceCreate
     public string Picture { get; set; }
 
     [JsonProperty("type")]
-    public ResourceType Type { get; set; }
+    public string Type { get; set; }
 
     [JsonProperty("capacity")]
     public int Capacity { get; set; }
+    public long Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Image { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Address { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 }
