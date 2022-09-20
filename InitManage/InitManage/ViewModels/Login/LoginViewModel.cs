@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reactive;
 using InitManage.Helpers.Interfaces;
 using InitManage.Services.Interfaces;
@@ -64,6 +64,7 @@ public class LoginViewModel : BaseViewModel
         {
             await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
             var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+			Console.WriteLine($"FCM Token : {token}");
 
             _notificationHelper.SendNotification("FCM token", token);
             _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));

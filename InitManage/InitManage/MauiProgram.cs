@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 using CsharpTools.Services;
 using CsharpTools.Services.Interfaces;
 using InitManage.Helpers.Interfaces;
@@ -52,10 +52,14 @@ public static class MauiProgram
 
     private static void RegisterHelpers(this IContainerRegistry containerRegistry)
     {
-        containerRegistry.RegisterSingleton<INotificationHelper, NotificationHelper>();
-    }
+		#if ANDROID
+		containerRegistry.RegisterSingleton<INotificationHelper, AndroidNotificationHelper>();
+		#elif IOS
+		containerRegistry.RegisterSingleton<INotificationHelper, iOSNotificationHelper>();
+		#endif
+	}
 
-    private static void RegisterServices(this IContainerRegistry containerRegistry)
+	private static void RegisterServices(this IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
         containerRegistry.RegisterSingleton<IHttpService, HttpService>();
@@ -78,15 +82,15 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
     {
         builder.ConfigureLifecycleEvents(events => {
-#if IOS
+			#if IOS
             events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
                 CrossFirebase.Initialize(app, launchOptions, CreateCrossFirebaseSettings());
                 return false;
             }));
-#elif ANDROID
+			#elif ANDROID
             events.AddAndroid(android => android.OnCreate((activity, state) =>
                 CrossFirebase.Initialize(activity, state, CreateCrossFirebaseSettings())));
-#endif
+			#endif
         });
 
         builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);

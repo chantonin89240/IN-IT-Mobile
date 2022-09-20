@@ -30,8 +30,8 @@ public class MainActivity : MauiAppCompatActivity
     {
         if (intent?.Extras != null)
         {
-            string title = intent.GetStringExtra(NotificationHelper.TitleKey);
-            string message = intent.GetStringExtra(NotificationHelper.MessageKey);
+            string title = intent.GetStringExtra(AndroidNotificationHelper.TitleKey);
+            string message = intent.GetStringExtra(AndroidNotificationHelper.MessageKey);
             ContainerLocator.Container.Resolve<INotificationHelper>()?.ReceiveNotification(title, message);
         }
     }

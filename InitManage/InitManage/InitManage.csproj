@@ -103,9 +103,6 @@
 	  <Folder Include="ViewModels\Setting\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Interfaces\" />
-	  <Folder Include="Platforms\iOS\Helpers\" />
-	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
-	  <Folder Include="Platforms\Android\Helpers\" />
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Commons\" />
