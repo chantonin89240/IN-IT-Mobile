@@ -108,6 +108,7 @@
 	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
 	  <Folder Include="Commons\Converters\" />
+	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
