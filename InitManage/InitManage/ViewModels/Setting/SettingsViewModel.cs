@@ -39,24 +39,12 @@ public class SettingsViewModel : BaseViewModel
     #region Methods & Commands
 
     #region OnLogoutCommand
-
     public ReactiveCommand<Unit, Unit> LogoutCommand { get; private set; }
-    private async Task OnLogoutCommand()
-    {
-        await NavigationService.GoBackToRootAsync();
-    }
-
+    private async Task OnLogoutCommand() =>  await NavigationService.GoBackToRootAsync();
     #endregion
 
-
     #region OnThemeChanged
-    private void OnThemeChanged(object sender, AppThemeChangedEventArgs e)
-    {
-        if (e?.RequestedTheme == AppTheme.Dark)
-            DarkModeEnabled = true;
-        else
-            DarkModeEnabled = false;
-    }
+    private void OnThemeChanged(object sender, AppThemeChangedEventArgs e) => DarkModeEnabled = e?.RequestedTheme == AppTheme.Dark;
     #endregion
 
     #endregion

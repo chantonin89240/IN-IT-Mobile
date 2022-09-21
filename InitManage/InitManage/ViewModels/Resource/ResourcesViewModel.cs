@@ -11,6 +11,7 @@ using DynamicData.PLinq;
 using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
+using Sharpnado.TaskLoaderView;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -53,6 +54,7 @@ public class ResourcesViewModel : BaseViewModel
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
+        Loader = new TaskLoaderNotifier<IEnumerable<IResource>>();
     }
 
     #region Life cycle
@@ -63,7 +65,7 @@ public class ResourcesViewModel : BaseViewModel
 
         ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
 
-
+        Loader.Load(async _ => await _resourceService.GetResourcesAsync());
         var resources = await _resourceService.GetResourcesAsync();
         _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
 
@@ -76,6 +78,8 @@ public class ResourcesViewModel : BaseViewModel
     #endregion
 
     #region Properties
+
+    public TaskLoaderNotifier<IEnumerable<IResource>> Loader { get; }
 
     #region SearchBarText
     private string _searchBarText;
@@ -124,7 +128,6 @@ public class ResourcesViewModel : BaseViewModel
     }
 
     #endregion
-
 
     #region SelectedType
 
