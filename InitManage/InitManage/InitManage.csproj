@@ -94,6 +94,7 @@
 	  <None Remove="Plugin.Firebase" />
 	  <None Remove="Simple.Http" />
 	  <None Remove="Sharpnado.Maui.TaskLoaderView" />
+	  <None Remove="SkiaSharp.Extended.UI.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
@@ -162,5 +163,6 @@
 	  <PackageReference Include="Plugin.Firebase" Version="1.2.0" />
 	  <PackageReference Include="Simple.Http" Version="1.0.3" />
 	  <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>
 </Project>

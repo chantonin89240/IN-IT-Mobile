@@ -10,6 +10,7 @@ using Microsoft.Maui.LifecycleEvents;
 using Plugin.Firebase.Shared;
 using Plugin.Firebase.Auth;
 using Simple.Http;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;
@@ -30,6 +31,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseSkiaSharp()
             .UsePrism(prismAppBuilder => prismAppBuilder
                 .RegisterTypes(containerRegistry =>
                 {
