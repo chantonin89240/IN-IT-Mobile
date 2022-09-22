@@ -12,5 +12,7 @@
     <Color x:Key="Red">#FF0000</Color>
     <Color x:Key="Light">#F5F5F5</Color>
     <Color x:Key="TransparentLight">#F2F5F5F5</Color>
+    <Color x:Key="Orange100">#EF966F</Color>
+    <Color x:Key="Orange200">#F3B49A</Color>
 
 </ResourceDictionary>
