@@ -17,11 +17,7 @@
         <skia:SKLottieView
             Grid.Row="1"
             Source="bubbles.json"
-            RepeatCount="-1"
-            HeightRequest="400"
-            WidthRequest="400"
-            VerticalOptions="End"
-            HorizontalOptions="Center"/>
+            VerticalOptions="End"/>
 
         <StackLayout
             Grid.Row="1"
