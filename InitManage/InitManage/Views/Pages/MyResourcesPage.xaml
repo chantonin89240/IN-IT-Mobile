@@ -9,6 +9,7 @@
              BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
     <Grid RowDefinitions="*">
         <Ellipse
+            Fill="{StaticResource Orange200}"
             VerticalOptions="End"
             HorizontalOptions="End"
             Margin="160"
@@ -17,6 +18,7 @@
             WidthRequest="50"/>
 
         <Ellipse
+            Fill="{StaticResource Orange100}"
             VerticalOptions="End"
             HorizontalOptions="End"
             Margin="70"

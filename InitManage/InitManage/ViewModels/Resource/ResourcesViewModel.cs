@@ -69,10 +69,10 @@ public class ResourcesViewModel : BaseViewModel
         {
             var resources = await _resourceService.GetResourcesAsync();
             await _resourceService.GetResourcesAsync();
+
             _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
+
             ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
             ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
             ResourcesTypes.Add("All");
 

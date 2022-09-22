@@ -23,6 +23,7 @@
 
 
         <Ellipse
+            Fill="{StaticResource Orange100}"
             VerticalOptions="Start"
             HorizontalOptions="End"
             Margin="30"
@@ -32,6 +33,7 @@
 
 
         <Ellipse
+            Fill="{StaticResource Orange200}"
             VerticalOptions="Start"
             HorizontalOptions="End"
             Margin="100"
