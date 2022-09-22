@@ -68,21 +68,14 @@ public class ResourcesViewModel : BaseViewModel
         Loader.Load(async _ =>
         {
             var resources = await _resourceService.GetResourcesAsync();
-            await _resourceService.GetResourcesAsync();
-
-            _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
+            _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
             ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
             ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
             ResourcesTypes.Add("All");
 
-            await Task.Delay(5000);
-
-
             return resources;
         });
-
-
     }
 
     #endregion
