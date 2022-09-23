@@ -11,6 +11,7 @@ using Plugin.Firebase.Shared;
 using Plugin.Firebase.Auth;
 using Simple.Http;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using InitManage.Helpers;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;
@@ -60,6 +61,8 @@ public static class MauiProgram
 #elif MACCATALYST
         containerRegistry.RegisterSingleton<INotificationHelper, MacNotificationHelper>();
 #endif
+
+        containerRegistry.RegisterSingleton<IPreferenceHelper, PreferenceHelper>();
     }
 
 	private static void RegisterServices(this IContainerRegistry containerRegistry)
