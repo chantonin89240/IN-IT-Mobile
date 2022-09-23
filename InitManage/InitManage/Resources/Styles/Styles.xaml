@@ -2,6 +2,7 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style TargetType="Button">
@@ -35,6 +36,13 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Light}}"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"/>
         <Setter Property="Placeholder" Value="Saisissez votre recherche"/>
+    </Style>
+
+    <Style TargetType="skia:SKLottieView">
+        <Setter Property="RepeatCount" Value="-1"/>
+        <Setter Property="HeightRequest" Value="400"/>
+        <Setter Property="WidthRequest" Value="400"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
     </Style>
 </ResourceDictionary>
 

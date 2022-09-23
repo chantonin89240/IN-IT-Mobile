@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using InitManage.Helpers.Interfaces;
 using UserNotifications;
@@ -7,7 +7,7 @@ using NotificationEventArgs = InitManage.Models.Wrappers.NotificationEventArgs;
 
 namespace InitManage.Platforms.iOS.Helpers;
 
-public class NotificationHelper : INotificationHelper
+public class iOSNotificationHelper : INotificationHelper
 {
     int messageId = 0;
     bool hasNotificationsPermission;

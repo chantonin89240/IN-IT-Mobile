@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Net;
-using CsharpTools.Services.Interfaces;
 using InitManage.Commons;
 using InitManage.Models.DTOs;
 using InitManage.Models.Interfaces;
 using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
+using Simple.Http;
 
 namespace InitManage.Services;
 
 public class ResourceService : IResourceService
 {
     private readonly IHttpService _httpService;
+
     public ResourceService(IHttpService httpService)
     {
         _httpService = httpService;
@@ -34,16 +35,15 @@ public class ResourceService : IResourceService
 
     public async Task<IEnumerable<IResource>> GetResourcesAsync()
     {
-        _httpService.ByPassCertificate = true;
         var resutl = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
-        return resutl.Content;
+        return resutl.Result;
     }
 
     public async Task<bool> CreateResource(IResource resource)
     {
         var dto = new ResourceDTODown(resource);
         var result = await _httpService.SendHttpRequest<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
-        return result.Status == HttpStatusCode.OK;
+        return result.HttpStatusCode == HttpStatusCode.OK;
     }
 }
 

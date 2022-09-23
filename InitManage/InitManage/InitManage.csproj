@@ -45,6 +45,20 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-ios'">
+		<BundleResource Include="GoogleService-Info.plist" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+		<GoogleServicesJson Include="google-services.json" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk7" Version="1.7.10" ExcludeAssets="build;buildTransitive" />
+	  <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.7.10" ExcludeAssets="build;buildTransitive" />
+	</ItemGroup>
+
+
 	<ItemGroup>
 	  <None Remove="Views\" />
 	  <None Remove="Views\Pages\" />
@@ -77,6 +91,10 @@
 	  <None Remove="Commons\" />
 	  <None Remove="Commons\Enums\" />
 	  <None Remove="Commons\Converters\" />
+	  <None Remove="Plugin.Firebase" />
+	  <None Remove="Simple.Http" />
+	  <None Remove="Sharpnado.Maui.TaskLoaderView" />
+	  <None Remove="SkiaSharp.Extended.UI.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
@@ -88,14 +106,12 @@
 	  <Folder Include="ViewModels\Setting\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Interfaces\" />
-	  <Folder Include="Platforms\iOS\Helpers\" />
-	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
-	  <Folder Include="Platforms\Android\Helpers\" />
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
 	  <Folder Include="Commons\Converters\" />
+	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
@@ -139,11 +155,14 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="ThomasBernard.CsharpTools" Version="1.4.1" />
 	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	  <PackageReference Include="Plugin.Firebase" Version="1.2.0" />
+	  <PackageReference Include="Simple.Http" Version="1.0.3" />
+	  <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>
 </Project>

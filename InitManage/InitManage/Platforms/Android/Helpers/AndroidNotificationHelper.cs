@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -9,7 +9,7 @@ using AndroidApp = Android.App.Application;
 
 namespace InitManage.Platforms.Android.Helpers;
 
-public class NotificationHelper : INotificationHelper
+public class AndroidNotificationHelper : INotificationHelper
 {
     const string channelId = "default";
     const string channelName = "Default";
@@ -26,9 +26,9 @@ public class NotificationHelper : INotificationHelper
 
     public event EventHandler NotificationReceived;
 
-    public static NotificationHelper Instance { get; private set; }
+    public static AndroidNotificationHelper Instance { get; private set; }
 
-    public NotificationHelper() => Initialize();
+    public AndroidNotificationHelper() => Initialize();
 
     public void Initialize()
     {
@@ -127,10 +127,10 @@ public class AlarmHandler : BroadcastReceiver
     {
         if (intent?.Extras != null)
         {
-            string title = intent.GetStringExtra(NotificationHelper.TitleKey);
-            string message = intent.GetStringExtra(NotificationHelper.MessageKey);
+            string title = intent.GetStringExtra(AndroidNotificationHelper.TitleKey);
+            string message = intent.GetStringExtra(AndroidNotificationHelper.MessageKey);
 
-            NotificationHelper manager = NotificationHelper.Instance ?? new NotificationHelper();
+            AndroidNotificationHelper manager = AndroidNotificationHelper.Instance ?? new AndroidNotificationHelper();
             manager.Show(title, message);
         }
     }

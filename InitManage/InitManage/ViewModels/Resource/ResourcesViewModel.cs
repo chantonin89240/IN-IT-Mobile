@@ -8,10 +8,10 @@ using InitManage.Services.Interfaces;
 using System.Reactive;
 using InitManage.Models.Wrappers;
 using DynamicData.PLinq;
-using InitManage.Commons.Enums;
 using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
+using Sharpnado.TaskLoaderView;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -54,6 +54,7 @@ public class ResourcesViewModel : BaseViewModel
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
+        Loader = new TaskLoaderNotifier<IEnumerable<IResource>>();
     }
 
     #region Life cycle
@@ -64,19 +65,24 @@ public class ResourcesViewModel : BaseViewModel
 
         ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
 
+        Loader.Load(async _ =>
+        {
+            var resources = await _resourceService.GetResourcesAsync();
+            _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
-        var resources = await _resourceService.GetResourcesAsync();
-        _resourcesCache.AddOrUpdate(resources.Select(x => new ResourceWrapper(x)));
+            ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
+            ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
+            ResourcesTypes.Add("All");
 
-        ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
-
-        ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-        ResourcesTypes.Add(ResourceType.All);
+            return resources;
+        });
     }
 
     #endregion
 
     #region Properties
+
+    public TaskLoaderNotifier<IEnumerable<IResource>> Loader { get; }
 
     #region SearchBarText
     private string _searchBarText;
@@ -117,8 +123,8 @@ public class ResourcesViewModel : BaseViewModel
 
     #region ResourcesTypes
 
-    private List<ResourceType> _resourcesTypes;
-    public List<ResourceType> ResourcesTypes
+    private List<string> _resourcesTypes;
+    public List<string> ResourcesTypes
     {
         get => _resourcesTypes;
         set => this.RaiseAndSetIfChanged(ref _resourcesTypes, value);
@@ -126,11 +132,10 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
-
     #region SelectedType
 
-    private ResourceType _selectedType;
-    public ResourceType SelectedType
+    private string _selectedType;
+    public string SelectedType
     {
         get => _selectedType;
         set => this.RaiseAndSetIfChanged(ref _selectedType, value);

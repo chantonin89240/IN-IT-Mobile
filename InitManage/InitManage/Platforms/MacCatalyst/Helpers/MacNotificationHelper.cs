@@ -3,9 +3,9 @@ using InitManage.Helpers.Interfaces;
 
 namespace InitManage.Platforms.MacCatalyst.Helpers;
 
-public class NotificationHelper : INotificationHelper
+public class MacNotificationHelper : INotificationHelper
 {
-    public NotificationHelper()
+    public MacNotificationHelper()
     {
     }
 

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
     xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+    xmlns:customViews="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     x:Class="InitManage.Views.Pages.ResourcesPage"
     x:DataType="ResourceViewModels:ResourcesViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
@@ -45,6 +47,7 @@
         </Grid>
 
         <Ellipse
+            Fill="{StaticResource Orange200}"
             Margin="160"
             Grid.Row="1"
             WidthRequest="50"
@@ -53,6 +56,7 @@
             HorizontalOptions="End"/>
 
         <Ellipse
+            Fill="{StaticResource Orange100}"
             Margin="70"
             Grid.Row="1"
             WidthRequest="100"
@@ -68,12 +72,33 @@
             VerticalOptions="End"
             HorizontalOptions="End"/>
 
-        <CollectionView Grid.Row="1" Margin="10, 0" ItemsSource="{Binding Resources}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <DataTemplates:ResourceDataTemplate/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <customViews:TemplatedTaskLoader Grid.Row="1" TaskLoaderNotifier="{Binding Loader}">
+            <customViews:TemplatedTaskLoader.ResultControlTemplate>
+                <ControlTemplate>
+                    <CollectionView
+                        Margin="10, 0"
+                        ItemsSource="{Binding Resources}"
+                        BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <DataTemplates:ResourceDataTemplate/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ControlTemplate>
+            </customViews:TemplatedTaskLoader.ResultControlTemplate>
+            <customViews:TemplatedTaskLoader.LoadingControlTemplate>
+                <ControlTemplate>
+                   <skia:SKLottieView
+                        Grid.Row="1"
+                        Source="loader.json"
+                        RepeatCount="-1"
+                        HeightRequest="400"
+                        WidthRequest="400"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"/>
+                </ControlTemplate>
+            </customViews:TemplatedTaskLoader.LoadingControlTemplate>
+        </customViews:TemplatedTaskLoader>
     </Grid>
 </ContentPage>
