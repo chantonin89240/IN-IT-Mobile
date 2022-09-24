@@ -22,11 +22,11 @@ public class PreferenceHelper : IPreferenceHelper
     }
     #endregion
 
-    #region Username
-    public string Username
+    #region Mail
+    public string Mail
     {
-        get => Preferences.Get(nameof(Username), string.Empty);
-        set => Preferences.Set(nameof(Username), value);
+        get => Preferences.Get(nameof(Mail), string.Empty);
+        set => Preferences.Set(nameof(Mail), value);
     }
     #endregion
 

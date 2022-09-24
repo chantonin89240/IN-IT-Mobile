@@ -12,11 +12,21 @@ public class LoginViewModel : BaseViewModel
 {
     private readonly IAlertDialogService _alertDialogService;
     private readonly INotificationHelper _notificationHelper;
+    private readonly IPreferenceHelper _preferenceHelper;
+    private readonly IUserService _userService;
 
-    public LoginViewModel(INavigationService navigationService, IAlertDialogService alertDialogService, INotificationHelper notificationHelper) : base(navigationService)
+    public LoginViewModel(
+        INavigationService navigationService,
+        IAlertDialogService alertDialogService,
+        INotificationHelper notificationHelper,
+        IPreferenceHelper preferenceHelper,
+        IUserService userService)
+        : base(navigationService)
     {
         _alertDialogService = alertDialogService;
         _notificationHelper = notificationHelper;
+        _preferenceHelper = preferenceHelper;
+        _userService = userService;
 
         LoginCommand = ReactiveCommand.CreateFromTask(OnLoginCommand);
     }
@@ -60,20 +70,12 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        try
-        {
-            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
-            var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
-			Console.WriteLine($"FCM Token : {token}");
+        var isLoginSuccess = await _userService.LoginAsync(Mail, Password);
 
-            _notificationHelper.SendNotification("FCM token", token);
-            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
-        }
-        catch (Exception e)
+        if (isLoginSuccess)
         {
-            Console.WriteLine(e);
+            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
         }
-        await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
     }
     #endregion
 
