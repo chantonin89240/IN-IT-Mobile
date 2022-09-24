@@ -1,10 +1,12 @@
 using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using InitManage.Helpers.Interfaces;
 using InitManage.Services.Interfaces;
 using InitManage.Views.Pages;
 using Plugin.Firebase.CloudMessaging;
 using ReactiveUI;
+using Sharpnado.TaskLoaderView;
 
 namespace InitManage.ViewModels.Login;
 
@@ -28,6 +30,9 @@ public class LoginViewModel : BaseViewModel
         _preferenceHelper = preferenceHelper;
         _userService = userService;
 
+        var canExecuteLogin = this.WhenAnyValue(vm => vm.Mail, vm => vm.Password)
+            .Select(items => !string.IsNullOrEmpty(Mail) && !string.IsNullOrEmpty(Password));
+
         LoginCommand = ReactiveCommand.CreateFromTask(OnLoginCommand);
     }
 
@@ -37,6 +42,8 @@ public class LoginViewModel : BaseViewModel
     {
         await base.OnNavigatedToAsync(parameters);
         _notificationHelper.Initialize();
+
+        Mail = _preferenceHelper.Mail;
     }
 
     #endregion
@@ -74,6 +81,9 @@ public class LoginViewModel : BaseViewModel
 
         if (isLoginSuccess)
         {
+            Mail = string.Empty;
+            Password = string.Empty;
+
             await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
         }
     }
