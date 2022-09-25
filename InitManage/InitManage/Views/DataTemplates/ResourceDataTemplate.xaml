@@ -2,7 +2,9 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
-             x:Class="InitManage.Views.DataTemplates.ResourceDataTemplate">
+             xmlns:Wrappers="clr-namespace:InitManage.Models.Wrappers"
+             x:Class="InitManage.Views.DataTemplates.ResourceDataTemplate"
+             x:DataType="Wrappers:ResourceWrapper">
 
     <StackLayout Margin="5, 5">
         <Frame HasShadow="False" BackgroundColor="{StaticResource TransparentDark}" CornerRadius="10" Padding="5">

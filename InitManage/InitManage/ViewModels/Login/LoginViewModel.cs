@@ -77,6 +77,20 @@ public class LoginViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     private async Task OnLoginCommand()
     {
+        try
+        {
+            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+
+            _notificationHelper.SendNotification("FCM token", token);
+            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
+            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+
         var isLoginSuccess = await _userService.LoginAsync(Mail, Password);
 
         if (isLoginSuccess)
