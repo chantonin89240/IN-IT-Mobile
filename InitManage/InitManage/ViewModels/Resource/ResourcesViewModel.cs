@@ -23,6 +23,8 @@ public class ResourcesViewModel : BaseViewModel
     {
         _resourceService = resourceService;
 
+        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
+
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
             .Select(query =>
             {
@@ -63,19 +65,21 @@ public class ResourcesViewModel : BaseViewModel
     {
         await base.OnNavigatedToAsync(parameters);
 
-        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
-
-        Loader.Load(async _ =>
+        if (!_resourcesCache.Items.Any())
         {
-            var resources = await _resourceService.GetResourcesAsync();
-            _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
+            Loader.Load(async _ =>
+            {
+                LoadingMessage = "Chargement des resources";
+                var resources = await _resourceService.GetResourcesAsync();
+                _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
-            ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes.Add("All");
+                ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
+                ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
+                ResourcesTypes.Add("All");
 
-            return resources;
-        });
+                return resources;
+            });
+        }
     }
 
     #endregion

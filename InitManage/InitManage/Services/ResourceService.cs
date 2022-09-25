@@ -36,6 +36,7 @@ public class ResourceService : IResourceService
 
     public async Task<IEnumerable<IResource>> GetResourcesAsync()
     {
+        await Task.Delay(3000);
         var response = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
         return response.Result;
     }

@@ -13,7 +13,18 @@ public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitiali
 
     #region Properties
     protected INavigationService NavigationService { get; }
-    protected bool IsBusy { get; set; }
+
+    #region LoadingMessage
+
+    private string _loadingMessage;
+    public string LoadingMessage
+    {
+        get => _loadingMessage;
+        set => this.RaiseAndSetIfChanged(ref _loadingMessage, value);
+    }
+
+    #endregion
+
     #endregion
 
     #region LifeCycle

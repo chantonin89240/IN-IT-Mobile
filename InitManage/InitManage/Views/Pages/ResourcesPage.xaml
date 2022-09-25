@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
     xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
-    xmlns:customViews="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+    xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     x:Class="InitManage.Views.Pages.ResourcesPage"
     x:DataType="ResourceViewModels:ResourcesViewModel"
@@ -13,92 +13,98 @@
     IconImageSource="book"
     Title="Menu">
 
-    <Grid RowDefinitions="Auto, *">
-        <Grid Margin="10" RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
-            <SearchBar Text="{Binding SearchBarText}"/>
-            <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="5" Grid.Row="1">
-                <Picker
-                    Title="Places"
-                    SelectedItem="{Binding SelectedCapacity}"
-                    ItemsSource="{Binding ResourcesCapacities}"/>
-                <Picker
-                    Grid.Column="1"
-                    Title="Options"
-                    ItemsSource="{Binding ResourcesTypes}"
-                    SelectedIndex="{Binding SelectedType}"/>
-                <Entry
-                    Grid.Column="2"
-                    Placeholder="Adresse"
-                    Text="{Binding Address}"/>
-            </Grid>
-            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="2">
-                <DatePicker
-                    Date="{Binding StartDate}"
-                    MaximumDate="{Binding EndDate}"/>
-                <Label
-                    Text="=>"
-                    Grid.Column="1"
-                    VerticalOptions="Center"/>
-                <DatePicker
-                    Grid.Column="2"
-                    Date="{Binding EndDate}"
-                    MinimumDate="{Binding StartDate}"/>
-            </Grid>
-        </Grid>
+    <sharpnado:TemplatedTaskLoader TaskLoaderNotifier="{Binding Loader}">
+        <sharpnado:TemplatedTaskLoader.ResultControlTemplate>
+            <ControlTemplate>
+                <Grid RowDefinitions="Auto, *" BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
+                        <SearchBar Text="{Binding SearchBarText}"/>
+                        <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="5" Grid.Row="1">
+                            <Picker
+                                Title="Places"
+                                SelectedItem="{Binding SelectedCapacity}"
+                                ItemsSource="{Binding ResourcesCapacities}"/>
+                            <Picker
+                                Grid.Column="1"
+                                Title="Options"
+                                ItemsSource="{Binding ResourcesTypes}"
+                                SelectedIndex="{Binding SelectedType}"/>
+                            <Entry
+                                Grid.Column="2"
+                                Placeholder="Adresse"
+                                Text="{Binding Address}"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="2">
+                            <DatePicker
+                                Date="{Binding StartDate}"
+                                MaximumDate="{Binding EndDate}"/>
+                            <Label
+                                Text="=>"
+                                Grid.Column="1"
+                                VerticalOptions="Center"/>
+                            <DatePicker
+                                Grid.Column="2"
+                                Date="{Binding EndDate}"
+                                MinimumDate="{Binding StartDate}"/>
+                        </Grid>
+                    </Grid>
 
-        <Ellipse
-            Fill="{StaticResource Orange200}"
-            Margin="160"
-            Grid.Row="1"
-            WidthRequest="50"
-            HeightRequest="50"
-            VerticalOptions="End"
-            HorizontalOptions="End"/>
+                    <Ellipse
+                        Fill="{StaticResource Orange200}"
+                        Margin="160"
+                        Grid.Row="1"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
 
-        <Ellipse
-            Fill="{StaticResource Orange100}"
-            Margin="70"
-            Grid.Row="1"
-            WidthRequest="100"
-            HeightRequest="100"
-            VerticalOptions="End"
-            HorizontalOptions="End"/>
+                    <Ellipse
+                        Fill="{StaticResource Orange100}"
+                        Margin="70"
+                        Grid.Row="1"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
 
-        <Ellipse
-            Margin="-90"
-            Grid.Row="1"
-            WidthRequest="200"
-            HeightRequest="200"
-            VerticalOptions="End"
-            HorizontalOptions="End"/>
+                    <Ellipse
+                        Margin="-90"
+                        Grid.Row="1"
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
 
-        <customViews:TemplatedTaskLoader Grid.Row="1" TaskLoaderNotifier="{Binding Loader}">
-            <customViews:TemplatedTaskLoader.ResultControlTemplate>
-                <ControlTemplate>
                     <CollectionView
+                        Grid.Row="1"
                         Margin="10, 0"
-                        ItemsSource="{Binding Resources}"
-                        BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                        ItemsSource="{Binding Resources}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <DataTemplates:ResourceDataTemplate/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </ControlTemplate>
-            </customViews:TemplatedTaskLoader.ResultControlTemplate>
-            <customViews:TemplatedTaskLoader.LoadingControlTemplate>
-                <ControlTemplate>
-                   <skia:SKLottieView
-                        Grid.Row="1"
+                </Grid>
+            </ControlTemplate>
+        </sharpnado:TemplatedTaskLoader.ResultControlTemplate>
+        <sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
+            <ControlTemplate>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <skia:SKLottieView
                         Source="loader.json"
                         RepeatCount="-1"
-                        HeightRequest="400"
                         WidthRequest="400"
-                        VerticalOptions="Start"
+                        HeightRequest="200"
                         HorizontalOptions="Center"/>
-                </ControlTemplate>
-            </customViews:TemplatedTaskLoader.LoadingControlTemplate>
-        </customViews:TemplatedTaskLoader>
-    </Grid>
+                    <Label
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalOptions="Center"
+                        Text="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=LoadingMessage}"/>
+                </VerticalStackLayout>
+                
+            </ControlTemplate>
+        </sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
+    </sharpnado:TemplatedTaskLoader>
 </ContentPage>
