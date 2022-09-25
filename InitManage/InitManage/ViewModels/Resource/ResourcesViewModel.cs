@@ -44,13 +44,13 @@ public class ResourcesViewModel : BaseViewModel
             });
 
         _resourcesCache
-        .Connect()
-        .Filter(searchFilter)
-        .Filter(capacityFilter)
-        .Filter(addressFilter)
-        .Bind(out _resources)
-        .ObserveOn(RxApp.MainThreadScheduler)
-        .Subscribe();
+            .Connect()
+            .Filter(searchFilter)
+            .Filter(capacityFilter)
+            .Filter(addressFilter)
+            .Bind(out _resources)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);

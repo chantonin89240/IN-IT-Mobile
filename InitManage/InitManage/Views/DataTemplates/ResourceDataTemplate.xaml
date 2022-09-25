@@ -36,10 +36,10 @@
                         TextColor="{StaticResource Light}"/>
                 </StackLayout>
             </Grid>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=ResourceTappedCommand}" CommandParameter="{Binding .}"/>
+            </Frame.GestureRecognizers>
         </Frame>
-        <StackLayout.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=ResourceTappedCommand}" CommandParameter="{Binding .}"/>
-        </StackLayout.GestureRecognizers>
     </StackLayout>
     
    
