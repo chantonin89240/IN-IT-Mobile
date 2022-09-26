@@ -1,9 +1,10 @@
 ﻿using System;
+using InitManage.Models.Interfaces;
 using ReactiveUI;
 
 namespace InitManage.Models.Wrappers;
 
-public class OptionWrapper : ReactiveObject
+public class OptionWrapper : ReactiveObject, IOption
 {
     public long Id { get; set; }
     public string Name { get; set; }
@@ -29,6 +30,13 @@ public class OptionWrapper : ReactiveObject
         Name = name;
         TypeId = typeId;
         IsSelected = isSelected;
+    }
+
+    public OptionWrapper(IOption option)
+    {
+        Id = option.Id;
+        Name = option.Name;
+        TypeId = option.TypeId;
     }
 }
 

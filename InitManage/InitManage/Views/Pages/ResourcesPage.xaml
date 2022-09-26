@@ -16,25 +16,54 @@
     <sharpnado:TemplatedTaskLoader TaskLoaderNotifier="{Binding Loader}">
         <sharpnado:TemplatedTaskLoader.ResultControlTemplate>
             <ControlTemplate>
-                <Grid RowDefinitions="Auto, *" BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
-                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
-                        <SearchBar Text="{Binding SearchBarText}"/>
-                        <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="5" Grid.Row="1">
+                <Grid
+                    RowDefinitions="Auto, *"
+                    BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
+
+                        <Label
+                            Style="{StaticResource TitleLabel}"
+                            Text="Toutes les réservations"/>
+
+                        <StackLayout
+                            Grid.Row="1">
+                            <Entry
+                                Placeholder="Entrez votre recherche"
+                                Text="{Binding SearchBarText}"/>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="2">
+                            <Entry
+                                Placeholder="Entrez l'adresse : "
+                                Text="{Binding Address}"/>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="3"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="Nombre de place : "/>
                             <Picker
+                                HorizontalOptions="FillAndExpand"
                                 Title="Places"
                                 SelectedItem="{Binding SelectedCapacity}"
                                 ItemsSource="{Binding ResourcesCapacities}"/>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="4"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="Type de réservation : "/>
                             <Picker
-                                Grid.Column="1"
-                                Title="Options"
-                                ItemsSource="{Binding ResourcesTypes}"
-                                SelectedIndex="{Binding SelectedType}"/>
-                            <Entry
-                                Grid.Column="2"
-                                Placeholder="Adresse"
-                                Text="{Binding Address}"/>
-                        </Grid>
-                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="2">
+                                HorizontalOptions="FillAndExpand"
+                                Title="Types"
+                                SelectedItem="{Binding SelectedType}"
+                                ItemsSource="{Binding ResourcesTypes}"/>
+                        </StackLayout>
+
+                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="5">
                             <DatePicker
                                 Date="{Binding StartDate}"
                                 MaximumDate="{Binding EndDate}"/>
@@ -47,6 +76,48 @@
                                 Date="{Binding EndDate}"
                                 MinimumDate="{Binding StartDate}"/>
                         </Grid>
+
+                        <StackLayout
+                            Grid.Row="6"
+                            Orientation="Horizontal">
+                            <Label Text="Options : "/>
+                            <Entry
+                                HorizontalOptions="FillAndExpand"
+                                IsReadOnly="True"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OptionEntryTappedCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <CollectionView
+                            HeightRequest="100"
+                            ItemsSource="{Binding Options}"
+                            Grid.Row="7"
+                            IsVisible="{Binding IsOptionsVisible}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Frame
+                                            HasShadow="False"
+                                            Padding="10"
+                                            BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToPrimaryColorValueConverter}}">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    Text="{Binding Name}"
+                                                    TextColor="{StaticResource White}"/>
+                                            </StackLayout>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=OptionTappedCommand}" CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </Grid>
 
                     <Ellipse

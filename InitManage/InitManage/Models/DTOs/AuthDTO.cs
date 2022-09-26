@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class AuthDtoDown
+public class AuthDTODown
 {
     [JsonProperty("id")]
     public string Id { get; set; }

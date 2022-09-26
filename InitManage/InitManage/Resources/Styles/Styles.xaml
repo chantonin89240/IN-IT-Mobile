@@ -38,6 +38,7 @@
     </Style>
 
     <Style TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Light}}"/>
     </Style>
 

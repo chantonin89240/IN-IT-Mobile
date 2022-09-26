@@ -9,5 +9,9 @@ public class Constants
     //public const string ApiBaseAdress = "http://10.4.0.96:3000/";
     public const string ResourceEndPoint = "resource";
     public const string AuthEndPoint = "auth";
+    public const string OptionEndPoint = "option";
+
+
+    public const string IconFont = nameof(IconFont);
 }
 

@@ -12,6 +12,7 @@ using Plugin.Firebase.Auth;
 using Simple.Http;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using InitManage.Helpers;
+using InitManage.Commons;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;
@@ -46,6 +47,7 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("OpenSans-Semibold.ttf", Constants.IconFont);
             }).UseMauiCommunityToolkit()
             .RegisterFirebaseServices();
 
@@ -69,8 +71,10 @@ public static class MauiProgram
     {
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
         containerRegistry.RegisterSingleton<IHttpService, HttpService>();
+
         containerRegistry.RegisterSingleton<IResourceService, ResourceService>();
         containerRegistry.RegisterSingleton<IUserService, UserService>();
+        containerRegistry.RegisterSingleton<IOptionService, OptionService>();
     }
 
     private static void RegisterNavigation(this IContainerRegistry containerRegistry)

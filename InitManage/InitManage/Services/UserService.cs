@@ -26,11 +26,15 @@ public class UserService : IUserService
             Password = password
         };
 
-        var response = await _httpService.SendHttpRequest<AuthDtoDown>($"{Constants.ApiBaseAdress}{Constants.AuthEndPoint}", HttpMethod.Post, dto);
+        var response = await _httpService.SendHttpRequest<AuthDTODown>($"{Constants.ApiBaseAdress}{Constants.AuthEndPoint}", HttpMethod.Post, dto);
 
         if (response?.Result != null)
         {
             _preferenceHelper.IsAdmin = response.Result.IsAdmin;
+
+            // TODO MUST REMOVE THIS
+            _preferenceHelper.IsAdmin = true;
+
             _preferenceHelper.Mail = response.Result.Mail;
 
             return true;

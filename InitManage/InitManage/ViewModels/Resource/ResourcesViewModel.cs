@@ -12,18 +12,26 @@ using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
 using Sharpnado.TaskLoaderView;
+using InitManage.Views.Popups;
 
 namespace InitManage.ViewModels.Resource;
 
 public class ResourcesViewModel : BaseViewModel
 {
     private readonly IResourceService _resourceService;
+    private readonly IOptionService _optionService;
 
-    public ResourcesViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
+    public ResourcesViewModel(
+        INavigationService navigationService,
+        IResourceService resourceService,
+        IOptionService optionService) : base(navigationService)
     {
         _resourceService = resourceService;
+        _optionService = optionService;
 
         ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
+        OptionEntryTappedCommand = ReactiveCommand.CreateFromTask(OnOptionEntryTappedCommand);
+        OptionTappedCommand = ReactiveCommand.Create<OptionWrapper, Task>(OnOptionTappedCommand);
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
             .Select(query =>
@@ -77,6 +85,11 @@ public class ResourcesViewModel : BaseViewModel
                 ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
                 ResourcesTypes.Add("All");
 
+
+                LoadingMessage = "Chargement des options";
+                Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
+
+
                 return resources;
             });
         }
@@ -87,6 +100,17 @@ public class ResourcesViewModel : BaseViewModel
     #region Properties
 
     public TaskLoaderNotifier<IEnumerable<IResource>> Loader { get; }
+
+    #region IsOptionsVisible
+
+    private bool _isOptionsVisible;
+    public bool IsOptionsVisible
+    {
+        get => _isOptionsVisible;
+        set => this.RaiseAndSetIfChanged(ref _isOptionsVisible, value);
+    }
+
+    #endregion
 
     #region SearchBarText
     private string _searchBarText;
@@ -125,7 +149,19 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
+    #region Options
+
+    private IEnumerable<OptionWrapper> _options;
+    public IEnumerable<OptionWrapper> Options
+    {
+        get => _options;
+        set => this.RaiseAndSetIfChanged(ref _options, value);
+    }
+
+    #endregion
+
     #region ResourcesTypes
+
 
     private List<string> _resourcesTypes;
     public List<string> ResourcesTypes
@@ -190,6 +226,26 @@ public class ResourcesViewModel : BaseViewModel
         var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
         await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);
     }
+
+    #region OnOptionEntryTappedCommand
+
+    public ReactiveCommand<Unit, Unit> OptionEntryTappedCommand { get; private set; }
+    private async Task OnOptionEntryTappedCommand()
+    {
+        IsOptionsVisible = !IsOptionsVisible;
+
+    }
+
+    #region OnOptionTappedCommand
+
+    public ReactiveCommand<OptionWrapper, Task> OptionTappedCommand { get; private set; }
+    private async Task OnOptionTappedCommand(OptionWrapper optionWrapper) => optionWrapper.IsSelected = !optionWrapper.IsSelected;
+
+    #endregion
+
+
+    #endregion
+
 
     #endregion
 }

@@ -95,6 +95,7 @@
 	  <None Remove="Simple.Http" />
 	  <None Remove="Sharpnado.Maui.TaskLoaderView" />
 	  <None Remove="SkiaSharp.Extended.UI.Maui" />
+	  <None Remove="Views\Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
@@ -112,6 +113,7 @@
 	  <Folder Include="Commons\Enums\" />
 	  <Folder Include="Commons\Converters\" />
 	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
+	  <Folder Include="Views\Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
@@ -151,6 +153,9 @@
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\ToolkitBasicPopup.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DataTemplates\OptionDataTemplate.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>
