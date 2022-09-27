@@ -27,6 +27,6 @@ public class BookingWrapper : IBooking
     public int Capacity { get; set; }
 
     public IResource Resource { get; set; }
-    public IUser User { get; set; }
+    public IUserEntity User { get; set; }
 }
 
