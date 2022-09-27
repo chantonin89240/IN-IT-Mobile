@@ -86,8 +86,7 @@ public class ResourcesViewModel : BaseViewModel
                 ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
 
 				LoadingMessage = "Chargement des types";
-			 	await _typeService.GetTypesAsync();
-
+                Types = await _typeService.GetTypesAsync();
 
                 LoadingMessage = "Chargement des options";
                 Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
@@ -162,15 +161,14 @@ public class ResourcesViewModel : BaseViewModel
     }
 
     #endregion
+    
+    #region Types
 
-    #region ResourcesTypes
-
-
-    private List<string> _resourcesTypes;
-    public List<string> ResourcesTypes
+    private IEnumerable<IType> _types;
+    public IEnumerable<IType> Types
     {
-        get => _resourcesTypes;
-        set => this.RaiseAndSetIfChanged(ref _resourcesTypes, value);
+        get => _types;
+        set => this.RaiseAndSetIfChanged(ref _types, value);
     }
 
     #endregion

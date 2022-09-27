@@ -10,5 +10,5 @@ public class TypeDTO : IType
 	public long Id { get; set; }
 
 	[JsonPropertyName("name")]
-	public long Name { get; set; }
+	public string Name { get; set; }
 }
