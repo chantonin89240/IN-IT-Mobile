@@ -32,6 +32,11 @@
         <Setter Property="Fill" Value="{StaticResource Primary}"/>
     </Style>
 
+    <Style TargetType="Image" x:Key="IconImage">
+        <Setter Property="WidthRequest" Value="25"/>
+        <Setter Property="HeightRequest" Value="25"/>
+    </Style>
+
     <Style TargetType="NavigationPage">
         <Setter Property="BarTextColor" Value="{StaticResource White}"/>
         <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>

@@ -46,52 +46,70 @@
                         VerticalOptions="End"
                         HorizontalOptions="End"/>
                   
-                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
+                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
 
                         <Label
                             Style="{StaticResource TitleLabel}"
                             Text="Toutes les réservations"/>
 
-                        <StackLayout
-                            Grid.Row="1">
+                        <Grid
+                            Grid.Row="1"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="magnifying_glass"/>
                             <Entry
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
                                 Placeholder="Entrez votre recherche"
                                 Text="{Binding SearchBarText}"/>
-                        </StackLayout>
+                        </Grid>
 
-                        <StackLayout
-                            Grid.Row="2">
+                        <Grid
+                            Grid.Row="2"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="pin"/>
                             <Entry
-                                Placeholder="Entrez l'adresse : "
-                                Text="{Binding Address}"/>
-                        </StackLayout>
-
-                        <StackLayout
-                            Grid.Row="3"
-                            Orientation="Horizontal">
-                            <Label
-                                Text="Nombre de place : "/>
-                            <Picker
+                                Grid.Column="1"
                                 HorizontalOptions="FillAndExpand"
+                                Placeholder="Entrez l'adresse"
+                                Text="{Binding Address}"/>
+                        </Grid>
+
+
+                        <Grid
+                            ColumnSpacing="10"
+                            Grid.Row="3"
+                            ColumnDefinitions="Auto, *, Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="peoples"/>
+                            <Picker
                                 Title="Places"
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
                                 SelectedItem="{Binding SelectedCapacity}"
                                 ItemsSource="{Binding ResourcesCapacities}"/>
-                        </StackLayout>
 
-                        <StackLayout
-                            Grid.Row="4"
-                            Orientation="Horizontal">
-                            <Label
-                                Text="Type de réservation : "/>
+                            <Image
+                                Grid.Column="2"
+                                Style="{StaticResource IconImage}"
+                                Source="tags"/>
                             <Picker
+                                Grid.Column="3"
                                 HorizontalOptions="FillAndExpand"
                                 Title="Types"
                                 SelectedItem="{Binding SelectedType}"
                                 ItemsSource="{Binding Types}"
                                 ItemDisplayBinding="{Binding Name}"/>
-                        </StackLayout>
+                        </Grid>
 
-                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="5">
+
+                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="4">
                             <DatePicker
                                 Date="{Binding StartDate}"
                                 MaximumDate="{Binding EndDate}"/>
@@ -105,19 +123,24 @@
                                 MinimumDate="{Binding StartDate}"/>
                         </Grid>
 
-                        <StackLayout
-                            Grid.Row="6"
-                            Orientation="Horizontal">
-                            <Label Text="Options : "/>
+                        <Grid
+                            Grid.Row="5"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Source="toolbox"
+                                Style="{StaticResource IconImage}"/>
                             <Entry
+                                Grid.Column="1"
+                                Placeholder="Selectionnez des options"
                                 Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}"
                                 InputTransparent="True"
                                 HorizontalOptions="FillAndExpand"
                                 IsReadOnly="True"/>
-                            <StackLayout.GestureRecognizers>
+                            <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OptionEntryTappedCommand}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                            </Grid.GestureRecognizers>
+                        </Grid>
                         <CollectionView
                             HeightRequest="150"
                             ItemsSource="{Binding Options}"
