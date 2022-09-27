@@ -22,6 +22,8 @@ using InitManage.Platforms.Android.Helpers;
 using Plugin.Firebase.Android;
 #elif MACCATALYST
 using InitManage.Platforms.MacCatalyst.Helpers;
+#elif WINDOWS
+using InitManage.Platforms.Windows.Helpers;
 #endif
 
 namespace InitManage;
@@ -62,9 +64,11 @@ public static class MauiProgram
 		containerRegistry.RegisterSingleton<INotificationHelper, iOSNotificationHelper>();
 #elif MACCATALYST
         containerRegistry.RegisterSingleton<INotificationHelper, MacNotificationHelper>();
+#elif WINDOWS
+        containerRegistry.RegisterSingleton<INotificationHelper, WindowsNotificationHelper>();
 #endif
 
-        containerRegistry.RegisterSingleton<IPreferenceHelper, PreferenceHelper>();
+		containerRegistry.RegisterSingleton<IPreferenceHelper, PreferenceHelper>();
     }
 
 	private static void RegisterServices(this IContainerRegistry containerRegistry)
