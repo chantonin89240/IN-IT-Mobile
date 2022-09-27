@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ReactiveUI;
 using InitManage.Models.Entities;
 using DynamicData;
@@ -20,18 +20,20 @@ public class ResourcesViewModel : BaseViewModel
 {
     private readonly IResourceService _resourceService;
     private readonly IOptionService _optionService;
+	private readonly ITypeService _typeService;
 
     public ResourcesViewModel(
         INavigationService navigationService,
         IResourceService resourceService,
-        IOptionService optionService) : base(navigationService)
+        IOptionService optionService,
+		ITypeService typeService) : base(navigationService)
     {
         _resourceService = resourceService;
         _optionService = optionService;
+		_typeService = typeService;
 
         ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
         OptionEntryTappedCommand = ReactiveCommand.CreateFromTask(OnOptionEntryTappedCommand);
-        OptionTappedCommand = ReactiveCommand.Create<OptionWrapper, Task>(OnOptionTappedCommand);
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
             .Select(query =>
@@ -82,8 +84,9 @@ public class ResourcesViewModel : BaseViewModel
                 _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
                 ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
-                ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-                ResourcesTypes.Add("All");
+
+				LoadingMessage = "Chargement des types";
+			 	await _typeService.GetTypesAsync();
 
 
                 LoadingMessage = "Chargement des options";
@@ -233,16 +236,7 @@ public class ResourcesViewModel : BaseViewModel
     private async Task OnOptionEntryTappedCommand()
     {
         IsOptionsVisible = !IsOptionsVisible;
-
     }
-
-    #region OnOptionTappedCommand
-
-    public ReactiveCommand<OptionWrapper, Task> OptionTappedCommand { get; private set; }
-    private async Task OnOptionTappedCommand(OptionWrapper optionWrapper) => optionWrapper.IsSelected = !optionWrapper.IsSelected;
-
-    #endregion
-
 
     #endregion
 

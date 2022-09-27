@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using InitManage.Commons;
 using InitManage.Models.DTOs;
@@ -20,7 +20,7 @@ public class ResourceService : IResourceService
 
     public async Task<IResource> GetResourceAsync(long id)
     {
-        var response = await _httpService.SendHttpRequest<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}/{id}", HttpMethod.Get);
+        var response = await _httpService.SendRequestAsync<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}/{id}", HttpMethod.Get);
         return response.Result;
     }
 
@@ -37,14 +37,14 @@ public class ResourceService : IResourceService
     public async Task<IEnumerable<IResource>> GetResourcesAsync()
     {
         await Task.Delay(3000);
-        var response = await _httpService.SendHttpRequest<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
+        var response = await _httpService.SendRequestAsync<IEnumerable<ResourceDTODown>>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Get);
         return response.Result;
     }
 
     public async Task<bool> CreateResource(IResource resource)
     {
         var dto = new ResourceDTODown(resource);
-        var result = await _httpService.SendHttpRequest<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
+        var result = await _httpService.SendRequestAsync<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
         return result.HttpStatusCode == HttpStatusCode.OK;
     }
 }

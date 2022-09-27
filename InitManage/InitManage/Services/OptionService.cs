@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using InitManage.Models.DTOs;
 using InitManage.Models.Interfaces;
 using InitManage.Services.Interfaces;
@@ -18,7 +18,7 @@ public class OptionService : IOptionService
 
     public async Task<IEnumerable<IOption>> GetOptionsAsync()
     {
-        var response = await _httpService.SendHttpRequest<IEnumerable<OptionDTO>>($"{Constants.ApiBaseAdress}{Constants.OptionEndPoint}", HttpMethod.Get);
+        var response = await _httpService.SendRequestAsync<IEnumerable<OptionDTO>>($"{Constants.ApiBaseAdress}{Constants.OptionEndPoint}", HttpMethod.Get);
         return response?.Result;
     }
 }

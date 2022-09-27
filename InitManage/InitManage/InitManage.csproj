@@ -101,17 +101,13 @@
 	  <Folder Include="Views\DataTemplates\" />
 	  <Folder Include="Views\Components\" />
 	  <Folder Include="ViewModels\Login\" />
-	  <Folder Include="Services\" />
-	  <Folder Include="Services\Interfaces\" />
 	  <Folder Include="Views\Popups\" />
 	  <Folder Include="ViewModels\Setting\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Interfaces\" />
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Wrappers\" />
-	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
-	  <Folder Include="Commons\Converters\" />
 	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
 	  <Folder Include="Views\Controls\" />
 	</ItemGroup>
@@ -166,7 +162,7 @@
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	  <PackageReference Include="Plugin.Firebase" Version="1.2.0" />
-	  <PackageReference Include="Simple.Http" Version="1.0.3" />
+	  <PackageReference Include="Simple.Http" Version="1.0.5" />
 	  <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>

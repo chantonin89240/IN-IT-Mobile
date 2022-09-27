@@ -109,6 +109,7 @@
                             Orientation="Horizontal">
                             <Label Text="Options : "/>
                             <Entry
+                                Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}"
                                 InputTransparent="True"
                                 HorizontalOptions="FillAndExpand"
                                 IsReadOnly="True"/>
@@ -117,7 +118,7 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <CollectionView
-                            HeightRequest="100"
+                            HeightRequest="150"
                             ItemsSource="{Binding Options}"
                             Grid.Row="7"
                             IsVisible="{Binding IsOptionsVisible}">
