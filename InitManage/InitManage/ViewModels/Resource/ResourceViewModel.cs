@@ -52,8 +52,8 @@ public class ResourceViewModel : BaseViewModel
 
     #region Resource
 
-    private IResource _resource;
-    public IResource Resource
+    private IResourceEntity _resource;
+    public IResourceEntity Resource
     {
         get => _resource;
         set => this.RaiseAndSetIfChanged(ref _resource, value);

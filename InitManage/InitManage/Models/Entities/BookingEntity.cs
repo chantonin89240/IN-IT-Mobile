@@ -3,7 +3,7 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Entities;
 
-public class BookingEntity : IBooking
+public class BookingEntity : IBookingEntity
 {
     public BookingEntity()
     {

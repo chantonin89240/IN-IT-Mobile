@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace InitManage.Models.Wrappers;
 
-public class OptionWrapper : ReactiveObject, IOption
+public class OptionWrapper : ReactiveObject, IOptionEntity
 {
     public long Id { get; set; }
     public string Name { get; set; }
@@ -42,7 +42,7 @@ public class OptionWrapper : ReactiveObject, IOption
         IsSelected = isSelected;
     }
 
-    public OptionWrapper(IOption option):this()
+    public OptionWrapper(IOptionEntity option):this()
     {
         Id = option.Id;
         Name = option.Name;

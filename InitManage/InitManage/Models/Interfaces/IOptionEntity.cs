@@ -1,7 +1,7 @@
 ﻿using System;
 namespace InitManage.Models.Interfaces;
 
-public interface IOption
+public interface IOptionEntity
 {
     long Id { get; set; }
     string Name { get; set; }

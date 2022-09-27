@@ -32,7 +32,7 @@ public class ResourcesViewModel : BaseViewModel
         _optionService = optionService;
 		_typeService = typeService;
 
-        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
+        ResourceTappedCommand = ReactiveCommand.Create<IResourceEntity, Task>(OnResourceTappedCommand);
         OptionEntryTappedCommand = ReactiveCommand.CreateFromTask(OnOptionEntryTappedCommand);
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
@@ -66,7 +66,7 @@ public class ResourcesViewModel : BaseViewModel
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
-        Loader = new TaskLoaderNotifier<IEnumerable<IResource>>();
+        Loader = new TaskLoaderNotifier<IEnumerable<IResourceEntity>>();
     }
 
     #region Life cycle
@@ -101,7 +101,7 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Properties
 
-    public TaskLoaderNotifier<IEnumerable<IResource>> Loader { get; }
+    public TaskLoaderNotifier<IEnumerable<IResourceEntity>> Loader { get; }
 
     #region IsOptionsVisible
 
@@ -164,8 +164,8 @@ public class ResourcesViewModel : BaseViewModel
     
     #region Types
 
-    private IEnumerable<IType> _types;
-    public IEnumerable<IType> Types
+    private IEnumerable<ITypeEntity> _types;
+    public IEnumerable<ITypeEntity> Types
     {
         get => _types;
         set => this.RaiseAndSetIfChanged(ref _types, value);
@@ -221,8 +221,8 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Methods & Commands
 
-    public ReactiveCommand<IResource, Task> ResourceTappedCommand { get; private set; }
-    private async Task OnResourceTappedCommand(IResource resource)
+    public ReactiveCommand<IResourceEntity, Task> ResourceTappedCommand { get; private set; }
+    private async Task OnResourceTappedCommand(IResourceEntity resource)
     {
         var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
         await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);

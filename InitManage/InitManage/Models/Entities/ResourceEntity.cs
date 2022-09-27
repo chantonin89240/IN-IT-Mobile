@@ -3,7 +3,7 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Entities;
 
-public class ResourceEntity : IResource
+public class ResourceEntity : IResourceEntity
 {
     public long Id { get; set; }
 
@@ -23,7 +23,7 @@ public class ResourceEntity : IResource
     {
     }
 
-    public ResourceEntity(IResource resource)
+    public ResourceEntity(IResourceEntity resource)
     {
         Id = resource.Id;
         Name = resource.Name;

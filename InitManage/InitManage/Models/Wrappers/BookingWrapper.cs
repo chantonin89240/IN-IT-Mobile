@@ -3,13 +3,13 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Wrappers;
 
-public class BookingWrapper : IBooking
+public class BookingWrapper : IBookingEntity
 {
     public BookingWrapper()
     {
     }
 
-    public BookingWrapper(IBooking booking)
+    public BookingWrapper(IBookingEntity booking)
     {
         Id = booking.Id;
         UserId = booking.UserId;
@@ -26,7 +26,7 @@ public class BookingWrapper : IBooking
     public DateTime End { get; set; }
     public int Capacity { get; set; }
 
-    public IResource Resource { get; set; }
+    public IResourceEntity Resource { get; set; }
     public IUserEntity User { get; set; }
 }
 

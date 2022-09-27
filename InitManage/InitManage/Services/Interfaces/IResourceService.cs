@@ -8,26 +8,26 @@ namespace InitManage.Services.Interfaces;
 
 public interface IResourceService
 {
-    Task<bool> CreateResource(IResource resource);
+    Task<bool> CreateResource(IResourceEntity resource);
     /// <summary>
     /// Get all existing resources
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<IResource>> GetResourcesAsync();
+    Task<IEnumerable<IResourceEntity>> GetResourcesAsync();
 
     /// <summary>
     /// Get a specific resource with his Id
     /// </summary>
     /// <param name="id">The id of the resource</param>
     /// <returns></returns>
-    Task<IResource> GetResourceAsync(long id);
+    Task<IResourceEntity> GetResourceAsync(long id);
 
     /// <summary>
     /// Return all bookings of a resource
     /// </summary>
     /// <param name="resourceId">The id of the resource</param>
     /// <returns></returns>
-    Task<IEnumerable<IBooking>> GetResourceBookingsAsync(long resourceId);
+    Task<IEnumerable<IBookingEntity>> GetResourceBookingsAsync(long resourceId);
 
     Task<IEnumerable<BookingWrapper>> GetResourceBookingsWrappersAsync(long resourceId);
 }

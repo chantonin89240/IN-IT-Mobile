@@ -4,7 +4,7 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.DTOs;
 
-public class TypeDTO : IType
+public class TypeDTO : ITypeEntity
 {
 	[JsonPropertyName("id")]
 	public long Id { get; set; }

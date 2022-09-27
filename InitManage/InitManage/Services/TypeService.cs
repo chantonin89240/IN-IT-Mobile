@@ -14,7 +14,7 @@ public class TypeService : ITypeService
 		_httpService = httpService;
 	}
 
-	public async Task<IEnumerable<IType>> GetTypesAsync()
+	public async Task<IEnumerable<ITypeEntity>> GetTypesAsync()
 	{
 		var response = await _httpService.SendRequestAsync<IEnumerable<TypeDTO>>($"{Constants.ApiBaseAdress}{Constants.TypeEndPoint}", HttpMethod.Get);
 		return response?.Result;

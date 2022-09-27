@@ -5,6 +5,6 @@ namespace InitManage.Services.Interfaces;
 
 public interface IOptionService
 {
-    Task<IEnumerable<IOption>> GetOptionsAsync();
+    Task<IEnumerable<IOptionEntity>> GetOptionsAsync();
 }
 

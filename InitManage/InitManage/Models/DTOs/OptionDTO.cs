@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class OptionDTO : IOption
+public class OptionDTO : IOptionEntity
 {
     public OptionDTO()
     {

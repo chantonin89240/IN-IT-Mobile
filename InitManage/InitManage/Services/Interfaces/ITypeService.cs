@@ -4,5 +4,5 @@ namespace InitManage.Services.Interfaces;
 
 public interface ITypeService
 {
-	Task<IEnumerable<IType>> GetTypesAsync();
+	Task<IEnumerable<ITypeEntity>> GetTypesAsync();
 }
