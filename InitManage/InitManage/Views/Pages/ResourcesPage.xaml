@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -19,6 +19,33 @@
                 <Grid
                     RowDefinitions="Auto, *"
                     BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                  
+                    <Ellipse
+                        Fill="{StaticResource Orange200}"
+                        Margin="160"
+                        Grid.Row="1"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+
+                    <Ellipse
+                        Fill="{StaticResource Orange100}"
+                        Margin="70"
+                        Grid.Row="1"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+
+                    <Ellipse
+                        Margin="-90"
+                        Grid.Row="1"
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+                  
                     <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
 
                         <Label
@@ -82,6 +109,7 @@
                             Orientation="Horizontal">
                             <Label Text="Options : "/>
                             <Entry
+                                InputTransparent="True"
                                 HorizontalOptions="FillAndExpand"
                                 IsReadOnly="True"/>
                             <StackLayout.GestureRecognizers>
@@ -98,53 +126,13 @@
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout HorizontalOptions="FillAndExpand">
-                                        <Frame
-                                            HasShadow="False"
-                                            Padding="10"
-                                            BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToPrimaryColorValueConverter}}">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label
-                                                    FontAttributes="Bold"
-                                                    Text="{Binding Name}"
-                                                    TextColor="{StaticResource White}"/>
-                                            </StackLayout>
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=OptionTappedCommand}" CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
-                                        </Frame>
-                                    </StackLayout>
+                                    <DataTemplates:OptionDataTemplate/>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </Grid>
 
-                    <Ellipse
-                        Fill="{StaticResource Orange200}"
-                        Margin="160"
-                        Grid.Row="1"
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        VerticalOptions="End"
-                        HorizontalOptions="End"/>
-
-                    <Ellipse
-                        Fill="{StaticResource Orange100}"
-                        Margin="70"
-                        Grid.Row="1"
-                        WidthRequest="100"
-                        HeightRequest="100"
-                        VerticalOptions="End"
-                        HorizontalOptions="End"/>
-
-                    <Ellipse
-                        Margin="-90"
-                        Grid.Row="1"
-                        WidthRequest="200"
-                        HeightRequest="200"
-                        VerticalOptions="End"
-                        HorizontalOptions="End"/>
+                 
 
                     <CollectionView
                         Grid.Row="1"
