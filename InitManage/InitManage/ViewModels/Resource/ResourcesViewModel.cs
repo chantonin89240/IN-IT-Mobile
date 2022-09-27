@@ -66,7 +66,7 @@ public class ResourcesViewModel : BaseViewModel
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
-        Loader = new TaskLoaderNotifier<IEnumerable<IResourceEntity>>();
+        Loader = new TaskLoaderNotifier();
     }
 
     #region Life cycle
@@ -91,8 +91,6 @@ public class ResourcesViewModel : BaseViewModel
                 LoadingMessage = "Chargement des options";
                 Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
 
-
-                return resources;
             });
         }
     }
@@ -101,7 +99,7 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Properties
 
-    public TaskLoaderNotifier<IEnumerable<IResourceEntity>> Loader { get; }
+    public TaskLoaderNotifier Loader { get; }
 
     #region IsOptionsVisible
 
