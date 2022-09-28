@@ -120,6 +120,9 @@
   <data name="Login" xml:space="preserve">
     <value>Se connecter</value>
   </data>
+  <data name="LoginInProgress" xml:space="preserve">
+    <value>Connexion en cours</value>
+  </data>
   <data name="Mail" xml:space="preserve">
     <value>Mail</value>
   </data>

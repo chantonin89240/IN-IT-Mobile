@@ -1,7 +1,5 @@
-using System;
-using System.Reactive;
-using System.Reactive.Linq;
 using InitManage.Helpers.Interfaces;
+using InitManage.Resources.Translations;
 using InitManage.Services.Interfaces;
 using InitManage.Views.Pages;
 using Plugin.Firebase.CloudMessaging;
@@ -12,7 +10,6 @@ namespace InitManage.ViewModels.Login;
 
 public class LoginViewModel : BaseViewModel
 {
-    private readonly IAlertDialogService _alertDialogService;
     private readonly INotificationHelper _notificationHelper;
     private readonly IPreferenceHelper _preferenceHelper;
     private readonly IUserService _userService;
@@ -25,15 +22,11 @@ public class LoginViewModel : BaseViewModel
         IUserService userService)
         : base(navigationService)
     {
-        _alertDialogService = alertDialogService;
         _notificationHelper = notificationHelper;
         _preferenceHelper = preferenceHelper;
         _userService = userService;
 
-        var canExecuteLogin = this.WhenAnyValue(vm => vm.Mail, vm => vm.Password)
-            .Select(items => !string.IsNullOrEmpty(Mail) && !string.IsNullOrEmpty(Password));
-
-        LoginCommand = ReactiveCommand.CreateFromTask(OnLoginCommand);
+        LoginCommand = new TaskLoaderCommand(OnLoginCommand);
     }
 
     #region Life cycle
@@ -41,9 +34,25 @@ public class LoginViewModel : BaseViewModel
     protected override async Task OnNavigatedToAsync(INavigationParameters parameters)
     {
         await base.OnNavigatedToAsync(parameters);
-        _notificationHelper.Initialize();
 
-        Mail = _preferenceHelper.Mail;
+		try // Work only on Android (Must be tested on iOS real device)
+		{
+			_notificationHelper.Initialize();
+
+			await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+			var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+			Console.WriteLine(token);
+
+			_notificationHelper.SendNotification("Local notification status", "ok");
+		}
+		catch(Exception ex)
+		{
+			Console.WriteLine(ex);
+		}
+       
+
+
+		Mail = _preferenceHelper.Mail;
     }
 
     #endregion
@@ -74,23 +83,10 @@ public class LoginViewModel : BaseViewModel
 
     #region OnLoginCommand
 
-    public ReactiveCommand<Unit, Unit> LoginCommand { get; }
+    public TaskLoaderCommand LoginCommand { get; }
     private async Task OnLoginCommand()
     {
-        try
-        {
-            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
-            var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
-
-            _notificationHelper.SendNotification("FCM token", token);
-            _notificationHelper.SendNotification("Rappel", "Changez de mot de passe", DateTime.Now.AddSeconds(5));
-            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-
+		LoadingMessage = AppResources.LoginInProgress;
         var isLoginSuccess = await _userService.LoginAsync(Mail, Password);
 
         if (isLoginSuccess)
@@ -100,7 +96,11 @@ public class LoginViewModel : BaseViewModel
 
             await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
         }
-    }
+		else
+		{
+			throw new Exception("Wrong username or password");
+		}
+	}
     #endregion
 
 

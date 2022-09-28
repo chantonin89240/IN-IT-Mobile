@@ -70,6 +70,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connexion en cours.
+        /// </summary>
+        internal static string LoginInProgress {
+            get {
+                return ResourceManager.GetString("LoginInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail.
         /// </summary>
         internal static string Mail {
