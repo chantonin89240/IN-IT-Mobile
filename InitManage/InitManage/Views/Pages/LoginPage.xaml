@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:LoginViewModels="clr-namespace:InitManage.ViewModels.Login"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:Controls="clr-namespace:InitManage.Views.Controls"
              xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
              xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
              x:Class="InitManage.Views.Pages.LoginPage"
@@ -29,7 +30,7 @@
             <Image Source="init"/>
 
             <VerticalStackLayout
-                IsVisible="{Binding LoginCommand.Notifier.ShowLoader, Converter={StaticResource BoolToRevertBoolValueConverter}}}"
+                IsVisible="{Binding LoginCommand.Notifier.ShowLoader, Converter={StaticResource BoolToRevertBoolValueConverter}}"
                 Spacing="20">
                 <Entry
                     FontSize="20"
@@ -54,21 +55,9 @@
                 </Button>
             </VerticalStackLayout>
 
-            <VerticalStackLayout
-                IsVisible="{Binding LoginCommand.Notifier.ShowLoader}"
-                VerticalOptions="Center">
-                <skia:SKLottieView
-                    Source="loader.json"
-                    RepeatCount="-1"
-                    WidthRequest="400"
-                    HeightRequest="200"
-                    HorizontalOptions="Center"/>
-                    <Label
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource Primary}"
-                        HorizontalOptions="Center"
-                        Text="{Binding Source={RelativeSource AncestorType={x:Type LoginViewModels:LoginViewModel}}, Path=LoadingMessage}"/>
-            </VerticalStackLayout>
+            <Controls:Loader
+                IsLoaderVisible="{Binding LoginCommand.Notifier.ShowLoader}"
+                LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type LoginViewModels:LoginViewModel}}, Path=LoadingMessage}"/>
     </StackLayout>
       
         <sharpnado:Snackbar
