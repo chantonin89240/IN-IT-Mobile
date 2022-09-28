@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:LoginViewModels="clr-namespace:InitManage.ViewModels.Login"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
              x:Class="InitManage.Views.Pages.LoginPage"
              x:DataType="LoginViewModels:LoginViewModel"
              NavigationPage.HasNavigationBar="False"
@@ -31,17 +32,17 @@
                 <Entry
                     FontSize="20"
                     Keyboard="Email"
-                    Placeholder="Mail"
+                    Placeholder="{Static Translations:AppResources.Mail}"
                     Text="{Binding Mail}"/>
                 <Entry
                     FontSize="20"
                     IsPassword="True"
-                    Placeholder="Password"
+                    Placeholder="{Static Translations:AppResources.Password}"
                     Text="{Binding Password}"/>
 
                 <Button
                     Command="{Binding LoginCommand}"
-                    Text="Se connecter">
+                    Text="{Static Translations:AppResources.Login}">
                     <Button.Shadow>
                         <Shadow
                             Opacity="0.5"
