@@ -8,8 +8,9 @@
         <ResourceDictionary>
             <Converters:BoolToPrimaryColorValueConverter x:Key="BoolToPrimaryColorValueConverter"/>
             <Converters:ListToStringValueConverter x:Key="ListToStringValueConverter"/>
+            <Converters:BoolToRevertBoolValueConverter x:Key="BoolToRevertBoolValueConverter"/>
 
-            <ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>

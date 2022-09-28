@@ -109,9 +109,11 @@
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Commons\Enums\" />
 	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
-	  <Folder Include="Views\Controls\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <MauiXaml Update="Views\Controls\Loader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -165,5 +167,18 @@
 	  <PackageReference Include="Simple.Http" Version="1.0.5" />
 	  <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\Translations\AppResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Translations\AppResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 </Project>
