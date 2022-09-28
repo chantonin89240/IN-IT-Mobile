@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 using DynamicData;
 using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
+using ReactiveUI;
 using Sharpnado.TaskLoaderView;
 
 namespace InitManage.ViewModels.Resource;
@@ -19,21 +21,30 @@ public class MyResourcesViewModel : BaseViewModel
         _resourceService = resourceService;
 
         Loader = new TaskLoaderNotifier();
+
+        _resourcesCache
+            .Connect()
+            .Bind(out _resources)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
     }
 
     #region Life cycle
 
-    protected override async Task OnNavigatedToAsync(INavigationParameters parameters)
+
+    protected override async Task OnAppearingAsync()
     {
-        await base.OnNavigatedToAsync(parameters);
-
-        Loader.Load(async _ =>
+        if (!_resourcesCache.Items.Any())
         {
-            LoadingMessage = "Récupération des réservations";
-            var resource = await _resourceService.GetResourcesAsync();
+            Loader.Load(async _ =>
+            {
+                LoadingMessage = "Récupération des réservations";
+                var resource = await _resourceService.GetResourcesAsync();
+                await Task.Delay(5000);
 
-            _resourcesCache.AddOrUpdate(resource.Select(r => new ResourceWrapper(r)));
-        });
+                _resourcesCache.AddOrUpdate(resource.Select(r => new ResourceWrapper(r)));
+            });
+        }
     }
 
     #endregion

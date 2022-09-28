@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
     xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+    xmlns:Controls="clr-namespace:InitManage.Views.Controls"
     xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     x:Class="InitManage.Views.Pages.ResourcesPage"
@@ -174,20 +175,9 @@
         </sharpnado:TemplatedTaskLoader.ResultControlTemplate>
         <sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
             <ControlTemplate>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <skia:SKLottieView
-                        Source="loader.json"
-                        RepeatCount="-1"
-                        WidthRequest="400"
-                        HeightRequest="200"
-                        HorizontalOptions="Center"/>
-                    <Label
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource Primary}"
-                        HorizontalOptions="Center"
-                        Text="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=LoadingMessage}"/>
-                </VerticalStackLayout>
-                
+                <Controls:Loader
+                    IsLoaderVisible="True"
+                    LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=LoadingMessage}"/>
             </ControlTemplate>
         </sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
     </sharpnado:TemplatedTaskLoader>
