@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
   <data name="AllReservations" xml:space="preserve">
     <value>Toutes les réservations</value>
   </data>
   <data name="BeNotifiedBeforeBooking" xml:space="preserve">
     <value>Être prévenu avant une réservation :</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
   <data name="DarkMode" xml:space="preserve">
     <value>Mode sombre (préversion) :</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="EnterTheAddress" xml:space="preserve">
     <value>Entrez l'adresse</value>
@@ -165,6 +177,12 @@
   <data name="MyReservations" xml:space="preserve">
     <value>Mes réservations</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="NumberOfPlaces" xml:space="preserve">
+    <value>NombreDePlaces</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -174,6 +192,9 @@
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
+  <data name="PictureLink" xml:space="preserve">
+    <value>Lien de l'image</value>
+  </data>
   <data name="Places" xml:space="preserve">
     <value>Places</value>
   </data>
@@ -182,6 +203,9 @@
   </data>
   <data name="SelectOptions" xml:space="preserve">
     <value>Selectionez des options</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Types" xml:space="preserve">
     <value>Types</value>

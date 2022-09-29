@@ -61,6 +61,24 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Adresse.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Administration.
+        /// </summary>
+        internal static string Administration {
+            get {
+                return ResourceManager.GetString("Administration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Toutes les réservations.
         /// </summary>
         internal static string AllReservations {
@@ -79,11 +97,29 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Créer.
+        /// </summary>
+        internal static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mode sombre (préversion) :.
         /// </summary>
         internal static string DarkMode {
             get {
                 return ResourceManager.GetString("DarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Description.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -205,6 +241,24 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à NombreDePlaces.
+        /// </summary>
+        internal static string NumberOfPlaces {
+            get {
+                return ResourceManager.GetString("NumberOfPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         internal static string Ok {
@@ -232,6 +286,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lien de l&apos;image.
+        /// </summary>
+        internal static string PictureLink {
+            get {
+                return ResourceManager.GetString("PictureLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Places.
         /// </summary>
         internal static string Places {
@@ -255,6 +318,15 @@ namespace InitManage.Resources.Translations {
         internal static string SelectOptions {
             get {
                 return ResourceManager.GetString("SelectOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         
