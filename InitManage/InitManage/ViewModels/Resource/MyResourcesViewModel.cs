@@ -40,7 +40,6 @@ public class MyResourcesViewModel : BaseViewModel
             {
                 LoadingMessage = AppResources.LoadingResources;
                 var resource = await _resourceService.GetResourcesAsync();
-                await Task.Delay(5000);
 
                 _resourcesCache.AddOrUpdate(resource.Select(r => new ResourceWrapper(r)));
             });

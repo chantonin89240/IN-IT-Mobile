@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
@@ -17,19 +17,24 @@
             Aspect="Fill"
             Source="{Binding Picture, Mode=OneWay}"/>
         <!-- Formulaire de création de ressource -->
-        <StackLayout Margin="10" Spacing="10" Grid.Row="1">
-            <Entry 
+        <Grid
+            RowSpacing="10"
+            Margin="10"
+            Grid.Row="1"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto">
+            <Entry
                 Text="{Binding Name}"
                 Placeholder="{Static Translations:AppResources.Name}"/>
             <!-- description de la ressource -->
             <Editor
+                Grid.Row="1"
                 Text="{Binding Description}"
                 Placeholder="{Static Translations:AppResources.Description}"
                 HeightRequest="100"
                 IsTextPredictionEnabled="true"/>
             <!-- Lien de la photo -->
 
-            <StackLayout Spacing="10" Orientation="Horizontal">
+            <StackLayout Spacing="10" Orientation="Horizontal" Grid.Row="2">
                 <Label
                     VerticalOptions="Center"
                     Text="{Static Translations:AppResources.PictureLink}"/>
@@ -39,41 +44,47 @@
                     HorizontalOptions="FillAndExpand"/>
             </StackLayout>
 
-            <StackLayout Spacing="10" Orientation="Horizontal">
-                <Label
-                    VerticalOptions="Center"
-                    Text="{Static Translations:AppResources.Address}"/>
+            <Grid
+                Grid.Row="3"
+                ColumnSpacing="10"
+                ColumnDefinitions="30, *">
+                <Image
+                    Style="{StaticResource IconImage}"
+                    Source="pin"/>
                 <Entry
+                    Grid.Column="1"
                     Text="{Binding Adress}"
                     HorizontalOptions="FillAndExpand"
                     Placeholder="{Static Translations:AppResources.Address}"/>
-            </StackLayout>
+            </Grid>
             
 
-            <StackLayout Spacing="10" Orientation="Horizontal">
-                <Label
-                    VerticalOptions="Center"
-                    Text="{Static Translations:AppResources.Type} "/>
+            <Grid
+                Grid.Row="4"
+                ColumnSpacing="10"
+                ColumnDefinitions="30, *, 30, *">
+                <Image
+                    Style="{StaticResource IconImage}"
+                    Source="tags"/>
                 <Picker
+                    Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
                     Title="{Static Translations:AppResources.Types}"
                     SelectedItem="{Binding Type}"
                     ItemsSource="{Binding Types}"/>
-            </StackLayout>
-            
-            <!-- Nombre de place -->
-            <StackLayout Spacing="10" Orientation="Horizontal">
-                <Label
-                    VerticalOptions="Center"
-                    Text="{Static Translations:AppResources.NumberOfPlaces}"/>
-                
+
+                <Image
+                    Grid.Column="2"
+                    Style="{StaticResource IconImage}"
+                    Source="peoples"/>
                 <Entry
+                    Grid.Column="3"
                     Keyboard="Numeric"
                     Text="{Binding Capacity}"
                     Placeholder="{Static Translations:AppResources.NumberOfPlaces}"/>
-            </StackLayout>
+            </Grid>
             
-            <CollectionView ItemsSource="{Binding Options}" HeightRequest="100" x:Name="optionsList">
+            <CollectionView ItemsSource="{Binding Options}" VerticalOptions="FillAndExpand" x:Name="optionsList" Grid.Row="5">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
                 </CollectionView.ItemsLayout>
@@ -88,6 +99,8 @@
 
             <!-- bouton de confirmation -->
             <Button
+                Grid.Row="6"
+                VerticalOptions="EndAndExpand"
                 Command="{Binding CreateCommand}"
                 Text="{Static Translations:AppResources.Create}">
                 <Button.Shadow>
@@ -98,6 +111,6 @@
                 </Button.Shadow>
             </Button>
 
-        </StackLayout>
+        </Grid>
     </Grid>
 </ContentPage>
