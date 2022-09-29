@@ -5,6 +5,7 @@ using InitManage.Views.Pages;
 using Plugin.Firebase.CloudMessaging;
 using ReactiveUI;
 using Sharpnado.TaskLoaderView;
+using InitManage.Resources.Translations;
 
 namespace InitManage.ViewModels.Login;
 
@@ -16,7 +17,6 @@ public class LoginViewModel : BaseViewModel
 
     public LoginViewModel(
         INavigationService navigationService,
-        IAlertDialogService alertDialogService,
         INotificationHelper notificationHelper,
         IPreferenceHelper preferenceHelper,
         IUserService userService)
@@ -43,7 +43,7 @@ public class LoginViewModel : BaseViewModel
 			var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
 			Console.WriteLine(token);
 
-			_notificationHelper.SendNotification("Local notification status", "ok");
+			_notificationHelper.SendNotification(AppResources.LocalNotificationStatus, AppResources.Ok);
 		}
 		catch(Exception ex)
 		{

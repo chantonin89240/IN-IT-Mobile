@@ -61,6 +61,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Status des notifications locales.
+        /// </summary>
+        internal static string LocalNotificationStatus {
+            get {
+                return ResourceManager.GetString("LocalNotificationStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Se connecter.
         /// </summary>
         internal static string Login {
@@ -84,6 +93,15 @@ namespace InitManage.Resources.Translations {
         internal static string Mail {
             get {
                 return ResourceManager.GetString("Mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ok.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         

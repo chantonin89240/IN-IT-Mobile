@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LocalNotificationStatus" xml:space="preserve">
+    <value>Status des notifications locales</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Se connecter</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="Mail" xml:space="preserve">
     <value>Mail</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
