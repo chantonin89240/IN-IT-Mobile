@@ -3,13 +3,13 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Wrappers;
 
-public class ResourceWrapper : IResource, ISearchable
+public class ResourceWrapper : IResourceEntity, ISearchable
 {
     public ResourceWrapper()
     {
     }
 
-    public ResourceWrapper(IResource resource)
+    public ResourceWrapper(IResourceEntity resource)
     {
         Id = resource.Id;
         Name = resource.Name;

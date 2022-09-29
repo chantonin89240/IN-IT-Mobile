@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class ResourceDTODown : IResource
+public class ResourceDTODown : IResourceEntity
 {
     [JsonProperty("id")]
     public long Id { get; set; }
@@ -31,7 +31,7 @@ public class ResourceDTODown : IResource
     {
     }
 
-    public ResourceDTODown(IResource resource)
+    public ResourceDTODown(IResourceEntity resource)
     {
         Id = resource.Id;
         Name = resource.Name;

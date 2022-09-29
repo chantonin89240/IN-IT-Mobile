@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.Interfaces;
 
-public interface IResource
+public interface IResourceEntity
 {
     long Id { get; set;}
 

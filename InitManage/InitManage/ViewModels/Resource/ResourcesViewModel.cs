@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ReactiveUI;
 using InitManage.Models.Entities;
 using DynamicData;
@@ -12,16 +12,28 @@ using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
 using Sharpnado.TaskLoaderView;
+using InitManage.Views.Popups;
 
 namespace InitManage.ViewModels.Resource;
 
 public class ResourcesViewModel : BaseViewModel
 {
     private readonly IResourceService _resourceService;
+    private readonly IOptionService _optionService;
+	private readonly ITypeService _typeService;
 
-    public ResourcesViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
+    public ResourcesViewModel(
+        INavigationService navigationService,
+        IResourceService resourceService,
+        IOptionService optionService,
+		ITypeService typeService) : base(navigationService)
     {
         _resourceService = resourceService;
+        _optionService = optionService;
+		_typeService = typeService;
+
+        ResourceTappedCommand = ReactiveCommand.Create<IResourceEntity, Task>(OnResourceTappedCommand);
+        OptionEntryTappedCommand = ReactiveCommand.CreateFromTask(OnOptionEntryTappedCommand);
 
         var searchFilter = this.WhenAnyValue(vm => vm.SearchBarText)
             .Select(query =>
@@ -44,17 +56,17 @@ public class ResourcesViewModel : BaseViewModel
             });
 
         _resourcesCache
-        .Connect()
-        .Filter(searchFilter)
-        .Filter(capacityFilter)
-        .Filter(addressFilter)
-        .Bind(out _resources)
-        .ObserveOn(RxApp.MainThreadScheduler)
-        .Subscribe();
+            .Connect()
+            .Filter(searchFilter)
+            .Filter(capacityFilter)
+            .Filter(addressFilter)
+            .Bind(out _resources)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
-        Loader = new TaskLoaderNotifier<IEnumerable<IResource>>();
+        Loader = new TaskLoaderNotifier();
     }
 
     #region Life cycle
@@ -63,26 +75,42 @@ public class ResourcesViewModel : BaseViewModel
     {
         await base.OnNavigatedToAsync(parameters);
 
-        ResourceTappedCommand = ReactiveCommand.Create<IResource, Task>(OnResourceTappedCommand);
-
-        Loader.Load(async _ =>
+        if (!_resourcesCache.Items.Any())
         {
-            var resources = await _resourceService.GetResourcesAsync();
-            _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
+            Loader.Load(async _ =>
+            {
+                LoadingMessage = "Chargement des resources";
+                var resources = await _resourceService.GetResourcesAsync();
+                _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
-            ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes = resources.Select(r => r.Type).OrderBy(x => x).Distinct().ToList();
-            ResourcesTypes.Add("All");
+                ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
 
-            return resources;
-        });
+				LoadingMessage = "Chargement des types";
+                Types = await _typeService.GetTypesAsync();
+
+                LoadingMessage = "Chargement des options";
+                Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
+
+            });
+        }
     }
 
     #endregion
 
     #region Properties
 
-    public TaskLoaderNotifier<IEnumerable<IResource>> Loader { get; }
+    public TaskLoaderNotifier Loader { get; }
+
+    #region IsOptionsVisible
+
+    private bool _isOptionsVisible;
+    public bool IsOptionsVisible
+    {
+        get => _isOptionsVisible;
+        set => this.RaiseAndSetIfChanged(ref _isOptionsVisible, value);
+    }
+
+    #endregion
 
     #region SearchBarText
     private string _searchBarText;
@@ -121,13 +149,24 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
-    #region ResourcesTypes
+    #region Options
 
-    private List<string> _resourcesTypes;
-    public List<string> ResourcesTypes
+    private IEnumerable<OptionWrapper> _options;
+    public IEnumerable<OptionWrapper> Options
     {
-        get => _resourcesTypes;
-        set => this.RaiseAndSetIfChanged(ref _resourcesTypes, value);
+        get => _options;
+        set => this.RaiseAndSetIfChanged(ref _options, value);
+    }
+
+    #endregion
+    
+    #region Types
+
+    private IEnumerable<ITypeEntity> _types;
+    public IEnumerable<ITypeEntity> Types
+    {
+        get => _types;
+        set => this.RaiseAndSetIfChanged(ref _types, value);
     }
 
     #endregion
@@ -180,12 +219,23 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Methods & Commands
 
-    public ReactiveCommand<IResource, Task> ResourceTappedCommand { get; private set; }
-    private async Task OnResourceTappedCommand(IResource resource)
+    public ReactiveCommand<IResourceEntity, Task> ResourceTappedCommand { get; private set; }
+    private async Task OnResourceTappedCommand(IResourceEntity resource)
     {
         var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
         await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);
     }
+
+    #region OnOptionEntryTappedCommand
+
+    public ReactiveCommand<Unit, Unit> OptionEntryTappedCommand { get; private set; }
+    private async Task OnOptionEntryTappedCommand()
+    {
+        IsOptionsVisible = !IsOptionsVisible;
+    }
+
+    #endregion
+
 
     #endregion
 }

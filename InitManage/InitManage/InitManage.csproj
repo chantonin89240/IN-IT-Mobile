@@ -95,25 +95,25 @@
 	  <None Remove="Simple.Http" />
 	  <None Remove="Sharpnado.Maui.TaskLoaderView" />
 	  <None Remove="SkiaSharp.Extended.UI.Maui" />
+	  <None Remove="Views\Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\DataTemplates\" />
 	  <Folder Include="Views\Components\" />
 	  <Folder Include="ViewModels\Login\" />
-	  <Folder Include="Services\" />
-	  <Folder Include="Services\Interfaces\" />
 	  <Folder Include="Views\Popups\" />
 	  <Folder Include="ViewModels\Setting\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Interfaces\" />
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Models\Wrappers\" />
-	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Enums\" />
-	  <Folder Include="Commons\Converters\" />
 	  <Folder Include="Platforms\MacCatalyst\Helpers\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <MauiXaml Update="Views\Controls\Loader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\CreateResourcePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -153,6 +153,9 @@
 	  <MauiXaml Update="Views\Popups\ToolkitBasicPopup.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DataTemplates\OptionDataTemplate.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
@@ -161,8 +164,21 @@
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	  <PackageReference Include="Plugin.Firebase" Version="1.2.0" />
-	  <PackageReference Include="Simple.Http" Version="1.0.3" />
+	  <PackageReference Include="Simple.Http" Version="1.0.5" />
 	  <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\Translations\AppResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Translations\AppResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 </Project>

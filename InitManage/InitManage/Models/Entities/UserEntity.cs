@@ -3,7 +3,7 @@ using InitManage.Models.Interfaces;
 
 namespace InitManage.Models.Entities;
 
-public class UserEntity : IUser
+public class UserEntity : IUserEntity
 {
     public UserEntity()
     {

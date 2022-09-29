@@ -59,8 +59,31 @@
                     VerticalTextAlignment="Center"/>
                 <Switch
                     IsToggled="{Binding DarkModeEnabled}"/>
+            </StackLayout>
 
+            <StackLayout Orientation="Horizontal" Spacing="20">
+                <Label
+                    Text="Recevoir des notifications avant les réservations"
+                    VerticalTextAlignment="Center"/>
+                <Switch
+                    IsToggled="{Binding IsNotificationEnabled}"/>
+            </StackLayout>
 
+            <StackLayout
+                IsVisible="{Binding IsNotificationEnabled, Mode=OneWay}"
+                Orientation="Horizontal"
+                Spacing="20"
+                Margin="0, 30">
+                <Label
+                    Text="Être prévenu avant une réservation"
+                    VerticalTextAlignment="Center"/>
+
+                <Picker
+                    HorizontalOptions="EndAndExpand"
+                    SelectedItem="{Binding Reminder, Mode=TwoWay}"
+                    ItemsSource="{Binding Reminders}"
+                    ItemDisplayBinding="{Binding ., StringFormat='{0:mm} minutes'}">
+                </Picker>
             </StackLayout>
 
             <Button

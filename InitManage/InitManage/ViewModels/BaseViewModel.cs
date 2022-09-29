@@ -4,7 +4,7 @@ using Sharpnado.Tasks;
 
 namespace InitManage.ViewModels;
 
-public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitializeAsync
+public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitializeAsync, IPageLifecycleAware
 {
     public BaseViewModel(INavigationService navigationService)
     {
@@ -13,7 +13,18 @@ public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitiali
 
     #region Properties
     protected INavigationService NavigationService { get; }
-    protected bool IsBusy { get; set; }
+
+    #region LoadingMessage
+
+    private string _loadingMessage;
+    public string LoadingMessage
+    {
+        get => _loadingMessage;
+        set => this.RaiseAndSetIfChanged(ref _loadingMessage, value);
+    }
+
+    #endregion
+
     #endregion
 
     #region LifeCycle
@@ -53,6 +64,26 @@ public abstract class BaseViewModel : ReactiveObject, INavigatedAware, IInitiali
     protected virtual Task OnNavigatedFromAsync(INavigationParameters parameters)
     {
         return Task.FromResult(0);
+    }
+
+    protected virtual Task OnAppearingAsync()
+    {
+        return Task.FromResult(0);
+    }
+
+    public void OnAppearing()
+    {
+        TaskMonitor.Create(OnAppearingAsync(),
+                           whenFaulted: t => {
+                               t.Exception.Handle(ex => {
+                                   Console.WriteLine($"OnAppearing error : {ex.Message}");
+                                   return true;
+                               });
+                           });
+    }
+
+    public void OnDisappearing()
+    {
     }
 
     #endregion

@@ -22,7 +22,6 @@ public class CreateResourceViewModel : BaseViewModel
         _resourceService = resourceService;
 
         CreateCommand = ReactiveCommand.CreateFromTask(OnCreateCommand);
-        OptionTappedCommand = ReactiveCommand.Create<OptionWrapper>(OnOptionTappedCommand);
 
         _optionsCache
             .Connect()
@@ -170,19 +169,7 @@ public class CreateResourceViewModel : BaseViewModel
         if (resourceCreated)
             await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}?selectedTab={nameof(ResourcesPage)}");
     }
-
-    #region OnOptionTappedCommand
-
-    public ReactiveCommand<OptionWrapper, Unit> OptionTappedCommand { get; private set; }
-    private void OnOptionTappedCommand(OptionWrapper optionWrapper)
-    {
-        optionWrapper.IsSelected = !optionWrapper.IsSelected;
-    }
-
-    #endregion
-
-
-    #endregion
+	#endregion
 
     #endregion
 }

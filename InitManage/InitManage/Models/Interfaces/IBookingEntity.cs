@@ -1,7 +1,7 @@
 ﻿using System;
 namespace InitManage.Models.Interfaces;
 
-public interface IBooking
+public interface IBookingEntity
 {
     long Id { get; set; }
     long UserId { get; set; }

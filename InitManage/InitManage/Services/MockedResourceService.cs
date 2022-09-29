@@ -13,7 +13,7 @@ public class MockedResourceService : IResourceService
 {
 
     #region GetResourceAsync
-    public async Task<IResource> GetResourceAsync(long id)
+    public async Task<IResourceEntity> GetResourceAsync(long id)
     {
         var resource = new ResourceEntity
         {
@@ -31,7 +31,7 @@ public class MockedResourceService : IResourceService
     #endregion
 
     #region GetResourcesAsync
-    public async Task<IEnumerable<IResource>> GetResourcesAsync()
+    public async Task<IEnumerable<IResourceEntity>> GetResourcesAsync()
     {
         var resources = new List<ResourceEntity>();
 
@@ -53,7 +53,7 @@ public class MockedResourceService : IResourceService
     #endregion
 
     #region GetResourceBookingsAsync
-    public async Task<IEnumerable<IBooking>> GetResourceBookingsAsync(long resourceId)
+    public async Task<IEnumerable<IBookingEntity>> GetResourceBookingsAsync(long resourceId)
     {
         var bookings = new List<BookingEntity>();
         var resource = await GetResourceAsync(resourceId);
@@ -94,7 +94,7 @@ public class MockedResourceService : IResourceService
         return bookingsWrappers;
     }
 
-    public async Task<bool> CreateResource(IResource resource)
+    public async Task<bool> CreateResource(IResourceEntity resource)
     {
         return true;
     }
