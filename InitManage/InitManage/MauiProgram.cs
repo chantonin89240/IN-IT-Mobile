@@ -43,7 +43,7 @@ public static class MauiProgram
                     containerRegistry.RegisterNavigation();
                     containerRegistry.RegisterHelpers();
                 })
-                .OnAppStart(navigationService => navigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(LoginPage)}"))
+                .OnAppStart(navigationService => navigationService.NavigateAsync($"{Constants.NavigationPage}/{Constants.LoginPage}"))
                 )
             .ConfigureFonts(fonts =>
             {

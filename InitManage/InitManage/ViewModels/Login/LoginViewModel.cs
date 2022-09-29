@@ -6,6 +6,7 @@ using Plugin.Firebase.CloudMessaging;
 using ReactiveUI;
 using Sharpnado.TaskLoaderView;
 using InitManage.Resources.Translations;
+using InitManage.Commons;
 
 namespace InitManage.ViewModels.Login;
 
@@ -94,7 +95,7 @@ public class LoginViewModel : BaseViewModel
             Mail = string.Empty;
             Password = string.Empty;
 
-            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}");
+            await NavigationService.NavigateAsync(Constants.MainTabbedPage);
         }
 		else
 		{
