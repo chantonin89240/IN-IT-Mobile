@@ -126,8 +126,17 @@
   <data name="AllReservations" xml:space="preserve">
     <value>Toutes les réservations</value>
   </data>
+  <data name="At" xml:space="preserve">
+    <value>de</value>
+  </data>
   <data name="BeNotifiedBeforeBooking" xml:space="preserve">
     <value>Être prévenu avant une réservation :</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Réserver</value>
+  </data>
+  <data name="BookThe" xml:space="preserve">
+    <value>Réserver le</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Créer</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="EnterYourSearch" xml:space="preserve">
     <value>Saisissez votre recherche</value>
+  </data>
+  <data name="For" xml:space="preserve">
+    <value>pour </value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Bonjour</value>
@@ -191,6 +203,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
+  </data>
+  <data name="Peoples" xml:space="preserve">
+    <value>personne(s)</value>
   </data>
   <data name="PictureLink" xml:space="preserve">
     <value>Lien de l'image</value>

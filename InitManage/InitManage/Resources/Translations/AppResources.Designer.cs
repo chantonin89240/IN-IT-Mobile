@@ -88,11 +88,38 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à de.
+        /// </summary>
+        internal static string At {
+            get {
+                return ResourceManager.GetString("At", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Être prévenu avant une réservation :.
         /// </summary>
         internal static string BeNotifiedBeforeBooking {
             get {
                 return ResourceManager.GetString("BeNotifiedBeforeBooking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Réserver.
+        /// </summary>
+        internal static string Book {
+            get {
+                return ResourceManager.GetString("Book", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Réserver le.
+        /// </summary>
+        internal static string BookThe {
+            get {
+                return ResourceManager.GetString("BookThe", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace InitManage.Resources.Translations {
         internal static string EnterYourSearch {
             get {
                 return ResourceManager.GetString("EnterYourSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à pour .
+        /// </summary>
+        internal static string For {
+            get {
+                return ResourceManager.GetString("For", resourceCulture);
             }
         }
         
@@ -282,6 +318,15 @@ namespace InitManage.Resources.Translations {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à personne(s).
+        /// </summary>
+        internal static string Peoples {
+            get {
+                return ResourceManager.GetString("Peoples", resourceCulture);
             }
         }
         
