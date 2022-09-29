@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
@@ -13,9 +13,6 @@
              BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
              x:DataType="ResourceViewModels:MyResourcesViewModel">
 
-    <sharpnado:TemplatedTaskLoader TaskLoaderNotifier="{Binding Loader}">
-        <sharpnado:TemplatedTaskLoader.ResultControlTemplate>
-            <ControlTemplate>
                 <Grid RowDefinitions="*" BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:MyResourcesViewModel}}}">
                     <Ellipse
                         Fill="{StaticResource Orange200}"
@@ -47,23 +44,14 @@
                         <Label
                             Style="{StaticResource TitleLabel}"
                             Text="Mes réservation"/>
-                        <CollectionView ItemsSource="{Binding Resources}" Grid.Row="1">
+                        <CollectionView ItemsSource="{Binding Resources}" Grid.Row="1" IsVisible="{Binding Loader.ShowLoader, Converter={StaticResource BoolToRevertBoolValueConverter}}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <DataTemplates:DetailledResourceDataTemplate/>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
+                      <Controls:Loader Grid.Row="1" LoadingMessage="{Binding LoadingMessage}" IsLoaderVisible="{Binding Loader.ShowLoader}"/>
                     </Grid>
                 </Grid>
-            </ControlTemplate>
-        </sharpnado:TemplatedTaskLoader.ResultControlTemplate>
-        <sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
-            <ControlTemplate>
-                <Controls:Loader
-                    LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:MyResourcesViewModel}}, Path=LoadingMessage}"
-                    IsVisible="true"/>
-            </ControlTemplate>
-        </sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
-    </sharpnado:TemplatedTaskLoader>
 </ContentPage>
