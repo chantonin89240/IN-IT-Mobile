@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
              xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
              xmlns:Controls="clr-namespace:InitManage.Views.Controls"
@@ -9,7 +10,7 @@
              x:Class="InitManage.Views.Pages.MyResourcesPage"
              IconImageSource="opened_book"
              NavigationPage.HasNavigationBar="False"
-             Title="Mes réservations"
+             Title="{Static Translations:AppResources.MyReservations}"
              BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
              x:DataType="ResourceViewModels:MyResourcesViewModel">
 
@@ -43,7 +44,7 @@
                     <Grid RowDefinitions="Auto, *" Margin="10">
                         <Label
                             Style="{StaticResource TitleLabel}"
-                            Text="Mes réservation"/>
+                            Text="{Static Translations:AppResources.MyReservations}"/>
                         <CollectionView ItemsSource="{Binding Resources}" Grid.Row="1" IsVisible="{Binding Loader.ShowLoader, Converter={StaticResource BoolToRevertBoolValueConverter}}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>

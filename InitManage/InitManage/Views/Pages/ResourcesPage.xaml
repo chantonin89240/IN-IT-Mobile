@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+    xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
     xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
     xmlns:Controls="clr-namespace:InitManage.Views.Controls"
     xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
@@ -12,7 +13,7 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
     NavigationPage.HasNavigationBar="False"
     IconImageSource="book"
-    Title="Menu">
+    Title="{Static Translations:AppResources.Home}">
 
     <sharpnado:TemplatedTaskLoader TaskLoaderNotifier="{Binding Loader}">
         <sharpnado:TemplatedTaskLoader.ResultControlTemplate>
@@ -51,7 +52,7 @@
 
                         <Label
                             Style="{StaticResource TitleLabel}"
-                            Text="Toutes les réservations"/>
+                            Text="{Static Translations:AppResources.AllReservations}"/>
 
                         <Grid
                             Grid.Row="1"
@@ -63,7 +64,7 @@
                             <Entry
                                 Grid.Column="1"
                                 HorizontalOptions="FillAndExpand"
-                                Placeholder="Entrez votre recherche"
+                                Placeholder="{Static Translations:AppResources.EnterYourSearch}"
                                 Text="{Binding SearchBarText}"/>
                         </Grid>
 
@@ -77,7 +78,7 @@
                             <Entry
                                 Grid.Column="1"
                                 HorizontalOptions="FillAndExpand"
-                                Placeholder="Entrez l'adresse"
+                                Placeholder="{Static Translations:AppResources.EnterTheAddress}"
                                 Text="{Binding Address}"/>
                         </Grid>
 
@@ -90,7 +91,7 @@
                                 Style="{StaticResource IconImage}"
                                 Source="peoples"/>
                             <Picker
-                                Title="Places"
+                                Title="{Static Translations:AppResources.Places}"
                                 Grid.Column="1"
                                 HorizontalOptions="FillAndExpand"
                                 SelectedItem="{Binding SelectedCapacity}"
@@ -103,7 +104,7 @@
                             <Picker
                                 Grid.Column="3"
                                 HorizontalOptions="FillAndExpand"
-                                Title="Types"
+                                Title="{Static Translations:AppResources.Types}"
                                 SelectedItem="{Binding SelectedType}"
                                 ItemsSource="{Binding Types}"
                                 ItemDisplayBinding="{Binding Name}"/>
@@ -133,7 +134,7 @@
                                 Style="{StaticResource IconImage}"/>
                             <Entry
                                 Grid.Column="1"
-                                Placeholder="Selectionnez des options"
+                                Placeholder="{Static Translations:AppResources.SelectOptions}"
                                 Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}"
                                 InputTransparent="True"
                                 HorizontalOptions="FillAndExpand"

@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+             xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
              xmlns:Wrappers="clr-namespace:InitManage.Models.Wrappers"
              x:Class="InitManage.Views.Pages.CreateResourcePage"
@@ -9,7 +10,7 @@
              x:DataType="ResourceViewModels:CreateResourceViewModel"
              IconImageSource="admin"
              BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
-             Title="Administration">
+             Title="{Static Translations:AppResources.Administration}">
 
     <Grid RowDefinitions="200, *">
         <Image
@@ -17,14 +18,13 @@
             Source="{Binding Picture, Mode=OneWay}"/>
         <!-- Formulaire de création de ressource -->
         <StackLayout Margin="10" Spacing="10" Grid.Row="1">
-            <!-- Nom de la ressource -->
             <Entry 
                 Text="{Binding Name}"
-                Placeholder="Nom"/>
+                Placeholder="{Static Translations:AppResources.Name}"/>
             <!-- description de la ressource -->
             <Editor
                 Text="{Binding Description}"
-                Placeholder="Description"
+                Placeholder="{Static Translations:AppResources.Description}"
                 HeightRequest="100"
                 IsTextPredictionEnabled="true"/>
             <!-- Lien de la photo -->
@@ -32,31 +32,31 @@
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
-                    Text="Lien de l'image : "/>
+                    Text="{Static Translations:AppResources.PictureLink}"/>
                 <Entry 
                     Text="{Binding Picture, Mode=OneWay}"
-                    Placeholder="Lien de l'image"
+                    Placeholder="{Static Translations:AppResources.PictureLink}"
                     HorizontalOptions="FillAndExpand"/>
             </StackLayout>
 
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
-                    Text="Adresse : "/>
+                    Text="{Static Translations:AppResources.Address}"/>
                 <Entry
                     Text="{Binding Adress}"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="Addresse"/>
+                    Placeholder="{Static Translations:AppResources.Address}"/>
             </StackLayout>
             
 
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
-                    Text="Type : "/>
+                    Text="{Static Translations:AppResources.Type} "/>
                 <Picker
                     HorizontalOptions="FillAndExpand"
-                    Title="Types"
+                    Title="{Static Translations:AppResources.Types}"
                     SelectedItem="{Binding Type}"
                     ItemsSource="{Binding Types}"/>
             </StackLayout>
@@ -65,12 +65,12 @@
             <StackLayout Spacing="10" Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
-                    Text="Nombre de places :"/>
+                    Text="{Static Translations:AppResources.NumberOfPlaces}"/>
                 
                 <Entry
                     Keyboard="Numeric"
                     Text="{Binding Capacity}"
-                    Placeholder="Nombre de place"/>
+                    Placeholder="{Static Translations:AppResources.NumberOfPlaces}"/>
             </StackLayout>
             
             <CollectionView ItemsSource="{Binding Options}" HeightRequest="100" x:Name="optionsList">
@@ -89,7 +89,7 @@
             <!-- bouton de confirmation -->
             <Button
                 Command="{Binding CreateCommand}"
-                Text="Créer">
+                Text="{Static Translations:AppResources.Create}">
                 <Button.Shadow>
                     <Shadow
                         Opacity="0.5"

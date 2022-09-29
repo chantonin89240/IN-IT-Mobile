@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reactive;
 using InitManage.Helpers.Interfaces;
 using ReactiveUI;

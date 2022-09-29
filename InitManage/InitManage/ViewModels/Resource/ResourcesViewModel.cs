@@ -1,6 +1,4 @@
-using System;
 using ReactiveUI;
-using InitManage.Models.Entities;
 using DynamicData;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
@@ -12,7 +10,7 @@ using InitManage.Models.Interfaces;
 using InitManage.Views.Pages;
 using InitManage.Commons;
 using Sharpnado.TaskLoaderView;
-using InitManage.Views.Popups;
+using InitManage.Resources.Translations;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -79,16 +77,16 @@ public class ResourcesViewModel : BaseViewModel
         {
             Loader.Load(async _ =>
             {
-                LoadingMessage = "Chargement des resources";
+                LoadingMessage = AppResources.LoadingResources;
                 var resources = await _resourceService.GetResourcesAsync();
                 _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
                 ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
 
-				LoadingMessage = "Chargement des types";
+				LoadingMessage = AppResources.LoadingTypes;
                 Types = await _typeService.GetTypesAsync();
 
-                LoadingMessage = "Chargement des options";
+                LoadingMessage = AppResources.LoadingOptions;
                 Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
 
             });
