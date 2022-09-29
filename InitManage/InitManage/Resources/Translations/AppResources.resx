@@ -120,11 +120,20 @@
   <data name="AllReservations" xml:space="preserve">
     <value>Toutes les réservations</value>
   </data>
+  <data name="BeNotifiedBeforeBooking" xml:space="preserve">
+    <value>Être prévenu avant une réservation :</value>
+  </data>
+  <data name="DarkMode" xml:space="preserve">
+    <value>Mode sombre (préversion) :</value>
+  </data>
   <data name="EnterTheAddress" xml:space="preserve">
     <value>Entrez l'adresse</value>
   </data>
   <data name="EnterYourSearch" xml:space="preserve">
     <value>Saisissez votre recherche</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Bonjour</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Menu</value>
@@ -147,6 +156,9 @@
   <data name="LoginInProgress" xml:space="preserve">
     <value>Connexion en cours</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
   <data name="Mail" xml:space="preserve">
     <value>Mail</value>
   </data>
@@ -156,11 +168,17 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
   <data name="Places" xml:space="preserve">
     <value>Places</value>
+  </data>
+  <data name="ReceiveNotificationBeforeBooking" xml:space="preserve">
+    <value>Recevoir une notification avant une réservation :</value>
   </data>
   <data name="SelectOptions" xml:space="preserve">
     <value>Selectionez des options</value>

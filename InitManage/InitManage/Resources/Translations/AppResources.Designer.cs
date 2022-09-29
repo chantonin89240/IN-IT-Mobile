@@ -70,6 +70,24 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Être prévenu avant une réservation :.
+        /// </summary>
+        internal static string BeNotifiedBeforeBooking {
+            get {
+                return ResourceManager.GetString("BeNotifiedBeforeBooking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mode sombre (préversion) :.
+        /// </summary>
+        internal static string DarkMode {
+            get {
+                return ResourceManager.GetString("DarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Entrez l&apos;adresse.
         /// </summary>
         internal static string EnterTheAddress {
@@ -84,6 +102,15 @@ namespace InitManage.Resources.Translations {
         internal static string EnterYourSearch {
             get {
                 return ResourceManager.GetString("EnterYourSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bonjour.
+        /// </summary>
+        internal static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
             }
         }
         
@@ -151,6 +178,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Déconnexion.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail.
         /// </summary>
         internal static string Mail {
@@ -178,6 +214,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Paramètres.
+        /// </summary>
+        internal static string Parameters {
+            get {
+                return ResourceManager.GetString("Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mot de passe.
         /// </summary>
         internal static string Password {
@@ -192,6 +237,15 @@ namespace InitManage.Resources.Translations {
         internal static string Places {
             get {
                 return ResourceManager.GetString("Places", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Recevoir une notification avant une réservation :.
+        /// </summary>
+        internal static string ReceiveNotificationBeforeBooking {
+            get {
+                return ResourceManager.GetString("ReceiveNotificationBeforeBooking", resourceCulture);
             }
         }
         
