@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using DynamicData;
@@ -6,6 +5,7 @@ using InitManage.Models.Wrappers;
 using InitManage.Services.Interfaces;
 using ReactiveUI;
 using Sharpnado.TaskLoaderView;
+using InitManage.Resources.Translations;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -38,7 +38,7 @@ public class MyResourcesViewModel : BaseViewModel
         {
             Loader.Load(async _ =>
             {
-                LoadingMessage = "Récupération des réservations";
+                LoadingMessage = AppResources.LoadingResources;
                 var resource = await _resourceService.GetResourcesAsync();
                 await Task.Delay(5000);
 

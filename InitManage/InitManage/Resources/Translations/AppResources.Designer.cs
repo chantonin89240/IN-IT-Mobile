@@ -160,6 +160,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mes réservations.
+        /// </summary>
+        internal static string MyReservations {
+            get {
+                return ResourceManager.GetString("MyReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         internal static string Ok {

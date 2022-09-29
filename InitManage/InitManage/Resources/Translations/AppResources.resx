@@ -150,6 +150,9 @@
   <data name="Mail" xml:space="preserve">
     <value>Mail</value>
   </data>
+  <data name="MyReservations" xml:space="preserve">
+    <value>Mes réservations</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
