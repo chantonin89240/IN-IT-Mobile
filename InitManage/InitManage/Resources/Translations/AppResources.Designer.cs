@@ -61,6 +61,69 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Toutes les réservations.
+        /// </summary>
+        internal static string AllReservations {
+            get {
+                return ResourceManager.GetString("AllReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Entrez l&apos;adresse.
+        /// </summary>
+        internal static string EnterTheAddress {
+            get {
+                return ResourceManager.GetString("EnterTheAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Saisissez votre recherche.
+        /// </summary>
+        internal static string EnterYourSearch {
+            get {
+                return ResourceManager.GetString("EnterYourSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Menu.
+        /// </summary>
+        internal static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chargement des options.
+        /// </summary>
+        internal static string LoadingOptions {
+            get {
+                return ResourceManager.GetString("LoadingOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chargement des resources.
+        /// </summary>
+        internal static string LoadingResources {
+            get {
+                return ResourceManager.GetString("LoadingResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chargement des types.
+        /// </summary>
+        internal static string LoadingTypes {
+            get {
+                return ResourceManager.GetString("LoadingTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Status des notifications locales.
         /// </summary>
         internal static string LocalNotificationStatus {
@@ -111,6 +174,33 @@ namespace InitManage.Resources.Translations {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Places.
+        /// </summary>
+        internal static string Places {
+            get {
+                return ResourceManager.GetString("Places", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Selectionez des options.
+        /// </summary>
+        internal static string SelectOptions {
+            get {
+                return ResourceManager.GetString("SelectOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Types.
+        /// </summary>
+        internal static string Types {
+            get {
+                return ResourceManager.GetString("Types", resourceCulture);
             }
         }
     }
