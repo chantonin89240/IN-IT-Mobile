@@ -221,7 +221,7 @@ public class ResourcesViewModel : BaseViewModel
     private async Task OnResourceTappedCommand(IResourceEntity resource)
     {
         var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
-        await NavigationService.NavigateAsync(nameof(ResourcePage), parameters);
+        await NavigationService.NavigateAsync(Constants.ResourcePage, parameters);
     }
 
     #region OnOptionEntryTappedCommand

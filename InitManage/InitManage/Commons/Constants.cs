@@ -12,7 +12,19 @@ public class Constants
     public const string OptionEndPoint = "option";
     public const string TypeEndPoint = "type";
 
-
 	public const string IconFont = nameof(IconFont);
+
+	#region Page names
+
+	public const string MainTabbedPage = nameof(MainTabbedPage);
+	public const string CreateResourcePage = nameof(CreateResourcePage);
+	public const string LoginPage = nameof(LoginPage);
+	public const string MyResourcesPage = nameof(MyResourcesPage);
+	public const string ResourcePage = nameof(ResourcePage);
+	public const string ResourcesPage = nameof(ResourcesPage);
+	public const string SettingsPage = nameof(SettingsPage);
+	public const string NavigationPage = nameof(NavigationPage);
+
+	#endregion
 }
 

@@ -1,4 +1,3 @@
-using System;
 using ReactiveUI;
 using InitManage.Models.Entities;
 using DynamicData;
@@ -7,9 +6,7 @@ using System.Reactive.Linq;
 using InitManage.Services.Interfaces;
 using System.Reactive;
 using InitManage.Models.Wrappers;
-using DynamicData.PLinq;
-using InitManage.Views.Pages;
-using InitManage.Models.Interfaces;
+using InitManage.Commons;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -167,7 +164,7 @@ public class CreateResourceViewModel : BaseViewModel
         var resourceCreated = await _resourceService.CreateResource(resource);
 
         if (resourceCreated)
-            await NavigationService.NavigateAsync($"{nameof(MainTabbedPage)}?selectedTab={nameof(ResourcesPage)}");
+            await NavigationService.NavigateAsync($"{Constants.MainTabbedPage}?{KnownNavigationParameters.SelectedTab}={Constants.ResourcesPage}");
     }
 	#endregion
 
