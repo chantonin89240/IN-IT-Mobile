@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+             xmlns:Wrappers="clr-namespace:InitManage.Models.Wrappers"
+             x:Class="InitManage.Views.DataTemplates.ResourceDataTemplate"
+             x:DataType="Wrappers:ResourceWrapper">
+
+    <StackLayout Margin="5, 5">
+        <Frame HasShadow="False" BackgroundColor="{StaticResource Dark}" CornerRadius="10" Padding="5">
+            <Grid
+                ColumnSpacing="10"
+                RowDefinitions="Auto, Auto, Auto"
+                ColumnDefinitions="3*, 7*">
+
+                <Image
+                    Aspect="Fill"
+                    Source="{Binding Image}"
+                    Grid.RowSpan="3"
+                    HeightRequest="100"
+                    BackgroundColor="Black"/>
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="{Binding Name}"
+                    TextColor="{StaticResource Primary}"/>
+                <Label
+                    TextColor="{StaticResource Light}"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0,0,20,0"
+                    Text="{Binding Description}"/>
+
+                <StackLayout Grid.Row="2" Grid.Column="1">
+                    <Label
+                        Text="{Binding Type}"
+                        TextColor="{StaticResource Light}"/>
+                </StackLayout>
+            </Grid>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=ResourceTappedCommand}" CommandParameter="{Binding .}"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+    </StackLayout>
+    
+   
+</ContentView>
+

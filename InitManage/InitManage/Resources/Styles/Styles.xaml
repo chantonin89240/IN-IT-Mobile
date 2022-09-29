@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Button">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource White}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource DisabledPrimary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Ellipse">
+        <Setter Property="Fill" Value="{StaticResource Primary}"/>
+    </Style>
+
+    <Style TargetType="Image" x:Key="IconImage">
+        <Setter Property="WidthRequest" Value="25"/>
+        <Setter Property="HeightRequest" Value="25"/>
+    </Style>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarTextColor" Value="{StaticResource White}"/>
+        <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Light}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleLabel">
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Light}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"/>
+        <Setter Property="Placeholder" Value="Saisissez votre recherche"/>
+    </Style>
+
+    <Style TargetType="skia:SKLottieView">
+        <Setter Property="RepeatCount" Value="-1"/>
+        <Setter Property="HeightRequest" Value="400"/>
+        <Setter Property="WidthRequest" Value="400"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+</ResourceDictionary>
+

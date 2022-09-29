@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:LoginViewModels="clr-namespace:InitManage.ViewModels.Login"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:Controls="clr-namespace:InitManage.Views.Controls"
+             xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+             xmlns:Translations="clr-namespace:InitManage.Resources.Translations"
+             x:Class="InitManage.Views.Pages.LoginPage"
+             x:DataType="LoginViewModels:LoginViewModel"
+             NavigationPage.HasNavigationBar="False"
+             Title="LoginPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
+    <Grid
+        RowDefinitions="1*, 7*">
+        <Ellipse
+            HeightRequest="300"
+            WidthRequest="800"/>
+
+        <skia:SKLottieView
+            Grid.Row="1"
+            Source="bubbles.json"
+            VerticalOptions="End"/>
+
+        <StackLayout
+            Grid.Row="1"
+            Spacing="20"
+            Padding="20, 0">
+
+            <Image Source="init"/>
+
+            <VerticalStackLayout
+                IsVisible="{Binding LoginCommand.Notifier.ShowLoader, Converter={StaticResource BoolToRevertBoolValueConverter}}"
+                Spacing="20">
+                <Entry
+                    FontSize="20"
+                    Keyboard="Email"
+                    Placeholder="{Static Translations:AppResources.Mail}"
+                    Text="{Binding Mail}"/>
+                <Entry
+                    FontSize="20"
+                    IsPassword="True"
+                    Placeholder="{Static Translations:AppResources.Password}"
+                    Text="{Binding Password}"/>
+
+                <Button
+                    Command="{Binding LoginCommand}"
+                    Text="{Static Translations:AppResources.Login}">
+                    <Button.Shadow>
+                        <Shadow
+                            Opacity="0.5"
+                            Radius="5"
+                            Offset="5, 5"/>
+                    </Button.Shadow>
+                </Button>
+            </VerticalStackLayout>
+
+            <Controls:Loader
+                IsLoaderVisible="{Binding LoginCommand.Notifier.ShowLoader}"
+                LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type LoginViewModels:LoginViewModel}}, Path=LoadingMessage}"/>
+    </StackLayout>
+      
+        <sharpnado:Snackbar
+          Margin="15"
+          DisplayDurationMilliseconds="3000"
+          IsVisible="{Binding LoginCommand.Notifier.ShowError}"
+          Text="{Binding LoginCommand.Notifier.Error.Message}"/>
+    </Grid>
+</ContentPage>

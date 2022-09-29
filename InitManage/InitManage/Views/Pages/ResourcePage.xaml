@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+             xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+             xmlns:Components="clr-namespace:InitManage.Views.Components"
+             x:Class="InitManage.Views.Pages.ResourcePage"
+             x:DataType="ResourceViewModels:ResourceViewModel"
+             Title="{Binding Resource.Name}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
+
+        <Grid RowDefinitions="200, *">
+            <Image
+                Aspect="AspectFill"
+                Source="{Binding Resource.Image}"/>
+
+            <StackLayout Margin="20" Spacing="10" Grid.Row="1">
+                <Label
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Text="{Binding Resource.Description}"/>
+
+                <Grid
+                    RowDefinitions="Auto, Auto"
+                    ColumnDefinitions="Auto, *"
+                    ColumnSpacing="10"
+                    RowSpacing="10">
+
+                    <Image
+                        Style="{StaticResource IconImage}"
+                        Source="pin"/>
+                    <Label
+                        Text="{Binding Resource.Address}"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Grid.Column="1"/>
+
+                    <Image
+                        Style="{StaticResource IconImage}"
+                        Grid.Row="1"
+                        Source="peoples"/>
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding Resource.Capacity, StringFormat='{0} personne(s) maximum'}"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="18"/>
+                </Grid>
+
+                <Components:SeparatorComponent/>
+
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label
+                        FontSize="18"
+                        Text="Réserver la salle le"
+                        VerticalOptions="Center"/>
+                    <DatePicker
+                        HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label
+                        Text="de"
+                        VerticalOptions="Center"/>
+                    <TimePicker/>
+                    <Label
+                        Text="à"
+                        VerticalOptions="Center"/>
+                    <TimePicker/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label
+                        Text="pour"
+                        VerticalOptions="Center"/>
+                    <Entry
+                        Keyboard="Numeric"/>
+
+                    <Label
+                        Text="personnes(s)."
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <Button
+                    Command="{Binding BookCommand}"
+                    Text="Réserver"/>
+
+                <CollectionView ItemsSource="{Binding Bookings}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <DataTemplates:BookingDataTemplate/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+</ContentPage>

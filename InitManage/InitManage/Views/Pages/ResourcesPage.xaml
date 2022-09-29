@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ResourceViewModels="clr-namespace:InitManage.ViewModels.Resource"
+    xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
+    xmlns:Controls="clr-namespace:InitManage.Views.Controls"
+    xmlns:sharpnado="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    x:Class="InitManage.Views.Pages.ResourcesPage"
+    x:DataType="ResourceViewModels:ResourcesViewModel"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}"
+    NavigationPage.HasNavigationBar="False"
+    IconImageSource="book"
+    Title="Menu">
+
+    <sharpnado:TemplatedTaskLoader TaskLoaderNotifier="{Binding Loader}">
+        <sharpnado:TemplatedTaskLoader.ResultControlTemplate>
+            <ControlTemplate>
+                <Grid
+                    RowDefinitions="Auto, *"
+                    BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}}">
+                  
+                    <Ellipse
+                        Fill="{StaticResource Orange200}"
+                        Margin="160"
+                        Grid.Row="1"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+
+                    <Ellipse
+                        Fill="{StaticResource Orange100}"
+                        Margin="70"
+                        Grid.Row="1"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+
+                    <Ellipse
+                        Margin="-90"
+                        Grid.Row="1"
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"/>
+                  
+                    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
+
+                        <Label
+                            Style="{StaticResource TitleLabel}"
+                            Text="Toutes les réservations"/>
+
+                        <Grid
+                            Grid.Row="1"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="magnifying_glass"/>
+                            <Entry
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Entrez votre recherche"
+                                Text="{Binding SearchBarText}"/>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="2"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="pin"/>
+                            <Entry
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Entrez l'adresse"
+                                Text="{Binding Address}"/>
+                        </Grid>
+
+
+                        <Grid
+                            ColumnSpacing="10"
+                            Grid.Row="3"
+                            ColumnDefinitions="Auto, *, Auto, *">
+                            <Image
+                                Style="{StaticResource IconImage}"
+                                Source="peoples"/>
+                            <Picker
+                                Title="Places"
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                SelectedItem="{Binding SelectedCapacity}"
+                                ItemsSource="{Binding ResourcesCapacities}"/>
+
+                            <Image
+                                Grid.Column="2"
+                                Style="{StaticResource IconImage}"
+                                Source="tags"/>
+                            <Picker
+                                Grid.Column="3"
+                                HorizontalOptions="FillAndExpand"
+                                Title="Types"
+                                SelectedItem="{Binding SelectedType}"
+                                ItemsSource="{Binding Types}"
+                                ItemDisplayBinding="{Binding Name}"/>
+                        </Grid>
+
+
+                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="4">
+                            <DatePicker
+                                Date="{Binding StartDate}"
+                                MaximumDate="{Binding EndDate}"/>
+                            <Label
+                                Text="=>"
+                                Grid.Column="1"
+                                VerticalOptions="Center"/>
+                            <DatePicker
+                                Grid.Column="2"
+                                Date="{Binding EndDate}"
+                                MinimumDate="{Binding StartDate}"/>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="5"
+                            ColumnSpacing="10"
+                            ColumnDefinitions="Auto, *">
+                            <Image
+                                Source="toolbox"
+                                Style="{StaticResource IconImage}"/>
+                            <Entry
+                                Grid.Column="1"
+                                Placeholder="Selectionnez des options"
+                                Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}"
+                                InputTransparent="True"
+                                HorizontalOptions="FillAndExpand"
+                                IsReadOnly="True"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OptionEntryTappedCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <CollectionView
+                            HeightRequest="150"
+                            ItemsSource="{Binding Options}"
+                            Grid.Row="7"
+                            IsVisible="{Binding IsOptionsVisible}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <DataTemplates:OptionDataTemplate/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
+                 
+
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="10, 0"
+                        ItemsSource="{Binding Resources}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <DataTemplates:ResourceDataTemplate/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ControlTemplate>
+        </sharpnado:TemplatedTaskLoader.ResultControlTemplate>
+        <sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
+            <ControlTemplate>
+                <Controls:Loader
+                    IsLoaderVisible="True"
+                    LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=LoadingMessage}"/>
+            </ControlTemplate>
+        </sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
+    </sharpnado:TemplatedTaskLoader>
+</ContentPage>
