@@ -53,6 +53,15 @@ public class ResourcesViewModel : BaseViewModel
                 return new Func<ResourceWrapper, bool>(resource => true);
             });
 
+        var typeFilter = this.WhenAnyValue(vm => vm.SelectedType)
+            .Select(query =>
+            {
+                if (query is not null)
+                    return new Func<OptionWrapper, bool>(option => option?.TypeId == query?.Id);
+                return new Func<OptionWrapper, bool>(option => true);
+
+            });
+
         _resourcesCache
             .Connect()
             .Filter(searchFilter)
@@ -61,6 +70,14 @@ public class ResourcesViewModel : BaseViewModel
             .Bind(out _resources)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
+
+        _optionsCache
+            .Connect()
+            .Filter(typeFilter)
+            .Bind(out _options)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe();
+
 
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddDays(1);
@@ -87,7 +104,7 @@ public class ResourcesViewModel : BaseViewModel
                 Types = await _typeService.GetTypesAsync();
 
                 LoadingMessage = AppResources.LoadingOptions;
-                Options = (await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option));
+                _optionsCache.AddOrUpdate((await _optionService.GetOptionsAsync()).Select(option => new OptionWrapper(option)));
 
             });
         }
@@ -136,6 +153,12 @@ public class ResourcesViewModel : BaseViewModel
     public ReadOnlyObservableCollection<ResourceWrapper> Resources => _resources;
     #endregion
 
+    #region Dynamic list Options
+    private SourceCache<OptionWrapper, long> _optionsCache = new SourceCache<OptionWrapper, long>(o => o.Id);
+    private readonly ReadOnlyObservableCollection<OptionWrapper> _options;
+    public ReadOnlyObservableCollection<OptionWrapper> Options => _options;
+    #endregion
+
     #region ResourcesCapacities
 
     private List<int> _resourcesCapacities;
@@ -147,16 +170,7 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
-    #region Options
 
-    private IEnumerable<OptionWrapper> _options;
-    public IEnumerable<OptionWrapper> Options
-    {
-        get => _options;
-        set => this.RaiseAndSetIfChanged(ref _options, value);
-    }
-
-    #endregion
     
     #region Types
 
@@ -171,8 +185,8 @@ public class ResourcesViewModel : BaseViewModel
 
     #region SelectedType
 
-    private string _selectedType;
-    public string SelectedType
+    private ITypeEntity _selectedType;
+    public ITypeEntity SelectedType
     {
         get => _selectedType;
         set => this.RaiseAndSetIfChanged(ref _selectedType, value);
