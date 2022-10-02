@@ -8,10 +8,15 @@ namespace InitManage.ViewModels.Setting;
 public class SettingsViewModel : BaseViewModel
 {
     private readonly IPreferenceHelper _preferenceHelper;
+    private readonly INotificationHelper _notificationHelper;
 
-    public SettingsViewModel(INavigationService navigationService, IPreferenceHelper preferenceHelper) : base(navigationService)
+    public SettingsViewModel(
+        INavigationService navigationService,
+        IPreferenceHelper preferenceHelper,
+        INotificationHelper notificationHelper) : base(navigationService)
     {
         _preferenceHelper = preferenceHelper;
+        _notificationHelper = notificationHelper;
 
         LogoutCommand = ReactiveCommand.CreateFromTask(OnLogoutCommand);
 
@@ -19,7 +24,7 @@ public class SettingsViewModel : BaseViewModel
         Application.Current.RequestedThemeChanged += OnThemeChanged;
 
         Reminders = new[] { TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(10), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30) };
-        Reminder = Reminders.FirstOrDefault();
+        Reminder = _preferenceHelper.TimeBeforeReceiveNotification;
         IsNotificationEnabled = _preferenceHelper.IsNotificationEnabled;
     }
 
@@ -55,8 +60,20 @@ public class SettingsViewModel : BaseViewModel
         get => _reminder;
         set
         {
-            this.RaiseAndSetIfChanged(ref _reminder, value);
-            _preferenceHelper.TimeBeforeReceiveNotification = value;
+            if (_reminder != value)
+            {
+                try
+                {
+                    this.RaiseAndSetIfChanged(ref _reminder, value);
+                    _preferenceHelper.TimeBeforeReceiveNotification = value;
+                    _notificationHelper.SendNotification("Information", $"Vous receverez une notification {value.Minutes} minutes avant une réservation.");
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                
+            }
         }
     }
 

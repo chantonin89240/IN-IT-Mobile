@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using DynamicData;
 using InitManage.Models.Wrappers;
@@ -6,25 +6,26 @@ using InitManage.Services.Interfaces;
 using ReactiveUI;
 using Sharpnado.TaskLoaderView;
 using InitManage.Resources.Translations;
+using System.Reactive;
 
 namespace InitManage.ViewModels.Resource;
 
 public class MyResourcesViewModel : BaseViewModel
 {
-    private readonly IResourceService _resourceService;
+    private readonly IBookingService _bookingService;
 
     public MyResourcesViewModel(
         INavigationService navigationService,
-        IResourceService resourceService)
+        IBookingService bookingService)
         : base(navigationService)
     {
-        _resourceService = resourceService;
+        _bookingService = bookingService;
 
         Loader = new TaskLoaderNotifier();
 
-        _resourcesCache
+        _bookingsCache
             .Connect()
-            .Bind(out _resources)
+            .Bind(out _bookings)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
     }
@@ -34,15 +35,13 @@ public class MyResourcesViewModel : BaseViewModel
 
     protected override async Task OnAppearingAsync()
     {
-        if (!_resourcesCache.Items.Any())
+        if (!_bookingsCache.Items.Any())
         {
             Loader.Load(async _ =>
             {
                 LoadingMessage = AppResources.LoadingResources;
-                var resource = await _resourceService.GetResourcesAsync();
-                await Task.Delay(5000);
-
-                _resourcesCache.AddOrUpdate(resource.Select(r => new ResourceWrapper(r)));
+                var bookingsWrapper = await _bookingService.GetBookingsWrappersAsync();
+                _bookingsCache.AddOrUpdate(bookingsWrapper);
             });
         }
     }
@@ -54,9 +53,9 @@ public class MyResourcesViewModel : BaseViewModel
     public TaskLoaderNotifier Loader { get; }
 
     #region Dynamic list Resources
-    private SourceCache<ResourceWrapper, long> _resourcesCache = new SourceCache<ResourceWrapper, long>(r => r.Id);
-    private readonly ReadOnlyObservableCollection<ResourceWrapper> _resources;
-    public ReadOnlyObservableCollection<ResourceWrapper> Resources => _resources;
+    private SourceCache<BookingWrapper, long> _bookingsCache = new SourceCache<BookingWrapper, long>(r => r.Id);
+    private readonly ReadOnlyObservableCollection<BookingWrapper> _bookings;
+    public ReadOnlyObservableCollection<BookingWrapper> Bookings => _bookings;
     #endregion
 
 
