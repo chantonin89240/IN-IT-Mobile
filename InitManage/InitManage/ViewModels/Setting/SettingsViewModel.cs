@@ -80,7 +80,6 @@ public class SettingsViewModel : BaseViewModel
     #endregion
 
     #region IsNotificationEnabled
-
     private bool _isNotificationEnabled;
     public bool IsNotificationEnabled
     {
@@ -91,7 +90,6 @@ public class SettingsViewModel : BaseViewModel
             _preferenceHelper.IsNotificationEnabled = value;
         }
     }
-
     #endregion
 
     #endregion
@@ -100,7 +98,11 @@ public class SettingsViewModel : BaseViewModel
 
     #region OnLogoutCommand
     public ReactiveCommand<Unit, Unit> LogoutCommand { get; private set; }
-    private async Task OnLogoutCommand() =>  await NavigationService.GoBackToRootAsync();
+    private async Task OnLogoutCommand()
+    {
+        _preferenceHelper.Mail = string.Empty;
+        await NavigationService.GoBackToRootAsync();
+    }
     #endregion
 
     #region OnThemeChanged
