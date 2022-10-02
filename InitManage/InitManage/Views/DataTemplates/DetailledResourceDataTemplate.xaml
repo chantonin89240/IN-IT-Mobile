@@ -28,17 +28,19 @@
                     TextColor="{StaticResource Primary}"/>
 
                 <Label
+                    VerticalOptions="StartAndExpand"
+                    VerticalTextAlignment="Start"
                     Grid.Row="1"
                     Grid.Column="1"
                     TextColor="{StaticResource Light}"
                     Text="{Binding Start, StringFormat='Le {0:dd/MM/yyyy}'}"/>
 
                 <Label
+                    VerticalOptions="EndAndExpand"
+                    VerticalTextAlignment="End"
                     TextColor="{StaticResource Light}"
                     Grid.Column="1"
-                    Grid.Row="2"
-                     Margin="5"
-                     VerticalOptions="Center">
+                    Grid.Row="2">
                      <Label.Text>
                          <MultiBinding StringFormat="De {0:hh:mm} à {1:hh:mm}">
                              <Binding Path="Start"/>

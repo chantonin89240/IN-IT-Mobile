@@ -25,6 +25,20 @@ public class Constants
 	public const string SettingsPage = nameof(SettingsPage);
 	public const string NavigationPage = nameof(NavigationPage);
 
-	#endregion
+    #endregion
+
+
+    #region Images names
+
+    public const string BookImage = "book";
+    public const string MagnifyingGlassImage = "magnifying_glass";
+    public const string PinImage = "pin";
+    public const string PeoplesImage = "peoples";
+    public const string TagsImage = "tags";
+    public const string CalendarImage = "calendar";
+    public const string ToolboxImage = "toolbox";
+
+
+    #endregion
 }
 
