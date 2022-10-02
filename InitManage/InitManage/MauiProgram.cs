@@ -76,11 +76,12 @@ public static class MauiProgram
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
         containerRegistry.RegisterSingleton<IHttpService, HttpService>();
 
-        containerRegistry.RegisterSingleton<IResourceService, ResourceService>();
+        containerRegistry.RegisterSingleton<IResourceService, MockedResourceService>();
         containerRegistry.RegisterSingleton<IUserService, UserService>();
-        containerRegistry.RegisterSingleton<IOptionService, OptionService>();
-        containerRegistry.RegisterSingleton<ITypeService, TypeService>();
-	}
+        containerRegistry.RegisterSingleton<IOptionService, MockedOptionService>();
+        containerRegistry.RegisterSingleton<ITypeService, MockedTypeService>();
+        containerRegistry.RegisterSingleton<IBookingService, MockedBookingService>();
+    }
 
     private static void RegisterNavigation(this IContainerRegistry containerRegistry)
     {

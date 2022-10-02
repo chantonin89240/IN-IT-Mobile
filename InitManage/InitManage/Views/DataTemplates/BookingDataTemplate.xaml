@@ -7,7 +7,6 @@
         <Frame
             Margin="0, 5"
             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-            HasShadow="False"
             CornerRadius="10"
             Padding="10">
             <StackLayout Padding="5">

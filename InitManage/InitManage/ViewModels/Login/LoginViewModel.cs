@@ -5,7 +5,6 @@ using InitManage.Views.Pages;
 using Plugin.Firebase.CloudMessaging;
 using ReactiveUI;
 using Sharpnado.TaskLoaderView;
-using InitManage.Resources.Translations;
 using InitManage.Commons;
 
 namespace InitManage.ViewModels.Login;
@@ -52,7 +51,6 @@ public class LoginViewModel : BaseViewModel
 		}
        
 
-
 		Mail = _preferenceHelper.Mail;
     }
 
@@ -92,6 +90,7 @@ public class LoginViewModel : BaseViewModel
 
         if (isLoginSuccess)
         {
+            _preferenceHelper.Mail = Mail;
             Mail = string.Empty;
             Password = string.Empty;
 
@@ -103,7 +102,6 @@ public class LoginViewModel : BaseViewModel
 		}
 	}
     #endregion
-
 
     #endregion
 }
