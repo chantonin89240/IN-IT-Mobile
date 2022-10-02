@@ -170,8 +170,6 @@ public class ResourcesViewModel : BaseViewModel
 
     #endregion
 
-
-    
     #region Types
 
     private IEnumerable<ITypeEntity> _types;
@@ -231,23 +229,19 @@ public class ResourcesViewModel : BaseViewModel
 
     #region Methods & Commands
 
+    #region OnResourceTappedCommand
     public ReactiveCommand<IResourceEntity, Task> ResourceTappedCommand { get; private set; }
     private async Task OnResourceTappedCommand(IResourceEntity resource)
     {
         var parameters = new NavigationParameters { { Constants.ResourceIdNavigationParameter, resource?.Id } };
         await NavigationService.NavigateAsync(Constants.ResourcePage, parameters);
     }
-
-    #region OnOptionEntryTappedCommand
-
-    public ReactiveCommand<Unit, Unit> OptionEntryTappedCommand { get; private set; }
-    private async Task OnOptionEntryTappedCommand()
-    {
-        IsOptionsVisible = !IsOptionsVisible;
-    }
-
     #endregion
 
+    #region OnOptionEntryTappedCommand
+    public ReactiveCommand<Unit, Unit> OptionEntryTappedCommand { get; private set; }
+    private async Task OnOptionEntryTappedCommand() => IsOptionsVisible = !IsOptionsVisible;
+    #endregion
 
     #endregion
 }
