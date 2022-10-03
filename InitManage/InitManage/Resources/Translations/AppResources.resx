@@ -231,4 +231,7 @@
   <data name="NoOptionResult" xml:space="preserve">
     <value>Aucune option trouvée</value>
   </data>
+  <data name="NoBookingResult" xml:space="preserve">
+    <value>Aucune réservation trouvée</value>
+  </data>
 </root>

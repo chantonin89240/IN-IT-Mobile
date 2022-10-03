@@ -58,6 +58,11 @@
                     <DataTemplates:DetailledResourceDataTemplate/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{Static Translations:AppResources.NoBookingResult}"/>
+            </CollectionView.EmptyView>
         </CollectionView>
     </Grid>
 </ContentPage>

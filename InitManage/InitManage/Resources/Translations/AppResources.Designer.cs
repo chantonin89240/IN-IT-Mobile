@@ -283,6 +283,15 @@ namespace InitManage.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aucune réservation trouvée.
+        /// </summary>
+        internal static string NoBookingResult {
+            get {
+                return ResourceManager.GetString("NoBookingResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aucune option trouvée.
         /// </summary>
         internal static string NoOptionResult {
