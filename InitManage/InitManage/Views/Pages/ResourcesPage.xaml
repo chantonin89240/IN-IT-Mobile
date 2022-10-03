@@ -52,7 +52,7 @@
                         Margin="10"
                         RowSpacing="5"
                         ColumnSpacing="10"
-                        ColumnDefinitions="25, Auto, 25, Auto"
+                        ColumnDefinitions="25, *, 25, *"
                         RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
                         <Label
