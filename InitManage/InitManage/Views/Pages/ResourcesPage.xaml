@@ -179,6 +179,11 @@
                                 <DataTemplates:ResourceDataTemplate/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Static Translations:AppResources.NoResourceResult}"/>
+                        </CollectionView.EmptyView>
                     </CollectionView>
                 </Grid>
             </ControlTemplate>

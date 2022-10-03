@@ -225,4 +225,7 @@
   <data name="Types" xml:space="preserve">
     <value>Types</value>
   </data>
+  <data name="NoResourceResult" xml:space="preserve">
+    <value>Aucune resource trouvée</value>
+  </data>
 </root>
