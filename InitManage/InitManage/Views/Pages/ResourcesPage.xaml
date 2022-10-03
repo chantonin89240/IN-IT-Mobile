@@ -165,6 +165,11 @@
                                         <DataTemplates:OptionDataTemplate/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="{Static Translations:AppResources.NoOptionResult}"/>
+                                </CollectionView.EmptyView>
                             </CollectionView>
                         </StackLayout>
                         

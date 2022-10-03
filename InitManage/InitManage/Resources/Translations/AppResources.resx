@@ -228,4 +228,7 @@
   <data name="NoResourceResult" xml:space="preserve">
     <value>Aucune resource trouvée</value>
   </data>
+  <data name="NoOptionResult" xml:space="preserve">
+    <value>Aucune option trouvée</value>
+  </data>
 </root>
