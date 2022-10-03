@@ -140,6 +140,7 @@
                             <Entry
                                 IsReadOnly="True"
                                 Grid.ColumnSpan="3"
+                                InputTransparent="True"
                                 Placeholder="{Static Translations:AppResources.SelectOptions}"
                                 Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}">
                             </Entry>
