@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:DataTemplates="clr-namespace:InitManage.Views.DataTemplates"
@@ -91,7 +91,7 @@
                 <CollectionView ItemsSource="{Binding Bookings}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <DataTemplates:BookingDataTemplate/>
+                            <DataTemplates:BookingHistoryDataTemplate/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

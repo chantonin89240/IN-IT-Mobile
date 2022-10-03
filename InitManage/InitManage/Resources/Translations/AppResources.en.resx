@@ -225,4 +225,13 @@
   <data name="Types" xml:space="preserve">
     <value>Types</value>
   </data>
+  <data name="NoResourceResult" xml:space="preserve">
+    <value>No resource found</value>
+  </data>
+  <data name="NoOptionResult" xml:space="preserve">
+    <value>No option found</value>
+  </data>
+  <data name="NoBookingResult" xml:space="preserve">
+    <value>No booking found</value>
+  </data>
 </root>

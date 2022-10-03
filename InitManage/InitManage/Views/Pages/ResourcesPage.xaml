@@ -52,7 +52,7 @@
                         Margin="10"
                         RowSpacing="5"
                         ColumnSpacing="10"
-                        ColumnDefinitions="25, Auto, 25, Auto"
+                        ColumnDefinitions="25, *, 25, *"
                         RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
                         <Label
@@ -140,6 +140,7 @@
                             <Entry
                                 IsReadOnly="True"
                                 Grid.ColumnSpan="3"
+                                InputTransparent="True"
                                 Placeholder="{Static Translations:AppResources.SelectOptions}"
                                 Text="{Binding Options, Converter={StaticResource ListToStringValueConverter}, Mode=OneWay}">
                             </Entry>
@@ -164,6 +165,11 @@
                                         <DataTemplates:OptionDataTemplate/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="{Static Translations:AppResources.NoOptionResult}"/>
+                                </CollectionView.EmptyView>
                             </CollectionView>
                         </StackLayout>
                         
@@ -178,6 +184,11 @@
                                 <DataTemplates:ResourceDataTemplate/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Static Translations:AppResources.NoResourceResult}"/>
+                        </CollectionView.EmptyView>
                     </CollectionView>
                 </Grid>
             </ControlTemplate>

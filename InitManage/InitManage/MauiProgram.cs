@@ -13,6 +13,7 @@ using Simple.Http;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using InitManage.Helpers;
 using InitManage.Commons;
+using InitManage.ViewModels.Booking;
 
 #if IOS
 using InitManage.Platforms.iOS.Helpers;
@@ -87,7 +88,7 @@ public static class MauiProgram
     {
         containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
         containerRegistry.RegisterForNavigation<ResourcesPage, ResourcesViewModel>();
-        containerRegistry.RegisterForNavigation<MyResourcesPage, MyResourcesViewModel>();
+        containerRegistry.RegisterForNavigation<BookingsPage, BookingsViewModel>();
         containerRegistry.RegisterForNavigation<ResourcePage, ResourceViewModel>();
         containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
         containerRegistry.RegisterForNavigation<CreateResourcePage, CreateResourceViewModel>();
