@@ -8,13 +8,13 @@ using Sharpnado.TaskLoaderView;
 using InitManage.Resources.Translations;
 using System.Reactive;
 
-namespace InitManage.ViewModels.Resource;
+namespace InitManage.ViewModels.Booking;
 
-public class MyResourcesViewModel : BaseViewModel
+public class BookingsViewModel : BaseViewModel
 {
     private readonly IBookingService _bookingService;
 
-    public MyResourcesViewModel(
+    public BookingsViewModel(
         INavigationService navigationService,
         IBookingService bookingService)
         : base(navigationService)
