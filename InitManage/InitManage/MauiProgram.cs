@@ -77,7 +77,7 @@ public static class MauiProgram
         containerRegistry.RegisterSingleton<IAlertDialogService, CommunityToolKitAlertDialogService>();
         containerRegistry.RegisterSingleton<IHttpService, HttpService>();
 
-        containerRegistry.RegisterSingleton<IResourceService, MockedResourceService>();
+        containerRegistry.RegisterSingleton<IResourceService, ResourceService>();
         containerRegistry.RegisterSingleton<IUserService, UserService>();
         containerRegistry.RegisterSingleton<IOptionService, MockedOptionService>();
         containerRegistry.RegisterSingleton<ITypeService, MockedTypeService>();

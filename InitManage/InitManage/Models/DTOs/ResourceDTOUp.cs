@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace InitManage.Models.DTOs;
 
-public class ResourceDTOUp : IResourceEntity
+public class ResourceDTOUp
 {
     [JsonProperty("name")]
     public string Name { get; set; }

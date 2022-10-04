@@ -158,7 +158,7 @@ public class CreateResourceViewModel : BaseViewModel
             Description = _description,
             Image = _picture,
             Address = _adress,
-            Type = "Salle de réunion"
+            TypeName = "Salle de réunion"
         };
 
         var resourceCreated = await _resourceService.CreateResource(resource);
