@@ -91,6 +91,7 @@ public class LoginViewModel : BaseViewModel
         if (isLoginSuccess)
         {
             _preferenceHelper.Mail = Mail;
+            _preferenceHelper.IsAdmin = true;
             Mail = string.Empty;
             Password = string.Empty;
 

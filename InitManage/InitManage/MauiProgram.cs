@@ -80,7 +80,7 @@ public static class MauiProgram
         containerRegistry.RegisterSingleton<IResourceService, ResourceService>();
         containerRegistry.RegisterSingleton<IUserService, UserService>();
         containerRegistry.RegisterSingleton<IOptionService, MockedOptionService>();
-        containerRegistry.RegisterSingleton<ITypeService, MockedTypeService>();
+        containerRegistry.RegisterSingleton<ITypeService, TypeService>();
         containerRegistry.RegisterSingleton<IBookingService, MockedBookingService>();
     }
 

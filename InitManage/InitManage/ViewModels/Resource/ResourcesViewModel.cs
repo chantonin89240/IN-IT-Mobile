@@ -53,27 +53,37 @@ public class ResourcesViewModel : BaseViewModel
                 return new Func<ResourceWrapper, bool>(resource => true);
             });
 
-        var typeFilter = this.WhenAnyValue(vm => vm.SelectedType)
+        var typeResourceFilter = this.WhenAnyValue(vm => vm.SelectedType)
+            .Select(query =>
+            {
+                if (query is not null)
+                    return new Func<ResourceWrapper, bool>(r => r?.TypeId == query?.Id);
+                return new Func<ResourceWrapper, bool>(r => true);
+            });
+
+        var typeOptionFilter = this.WhenAnyValue(vm => vm.SelectedType)
             .Select(query =>
             {
                 if (query is not null)
                     return new Func<OptionWrapper, bool>(option => option?.TypeId == query?.Id);
                 return new Func<OptionWrapper, bool>(option => true);
-
             });
+
+
 
         _resourcesCache
             .Connect()
             .Filter(searchFilter)
             .Filter(capacityFilter)
             .Filter(addressFilter)
+            .Filter(typeResourceFilter)
             .Bind(out _resources)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
 
         _optionsCache
             .Connect()
-            .Filter(typeFilter)
+            .Filter(typeOptionFilter)
             .Bind(out _options)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
@@ -96,6 +106,10 @@ public class ResourcesViewModel : BaseViewModel
             {
                 LoadingMessage = AppResources.LoadingResources;
                 var resources = await _resourceService.GetResourcesAsync();
+
+                if (resources == null)
+                    throw new Exception("Error when resources recuperation");
+
                 _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
 
                 ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();

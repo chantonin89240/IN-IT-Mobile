@@ -234,4 +234,7 @@
   <data name="NoBookingResult" xml:space="preserve">
     <value>No booking found</value>
   </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Error, can't connect to server</value>
+  </data>
 </root>
