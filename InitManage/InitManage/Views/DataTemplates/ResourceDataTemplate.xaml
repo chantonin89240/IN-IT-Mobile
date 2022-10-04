@@ -34,7 +34,7 @@
 
                 <StackLayout Grid.Row="2" Grid.Column="1">
                     <Label
-                        Text="{Binding Type}"
+                        Text="{Binding TypeName}"
                         TextColor="{StaticResource Light}"/>
                 </StackLayout>
             </Grid>
