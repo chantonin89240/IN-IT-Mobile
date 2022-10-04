@@ -200,5 +200,12 @@
                     LoadingMessage="{Binding Source={RelativeSource AncestorType={x:Type ResourceViewModels:ResourcesViewModel}}, Path=LoadingMessage}"/>
             </ControlTemplate>
         </sharpnado:TemplatedTaskLoader.LoadingControlTemplate>
+        <sharpnado:TemplatedTaskLoader.ErrorControlTemplate>
+            <ControlTemplate>
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{Static Translations:AppResources.ServerError}"/>
+            </ControlTemplate>
+        </sharpnado:TemplatedTaskLoader.ErrorControlTemplate>
     </sharpnado:TemplatedTaskLoader>
 </ContentPage>

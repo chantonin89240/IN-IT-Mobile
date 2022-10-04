@@ -234,4 +234,7 @@
   <data name="NoBookingResult" xml:space="preserve">
     <value>Aucune réservation trouvée</value>
   </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Erreur, impossible de contacter le serveur</value>
+  </data>
 </root>
