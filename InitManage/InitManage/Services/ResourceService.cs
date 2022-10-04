@@ -42,8 +42,8 @@ public class ResourceService : IResourceService
 
     public async Task<bool> CreateResource(IResourceEntity resource)
     {
-        var dto = new ResourceDTODown(resource);
-        var result = await _httpService.SendRequestAsync<ResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
+        var dto = new ResourceDTOUp(resource);
+        var result = await _httpService.SendRequestAsync($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}", HttpMethod.Post, dto);
         return result.HttpStatusCode == HttpStatusCode.OK;
     }
 }
