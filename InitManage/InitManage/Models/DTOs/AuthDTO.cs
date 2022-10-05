@@ -5,28 +5,19 @@ namespace InitManage.Models.DTOs;
 
 public class AuthDTODown
 {
-    [JsonProperty("id")]
-    public string Id { get; set; }
+    [JsonProperty("message")]
+    public string Message { get; set; }
 
-    [JsonProperty("mail")]
-    public string Mail { get; set; }
-
-    [JsonProperty("firstname")]
-    public string Firstname { get; set; }
-
-    [JsonProperty("lastname")]
-    public string Lastname { get; set; }
-
-    [JsonProperty("isAdmin")]
-    public bool IsAdmin { get; set; }
+    [JsonProperty("token")]
+    public string Token { get; set; }
 }
 
 public class AuthDtoUp
 {
-    [JsonProperty("mail")]
-    public string Mail { get; set; }
+    [JsonProperty("username")]
+    public string Username { get; set; }
 
-    [JsonProperty("firstname")]
+    [JsonProperty("password")]
     public string Password { get; set; }
 }
 
