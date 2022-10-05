@@ -10,6 +10,7 @@ using InitManage.Views.Pages;
 using ReactiveUI;
 using System.Linq;
 using System.Reactive.Linq;
+using Sharpnado.TaskLoaderView;
 
 namespace InitManage.ViewModels.Resource;
 
@@ -28,6 +29,8 @@ public class ResourceViewModel : BaseViewModel
             .Bind(out _bookings)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe();
+
+        Loader = new TaskLoaderNotifier();
     }
 
 
@@ -38,10 +41,13 @@ public class ResourceViewModel : BaseViewModel
 
         if (parameters.TryGetValue(Constants.ResourceIdNavigationParameter, out long resourceId))
         {
-            Resource = await _resourceService.GetResourceAsync(resourceId);
-            var bookings = await _resourceService.GetResourceBookingsWrappersAsync(Resource.Id);
+            Loader.Load(async _ =>
+            {
+                Resource = await _resourceService.GetResourceAsync(resourceId);
+                var bookings = await _resourceService.GetResourceBookingsWrappersAsync(Resource.Id);
 
-            _bookingsCache.AddOrUpdate(bookings);
+                _bookingsCache.AddOrUpdate(bookings);
+            });
         }
         else
             await NavigationService.GoBackAsync();
@@ -49,6 +55,8 @@ public class ResourceViewModel : BaseViewModel
     #endregion
 
     #region Properties
+
+    public TaskLoaderNotifier Loader { get; }
 
     #region Resource
 
