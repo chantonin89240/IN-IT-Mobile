@@ -39,8 +39,6 @@ public class UserService : IUserService
 
         if (response?.Result != null)
         {
-            _preferenceHelper.IsAdmin = true;
-
             _preferenceHelper.Token = response?.Result?.Data?.Token;
             _httpService.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _preferenceHelper.Token);
 
