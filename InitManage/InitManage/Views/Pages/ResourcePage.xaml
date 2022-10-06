@@ -110,7 +110,7 @@
                             Command="{Binding BookCommand}"
                             Text="{Static Translations:AppResources.Book}"/>
 
-                        <CollectionView ItemsSource="{Binding Bookings}">
+                        <CollectionView ItemsSource="{Binding Resource.Bookings}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <DataTemplates:BookingHistoryDataTemplate/>

@@ -20,7 +20,6 @@ public class ResourceService : IResourceService
 
     public async Task<ResourceWrapper> GetResourceAsync(long id)
     {
-        await Task.Delay(3000);
         var response = await _httpService.SendRequestAsync<DetailledResourceDTODown>($"{Constants.ApiBaseAdress}{Constants.ResourceEndPoint}/{id}", HttpMethod.Get);
         var wrapper = new ResourceWrapper(response?.Result);
 
