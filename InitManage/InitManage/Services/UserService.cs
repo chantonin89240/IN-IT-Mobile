@@ -39,14 +39,11 @@ public class UserService : IUserService
 
         if (response?.Result != null)
         {
-            _preferenceHelper.IsAdmin = true;
-
-            _preferenceHelper.Token = response?.Result?.Token;
-            _httpService.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", response?.Result?.Token);
+            _preferenceHelper.Token = response?.Result?.Data?.Token;
+            _httpService.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _preferenceHelper.Token);
 
             // TODO MUST REMOVE THIS
-            _preferenceHelper.IsAdmin = true;
-
+            _preferenceHelper.IsAdmin = response?.Result?.Data?.UserData?.IsAdmin ?? false;
             _preferenceHelper.Mail = "hello";
 
             return true;
