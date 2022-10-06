@@ -44,9 +44,9 @@ public class ResourceViewModel : BaseViewModel
             Loader.Load(async _ =>
             {
                 Resource = await _resourceService.GetResourceAsync(resourceId);
-                var bookings = await _resourceService.GetResourceBookingsWrappersAsync(Resource.Id);
+                Options = string.Join(", ", Resource?.Options?.Select(option => option.Name));
 
-                _bookingsCache.AddOrUpdate(bookings);
+                //_bookingsCache.AddOrUpdate(bookings);
             });
         }
         else
@@ -60,11 +60,22 @@ public class ResourceViewModel : BaseViewModel
 
     #region Resource
 
-    private IResourceEntity _resource;
-    public IResourceEntity Resource
+    private ResourceWrapper _resource;
+    public ResourceWrapper Resource
     {
         get => _resource;
         set => this.RaiseAndSetIfChanged(ref _resource, value);
+    }
+
+    #endregion
+
+    #region Options
+
+    private string _option;
+    public string Options
+    {
+        get => _option;
+        set => this.RaiseAndSetIfChanged(ref _option, value);
     }
 
     #endregion

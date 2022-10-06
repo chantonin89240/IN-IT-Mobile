@@ -49,9 +49,11 @@ public class LoginViewModel : BaseViewModel
 		{
 			Console.WriteLine(ex);
 		}
-       
 
-		Mail = _preferenceHelper.Mail;
+#if DEBUG
+        Password = "admin";
+#endif
+        Mail = _preferenceHelper.Mail;
     }
 
     #endregion
