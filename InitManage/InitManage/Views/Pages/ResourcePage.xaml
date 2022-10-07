@@ -98,6 +98,7 @@
                                 Text="{Static Translations:AppResources.For}"
                                 VerticalOptions="Center"/>
                             <Entry
+                                Text="{Binding Capacity}"
                                 Keyboard="Numeric"/>
 
                             <Label

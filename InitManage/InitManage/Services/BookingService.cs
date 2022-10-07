@@ -32,7 +32,7 @@ namespace InitManage.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> CreateBooking(IResourceEntity booking)
+        public async Task<bool> CreateBookingAsync(IBookingEntity booking)
         {
             var dto = new BookingDTOUp(booking);
             var result = await _httpService.SendRequestAsync<BookingDTOUp>($"{Constants.ApiBaseAdress}{Constants.BookingEndPoint}", HttpMethod.Post, dto);

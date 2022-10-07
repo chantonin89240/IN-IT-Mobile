@@ -67,7 +67,7 @@ public class MockedResourceService : IResourceService
                 Id = i,
                 Capacity = resource?.Capacity ?? 1,
                 ResourceId = resource?.Id ?? 0,
-                UserId = 1,
+                //UserId = 1,
                 Start = lastBooking.AddMinutes(15),
                 End = lastBooking.AddMinutes(new Random().Next(2, 4) * 15)
             };

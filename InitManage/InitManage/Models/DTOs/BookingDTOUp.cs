@@ -13,19 +13,31 @@ namespace InitManage.Models.DTOs
         [JsonProperty("id")]
         public long Id { get; set; }
 
-        [JsonProperty("id")]
-        public long UserId { get; set; }
+        //[JsonProperty("userId")]
+        //public long UserId { get; set; }
 
-        [JsonProperty("id")]
+        [JsonProperty("rsourceId")]
         public long ResourceId { get; set; }
 
-        [JsonProperty("id")]
+        [JsonProperty("start")]
         public DateTime Start { get; set; }
 
-        [JsonProperty("id")]
+        [JsonProperty("end")]
         public DateTime End { get; set; }
 
-        [JsonProperty("id")]
+        [JsonProperty("capacity")]
         public int Capacity { get; set; }
+
+        public BookingDTOUp()
+        {
+        }
+
+        public BookingDTOUp(IBookingEntity booking)
+        {
+            ResourceId = booking.ResourceId;
+            Start = booking.Start;
+            End = booking.End;
+            Capacity = booking.Capacity;
+        }
     }
 }
