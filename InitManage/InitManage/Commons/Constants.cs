@@ -38,6 +38,7 @@ public class Constants
     public const string TagsImage = "tags";
     public const string CalendarImage = "calendar";
     public const string ToolboxImage = "toolbox";
+    public const string ClockImage = "clock";
 
 
     #endregion
