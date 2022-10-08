@@ -43,7 +43,7 @@ public class ResourceViewModel : BaseViewModel
         {
             Loader.Load(async _ =>
             {
-                Resource = await _resourceService.GetResourceAsync(resourceId);
+                Resource = await _resourceService.GetResourceWrapperAsync(resourceId);
                 Options = string.Join(", ", Resource?.Options?.Select(option => option.Name));
 
                 //_bookingsCache.AddOrUpdate(bookings);
