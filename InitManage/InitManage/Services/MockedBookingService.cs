@@ -60,7 +60,7 @@ public class MockedBookingService : IBookingService
         foreach (var booking in bookings)
         {
             var bookingWrapper = new BookingWrapper(booking);
-            bookingWrapper.Resource = await _resourceService.GetResourceAsync(bookingWrapper.ResourceId);
+            bookingWrapper.Resource = await _resourceService.GetResourceWrapperAsync(bookingWrapper.ResourceId);
             bookingsWrappers.Add(bookingWrapper);
         }
 

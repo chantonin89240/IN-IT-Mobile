@@ -109,12 +109,12 @@ public class ResourcesViewModel : BaseViewModel
             Loader.Load(async _ =>
             {
                 LoadingMessage = AppResources.LoadingResources;
-                var resources = await _resourceService.GetResourcesAsync();
+                var resources = await _resourceService.GetResourcesWrapperAsync();
 
                 if (resources == null)
                     throw new Exception("Error when resources recuperation");
 
-                _resourcesCache.AddOrUpdate(resources.Select(r => new ResourceWrapper(r)));
+                _resourcesCache.AddOrUpdate(resources);
 
                 ResourcesCapacities = resources.Select(r => r.Capacity).OrderBy(x => x).Distinct().ToList();
 
