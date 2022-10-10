@@ -11,16 +11,19 @@ using ReactiveUI;
 using System.Linq;
 using System.Reactive.Linq;
 using Sharpnado.TaskLoaderView;
+using InitManage.Models.Entities;
 
 namespace InitManage.ViewModels.Resource;
 
 public class ResourceViewModel : BaseViewModel
 {
     private readonly IResourceService _resourceService;
+    private readonly IBookingService _bookingService;
 
-    public ResourceViewModel(INavigationService navigationService, IResourceService resourceService) : base(navigationService)
+    public ResourceViewModel(INavigationService navigationService, IResourceService resourceService, IBookingService bookingService) : base(navigationService)
     {
         _resourceService = resourceService;
+        _bookingService = bookingService;
 
         BookCommand = ReactiveCommand.CreateFromTask(OnBookCommand);
 
@@ -80,6 +83,33 @@ public class ResourceViewModel : BaseViewModel
 
     #endregion
 
+    #region Capacity
+    private int _capacity;
+    public int Capacity
+    {
+        get => _capacity;
+        set => this.RaiseAndSetIfChanged(ref _capacity, value);
+    }
+    #endregion
+
+    #region Start
+    private DateTime _start;
+    public DateTime Start
+    {
+        get => _start;
+        set => this.RaiseAndSetIfChanged(ref _start, value);
+    }
+    #endregion
+
+    #region End
+    private DateTime _end;
+    public DateTime End
+    {
+        get => _end;
+        set => this.RaiseAndSetIfChanged(ref _end, value);
+    }
+    #endregion
+
     #region Dynamic list Bookings
     private SourceCache<BookingWrapper, long> _bookingsCache = new SourceCache<BookingWrapper, long>(b => b.Id);
     private readonly ReadOnlyObservableCollection<BookingWrapper> _bookings;
@@ -95,6 +125,15 @@ public class ResourceViewModel : BaseViewModel
     public ReactiveCommand<Unit, Unit> BookCommand { get; private set; }
     private async Task OnBookCommand()
     {
+        var booking = new BookingEntity()
+        { 
+            ResourceId = Resource.Id,
+            Capacity = Capacity,
+            Start = Start,
+            End = End
+        };
+
+        await _bookingService.CreateBookingAsync(booking);
         await NavigationService.GoBackAsync();
     }
 

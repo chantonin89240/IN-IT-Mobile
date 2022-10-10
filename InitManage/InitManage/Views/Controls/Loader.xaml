@@ -9,14 +9,13 @@
         IsVisible="false"
         x:Name="ParentStackLayout"
         VerticalOptions="Center">
-      <skia:SKLottieView
+      <!--<skia:SKLottieView
           Source="loader.json"
           RepeatCount="-1"
           WidthRequest="400"
           HeightRequest="200"
-          HorizontalOptions="Center"/>
-        <!--<ActivityIndicator ============ LOL APP CRASHING WHEN UNCOMMENT THIS
-            IsRunning="True"/>-->  
+          HorizontalOptions="Center"/>-->
+        <ActivityIndicator IsRunning="True"/>
       <Label
           x:Name="LoadingMessageLabel"
           FontAttributes="Bold"
